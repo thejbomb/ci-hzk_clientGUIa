@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" layoutX="496.0" layoutY="142.0" text="淘汰赛&#10;第一关" textAlignment="CENTER">
+         <font>
+            <Font name="KaiTi" size="96.0" />
+         </font>
+      </Label>
+      <Label layoutX="429.0" layoutY="384.0" text="Round 1:汉字变变变">
+         <font>
+            <Font name="KaiTi" size="47.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
