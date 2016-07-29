@@ -21,7 +21,7 @@ public interface DataCollectionInterface {
     //	By default, the reset method resets the selected item to the beginning
     //		of the collection.
     //
-    public void reset();
+    void reset();
 
 
     //
@@ -31,7 +31,7 @@ public interface DataCollectionInterface {
     //	Defines the selected item to be the given item
     //		(if it is part of the collection).
     //
-    public void reset(Object data);
+    void reset(Object data);
 
     //
     //	a d d
@@ -40,12 +40,12 @@ public interface DataCollectionInterface {
     //	Adds the given Item to the collection.
     //	That item becomes the item currently selected.
     //
-    public void add(Object data);
+    void add(Object data);
 
     //
     //	The only "graphical" method of the class is the paint method.
     //
-    public void paint(Graphics g);
+    void paint(Graphics g);
 
 //
 //	I t e r a t o r
@@ -67,7 +67,7 @@ public interface DataCollectionInterface {
     //	Determines whether the selected item is
     //		followed by another item.
     //
-    public boolean hasNext();
+    boolean hasNext();
 
     //
     //	n e x t
@@ -77,7 +77,7 @@ public interface DataCollectionInterface {
     //		the following item as the selected item
     //		(if any item is currently selected).
     //
-    public Object next();
+    Object next();
 
 
     //
@@ -87,7 +87,7 @@ public interface DataCollectionInterface {
     //	Removes the selected item (if any).
     //	No item is selected any more.
     //
-    public void remove();
+    void remove();
 
 
 }    // end DataCollection_cell

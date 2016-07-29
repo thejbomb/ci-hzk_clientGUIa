@@ -7,9 +7,9 @@ public class Client {
         SERVER = new ServerHandler("localhost",9999);
     }
 
-    public void start(Notify notifyObject){
+    public void start(ServerHandlerInterface notifyObject){
         SERVER.startServer();
-        SERVER.setNotifyObject(notifyObject);
+        SERVER.setNotify(notifyObject);
     }
 
     public ServerHandler getServer(){

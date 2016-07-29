@@ -1,0 +1,24 @@
+.pane {
+    -fx-background-color: rgb(30,100,25);
+}
+
+.check-box {
+    -fx-font: bold 50pt "KaiTi";
+}
+
+.text-field {
+    -fx-font: bold 50pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+#zh-title {
+    -fx-font: bold 70pt "KaiTi";
+}
+
+#en-title {
+    -fx-font: bold 50pt "Bell MT";
+}
+
+#en-message {
+    -fx-font: bold 25pt "Bell MT";
+}
