@@ -43,13 +43,12 @@ public class MainController implements ServerInteractionInterface, Initializable
     @FXML
     private Label lb_message;
 
-    private ServerInteractionInterface serverNotify;
+    private ServerInteractionInterface serverController;
 
-    private ServerInteractionInterface round2ControllerNotify;
+    private int currentRound = 0;
 
-
-    public void setServerNotify(ServerInteractionInterface notify) {
-        this.serverNotify = notify;
+    public void setServerNotify(ServerInteractionInterface controller) {
+        serverController = controller;
     }
 
     private LinkedList<String> packageStringData(String data) {
@@ -89,7 +88,7 @@ public class MainController implements ServerInteractionInterface, Initializable
         if (tf_validationId.getText().compareTo("") != 0) {
             cb_clientReady.setSelected(true);
             try {
-                serverNotify.writeToServer(Constants.USER_CONNECT, packageStringData(tf_validationId.getText()));
+                serverController.writeToServer(Constants.USER_CONNECT, packageStringData(tf_validationId.getText()));
             } catch (NumberFormatException ex) {
                 lb_message.setText("Only numeric characters are allowed");
                 lb_message.setVisible(true);
@@ -111,17 +110,7 @@ public class MainController implements ServerInteractionInterface, Initializable
     }
 
     @Override
-    public void writeToServer(int command, int source) {
-
-    }
-
-    @Override
     public void writeToServer(int command, LinkedList<String> data) {
-
-    }
-
-    @Override
-    public void writeToServer(int command, LinkedList<String> data, int source) {
 
     }
 
@@ -139,9 +128,9 @@ public class MainController implements ServerInteractionInterface, Initializable
                 ap_round2Interface.setVisible(true);
                 ap_round2InterfaceController.init();
                 break;
-            case Constants.BEGIN_R1L2:
-                break;
-            case Constants.BEGIN_R1L3:
+            case Constants.BEGIN_R2L1:
+                currentRound = Constants.ROUND2;
+                ap_round2InterfaceController.handleServerData(command,data);
                 break;
             case Constants.ERROR_ID_NOT_FOUND:
                 lb_message.setText("ID was not found.");
@@ -152,7 +141,23 @@ public class MainController implements ServerInteractionInterface, Initializable
                 lb_message.setText("Connection lost");
                 break;
             default:
-                round2ControllerNotify.writeToServer(command);
+                switch (currentRound) {
+                    case Constants.ROUND1:
+                        //ap_round2InterfaceController.handleServerData(command, data);
+                        break;
+                    case Constants.ROUND2:
+                        ap_round2InterfaceController.handleServerData(command, data);
+                        break;
+                    case Constants.ROUND3:
+                      //  ap_round2InterfaceController.handleServerData(command, data);
+                        break;
+                    case Constants.ROUND4:
+                       // ap_round2InterfaceController.handleServerData(command, data);
+                        break;
+                    case Constants.ROUND5:
+                       // ap_round2InterfaceController.handleServerData(command, data);
+                        break;
+                }
                 break;
         }
     }
@@ -173,11 +178,6 @@ public class MainController implements ServerInteractionInterface, Initializable
         AnchorPane.setRightAnchor(ap_round2Interface, 0.0);
 
         ap_round2Interface.setVisible(false);
-
-        ap_round2InterfaceController.setNotify(this);
-
-        round2ControllerNotify = ap_round2InterfaceController;
-
     }
 
 

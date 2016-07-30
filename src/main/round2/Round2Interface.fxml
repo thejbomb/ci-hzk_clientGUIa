@@ -58,7 +58,7 @@
             </AnchorPane>
             <AnchorPane GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="lb_cnRoundDescription" alignment="CENTER" text="PLACE HOLDER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_cnRoundDescription" alignment="CENTER" text="ROUND_2_DESCRIPTION_PLACEHOLDER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>

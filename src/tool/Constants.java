@@ -24,11 +24,12 @@ public class Constants {
     public static final int TRANSMISSION_BEGIN = 0x7C0;
     public static final int TRANSMISSION_END = 0x7D0;
 
-    public static final int BEGIN_R1L1 = 0x110;
+    public static final int BEGIN_R2L1 = 0x110;
     public static final int BEGIN_R1L2 = 0x120;
     public static final int BEGIN_R1L3 = 0x130;
 
     public static final int DIS_R1L1_EX = 0x112;
+    public static final int DIS_R1L1_QS = 0x113;
 
     public static final int SRC_SERVER = 0x1000000;
     public static final int SRC_R2L1 = 0x1000001;

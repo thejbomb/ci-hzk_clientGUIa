@@ -11,11 +11,7 @@ public interface ServerInteractionInterface {
 
     void writeToServer(int command);
 
-    void writeToServer(int command, int source);
-
     void writeToServer(int command, LinkedList<String> data);
-
-    void writeToServer(int command, LinkedList<String> data, int source);
 }
 
 

@@ -10,17 +10,11 @@ import java.util.LinkedList;
 public class ServerHandler implements ServerInteractionInterface, Runnable {
     private final String HOST_NAME;
     private final int PORT_NUMBER;
-    private Socket socket = null;
     private PrintWriter out = null;
     private BufferedReader in = null;
-    private ObjectInputStream is = null;
-    private ObjectOutputStream os = null;
     private ServerHandlerInterface mainController;
-    private boolean listening = false;
-    private boolean initialized = false;
     private Thread handlerThread = null;
 
-    private int currentCommand = -1;
 
     private LinkedList<String> outputQueue = null;
     private LinkedList<String> inputQueue = null;
@@ -38,12 +32,9 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
 
     public void startServer() {
         try {
-            socket = new Socket(HOST_NAME, PORT_NUMBER);
+            Socket socket = new Socket(HOST_NAME, PORT_NUMBER);
             out = new PrintWriter(socket.getOutputStream(), true);
-            os = new ObjectOutputStream(socket.getOutputStream());
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            is = new ObjectInputStream(socket.getInputStream());
-            initialized = true;
             System.out.println("Connected to server @ " + socket.getInetAddress());
         } catch (IOException ex) {
             System.out.println(ex.getMessage() + " " + getClass());
@@ -57,25 +48,12 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
     }
 
     @Override
-    public void writeToServer(int command, int source) {
-        writeToServer(command, new LinkedList<>());
-    }
-
-    @Override
     public void writeToServer(int command, LinkedList<String> data) {
         data.addFirst(Integer.toString(command));
         outputQueue = data;
         out.println(Constants.TRANSMISSION_BEGIN);
     }
 
-    @Override
-    public void writeToServer(int command, LinkedList<String> data, int source) {
-
-    }
-
-    private void writeToServer(String data) {
-        out.println(data);
-    }
 
     private String readFromServer() throws IOException {
         return in.readLine();
@@ -88,17 +66,9 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
         return result;
     }
 
-    private LinkedList<String> packageIntegerData(int i) {
-        LinkedList<String> result = new LinkedList<>();
-        String data = Integer.toString(i);
-        result.add(data);
-
-        return result;
-    }
-
     @Override
     public void run() {
-        listening = true;
+        boolean listening = true;
         try {
             while (listening) {
                 String response = readFromServer();
@@ -136,7 +106,6 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
                     }
                     outputQueue = null;
                 }
-
 
             }
         } catch (IOException ex) {
