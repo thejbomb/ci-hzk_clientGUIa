@@ -1,7 +1,6 @@
 package main.round2;
 
-import javafx.application.Platform;
-import javafx.concurrent.Task;
+import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -79,7 +78,11 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @FXML
     private TextArea ta_answer5;
 
-    public void init() {
+    private Round2Controller round2Controller;
+
+    public void init(UserData user, Round2Controller round2Controller) {
+        this.userData = user;
+        this.round2Controller = round2Controller;
         Runnable delay = new Runnable() {
             @Override
             public void run() {
@@ -96,6 +99,29 @@ public class Level1Controller extends Round2Controller implements Initializable,
         };
         Thread delayThread = new Thread(delay);
         delayThread.start();
+    }
+
+    private LinkedList<String> packageAnswers() {
+        String answer1 = ta_answer1.getText();
+        String answer2 = ta_answer2.getText();
+        String answer3 = ta_answer3.getText();
+        String answer4 = ta_answer4.getText();
+        String answer5 = ta_answer5.getText();
+
+        LinkedList<String> result = new LinkedList<>();
+        result.add("ANS1");
+        result.add(answer1);
+        result.add("ANS2");
+        result.add(answer2);
+        result.add("ANS3");
+        result.add(answer3);
+        result.add("ANS4");
+        result.add(answer4);
+        result.add("ANS5");
+        result.add(answer5);
+
+        return result;
+
     }
 
     private void setStyle() {
@@ -147,11 +173,10 @@ public class Level1Controller extends Round2Controller implements Initializable,
         lb_question5.setText(Main.R2L1_DATA.QUESTIONS.get(4));
     }
 
-
     @Override
     public void writeToServer(int command) {
         switch (command) {
-            case Constants.DIS_R1L1_EX:
+            case Constants.DIS_R2L1_EXP:
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(true);
                 break;
@@ -162,19 +187,19 @@ public class Level1Controller extends Round2Controller implements Initializable,
 
     @Override
     public void writeToServer(int command, LinkedList<String> data) {
-
+        super.writeToServer(command, data);
     }
 
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
         switch (command) {
-            case Constants.DIS_R1L1_EX:
+            case Constants.DIS_R2L1_EXP:
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(true);
                 gp_questions.setVisible(false);
                 break;
-            case Constants.DIS_R1L1_QS:
+            case Constants.DIS_R2L1_QST:
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(false);
@@ -186,9 +211,23 @@ public class Level1Controller extends Round2Controller implements Initializable,
         }
     }
 
+    private void hide(){
+        gp_example.setVisible(false);
+        gp_instruction.setVisible(false);
+        gp_levelTitle.setVisible(false);
+        gp_questions.setVisible(false);
+    }
+
     @Override
     public void takeNotice() {
-        System.out.println("Do something");
+        ta_answer1.setEditable(false);
+        ta_answer2.setEditable(false);
+        ta_answer3.setEditable(false);
+        ta_answer4.setEditable(false);
+        ta_answer5.setEditable(false);
+        writeToServer(Constants.C2S_R2L1_ANS, packageAnswers());
+        hide();
+        round2Controller.show();
     }
 
     @Override

@@ -1,9 +1,9 @@
 package main;
 
 import com.google.gson.Gson;
-import data.round2.Round2Level1Data;
-import data.round2.Round2Level2Data;
-import data.round2.Round2Level3Data;
+import data.Round2Level1Data;
+import data.Round2Level2Data;
+import data.Round2Level3Data;
 import network.Client;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -39,7 +39,7 @@ public class Main extends Application {
     }
 
     private static Round2Level1Data getRound2Level1Data() {
-        String fileName = "src/asset/Round2Level1Data.json";
+        String fileName = "src/data/Round2Level1Data.json";
         try {
             return new Gson().fromJson(new FileReader(fileName), Round2Level1Data.class);
         } catch (FileNotFoundException ex) {
@@ -49,7 +49,7 @@ public class Main extends Application {
     }
 
     private static Round2Level2Data getRound2Level2Data() {
-        String fileName = "src/asset/Round2Level2Data.json";
+        String fileName = "src/data/Round2Level2Data.json";
         try {
             return new Gson().fromJson(new FileReader(fileName), Round2Level2Data.class);
         } catch (FileNotFoundException ex) {
@@ -60,7 +60,7 @@ public class Main extends Application {
     }
 
     private static Round2Level3Data getRound2Level3Data() {
-        String fileName = "src/asset/Round2Level3Data.json";
+        String fileName = "src/data/Round2Level3Data.json";
         try {
             return new Gson().fromJson(new FileReader(fileName), Round2Level3Data.class);
         } catch (FileNotFoundException ex) {

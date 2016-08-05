@@ -15,7 +15,7 @@ public class Timer {
                     timeLeft--;
                     if (timeLeft == 0)
                         timerInterface.takeNotice();
-                    Thread.sleep(1000);
+                    Thread.sleep(10);
                     final String TIME = refreshTimer(timeLeft);
                     Platform.runLater(() -> timerLabel.setText(TIME));
                 }

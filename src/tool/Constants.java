@@ -17,19 +17,19 @@ public class Constants {
     public static final int ERROR_CONNECTION_LOST = 0x601;
     public static final int USER_CONNECT = 0x5;
 
-    public static final int SERVER_SEND_NEXT = 0x700;
-    public static final int CLIENT_SEND_NEXT = 0x701;
-    public static final int SERVER_RECEIVED = 0x702;
-    public static final int CLIENT_RECEIVED = 0x703;
-    public static final int TRANSMISSION_BEGIN = 0x7C0;
-    public static final int TRANSMISSION_END = 0x7D0;
+    public static final String SERVER_SEND_NEXT = "SERV_SND_NXT";
+    public static final String CLIENT_SEND_NEXT = "CLNT_SND_NXT";
+    public static final String TRANSMISSION_BEGIN = "TRANS_BEGIN";
+    public static final String TRANSMISSION_END = "TRANS_END";
 
     public static final int BEGIN_R2L1 = 0x110;
-    public static final int BEGIN_R1L2 = 0x120;
-    public static final int BEGIN_R1L3 = 0x130;
+    public static final int BEGIN_R2L2 = 0x120;
+    public static final int BEGIN_R2L3 = 0x130;
 
-    public static final int DIS_R1L1_EX = 0x112;
-    public static final int DIS_R1L1_QS = 0x113;
+    public static final int DIS_R2L1_EXP = 0x112;
+    public static final int DIS_R2L1_QST = 0x113;
+    public static final int C2S_R2L1_ANS = 0x114;
+    public static final int S2C_R2L1_SCR = 0x115;
 
     public static final int SRC_SERVER = 0x1000000;
     public static final int SRC_R2L1 = 0x1000001;

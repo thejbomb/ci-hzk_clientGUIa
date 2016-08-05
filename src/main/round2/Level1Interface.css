@@ -74,6 +74,6 @@
 }
 
 #font-roundAnswers {
-    -fx-font: bold 30pt "KaiTi";
+    -fx-font: bold 15pt "KaiTi";
     -fx-text-fill: rgb(0,255,0);
 }

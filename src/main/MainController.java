@@ -1,6 +1,7 @@
 package main;
 
 
+import data.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,7 +44,9 @@ public class MainController implements ServerInteractionInterface, Initializable
     @FXML
     private Label lb_message;
 
-    private ServerInteractionInterface serverController;
+    private static ServerInteractionInterface serverController;
+
+    protected UserData userData;
 
     private int currentRound = 0;
 
@@ -51,17 +54,15 @@ public class MainController implements ServerInteractionInterface, Initializable
         serverController = controller;
     }
 
-    private LinkedList<String> packageStringData(String data) {
+    private LinkedList<String> packageData(Object obj) {
+        System.out.println(obj.getClass());
         LinkedList<String> result = new LinkedList<>();
-        result.add(data);
-
-        return result;
-    }
-
-    private LinkedList<String> packageIntegerData(int i) {
-        LinkedList<String> result = new LinkedList<>();
-        String data = Integer.toString(i);
-        result.add(data);
+        if (obj.getClass() == String.class) {
+            result.add((String) obj);
+        } else if (obj.getClass() == Integer.class) {
+            String data = Integer.toString((int) obj);
+            result.add(data);
+        }
 
         return result;
     }
@@ -88,7 +89,7 @@ public class MainController implements ServerInteractionInterface, Initializable
         if (tf_validationId.getText().compareTo("") != 0) {
             cb_clientReady.setSelected(true);
             try {
-                serverController.writeToServer(Constants.USER_CONNECT, packageStringData(tf_validationId.getText()));
+                serverController.writeToServer(Constants.USER_CONNECT, packageData(tf_validationId.getText()));
             } catch (NumberFormatException ex) {
                 lb_message.setText("Only numeric characters are allowed");
                 lb_message.setVisible(true);
@@ -111,26 +112,27 @@ public class MainController implements ServerInteractionInterface, Initializable
 
     @Override
     public void writeToServer(int command, LinkedList<String> data) {
-
+        MainController.serverController.writeToServer(command, data);
     }
 
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
         switch (command) {
             case Constants.LOGIN_SUCCESS:
+                userData = new UserData(data.getFirst());
                 cb_clientReady.setDisable(true);
                 tf_validationId.setEditable(false);
-                lb_message.setText("OK!");
+                lb_message.setText("Welcome " + userData.getName() + "!");
                 lb_message.setVisible(true);
                 break;
             case Constants.BEGIN_COMP:
                 gp_pane.setVisible(false);
                 ap_round2Interface.setVisible(true);
-                ap_round2InterfaceController.init();
+                ap_round2InterfaceController.init(userData);
                 break;
             case Constants.BEGIN_R2L1:
                 currentRound = Constants.ROUND2;
-                ap_round2InterfaceController.handleServerData(command,data);
+                ap_round2InterfaceController.handleServerData(command, data);
                 break;
             case Constants.ERROR_ID_NOT_FOUND:
                 lb_message.setText("ID was not found.");
@@ -149,13 +151,13 @@ public class MainController implements ServerInteractionInterface, Initializable
                         ap_round2InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.ROUND3:
-                      //  ap_round2InterfaceController.handleServerData(command, data);
+                        //  ap_round2InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.ROUND4:
-                       // ap_round2InterfaceController.handleServerData(command, data);
+                        // ap_round2InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.ROUND5:
-                       // ap_round2InterfaceController.handleServerData(command, data);
+                        // ap_round2InterfaceController.handleServerData(command, data);
                         break;
                 }
                 break;

@@ -18,7 +18,7 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
 
     private LinkedList<String> outputQueue = null;
     private LinkedList<String> inputQueue = null;
-
+    private Socket socket = null;
     public ServerHandler(String hostName, int portNumber) {
         HOST_NAME = hostName;
         PORT_NUMBER = portNumber;
@@ -32,7 +32,7 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
 
     public void startServer() {
         try {
-            Socket socket = new Socket(HOST_NAME, PORT_NUMBER);
+            socket = new Socket(HOST_NAME, PORT_NUMBER);
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             System.out.println("Connected to server @ " + socket.getInetAddress());
@@ -72,10 +72,11 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
         try {
             while (listening) {
                 String response = readFromServer();
-                if (Integer.parseInt(response) == Constants.TRANSMISSION_BEGIN) {
+                System.out.println(response);
+                if (response.compareTo(Constants.TRANSMISSION_BEGIN) == 0) {
                     out.println(Constants.SERVER_SEND_NEXT);
                     response = readFromServer();
-                    while (Integer.parseInt(response) != Constants.TRANSMISSION_END) {
+                    while (response.compareTo(Constants.TRANSMISSION_END) != 0) {
                         System.out.println("From server: " + response);
                         if (inputQueue == null)
                             inputQueue = new LinkedList<>();
@@ -84,6 +85,7 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
                     }
 
                     int command = Integer.parseInt(inputQueue.getFirst());
+                    System.out.println("Server command: " + Integer.toHexString(command));
                     inputQueue.removeFirst();
                     switch (command) {
                         default:
@@ -94,7 +96,7 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
                             break;
                     }
 
-                } else if (Integer.parseInt(response) == Constants.CLIENT_SEND_NEXT) {
+                } else if (response.compareTo(Constants.CLIENT_SEND_NEXT) == 0) {
 
                     while (!outputQueue.isEmpty()) {
                         System.out.println("To server: " + outputQueue.getFirst());

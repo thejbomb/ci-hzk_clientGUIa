@@ -1,7 +1,9 @@
 package main.round2;
 
+import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -27,12 +29,38 @@ public class Round2Controller extends MainController implements Initializable, R
     private GridPane gp_titlePane;
     @FXML
     private GridPane gp_round2;
+    @FXML
+    private Label lb_userName;
+    @FXML
+    private Label lb_userLevel;
+    @FXML
+    private Label lb_point1;
+    @FXML
+    private Label lb_point2;
+    @FXML
+    private Label lb_point3;
+    @FXML
+    private Label lb_point4;
+    @FXML
+    private Label lb_point5;
+    @FXML
+    private Label lb_userPoint1;
+    @FXML
+    private Label lb_userPoint2;
+    @FXML
+    private Label lb_userPoint3;
+    @FXML
+    private Label lb_userPoint4;
+    @FXML
+    private Label lb_userPoint5;
 
     private int currentLevel = -1;
 
     private Thread thread;
 
-    public void init() {
+    public void init(UserData user) {
+        this.userData = user;
+        lb_userName.setText(userData.getName());
         thread = new Thread(this);
         thread.start();
     }
@@ -42,6 +70,23 @@ public class Round2Controller extends MainController implements Initializable, R
 
     }
 
+    private void setData(){
+        // initialize all points to 0
+        lb_userPoint1.setText("0");
+        lb_userPoint2.setText("0");
+        lb_userPoint3.setText("0");
+        lb_userPoint4.setText("0");
+        lb_userPoint5.setText("0");
+
+    }
+
+    private void setStyle(){
+
+    }
+
+    protected void show(){
+        gp_round2.setVisible(true);
+    }
 
     @Override
     public void run() {
@@ -63,7 +108,7 @@ public class Round2Controller extends MainController implements Initializable, R
 
     @Override
     public void writeToServer(int command, LinkedList<String> data) {
-
+        super.writeToServer(command, data);
     }
 
     @Override
@@ -73,9 +118,13 @@ public class Round2Controller extends MainController implements Initializable, R
                 currentLevel = Constants.LEVEL1;
                 gp_titlePane.setVisible(false);
                 gp_round2.setVisible(false);
-                System.out.println(gp_round2.isVisible());
                 ap_level1Interface.setVisible(true);
-                ap_level1InterfaceController.init();
+                ap_level1InterfaceController.init(userData,this);
+                break;
+            case Constants.S2C_R2L1_SCR:
+                userData.setRound2Point(Integer.parseInt(data.getFirst()));
+                lb_userPoint2.setText(data.getFirst());
+                System.out.println(userData.getName() + " current total point for round 2 is " + data.getFirst());
                 break;
             default:
                 switch (currentLevel) {
@@ -102,6 +151,8 @@ public class Round2Controller extends MainController implements Initializable, R
         AnchorPane.setLeftAnchor(ap_level1Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level1Interface, 0.0);
         ap_level1Interface.setVisible(false);
+
+        setData();
     }
 
 }
