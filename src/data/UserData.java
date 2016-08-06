@@ -5,15 +5,21 @@ package data;
  */
 public class UserData {
     private final String USER_NAME;
+    private final String USER_LEVEL;
 
     private int round2Point = 0;
 
-    public UserData(String name) {
+    public UserData(String name, String level) {
         USER_NAME = name;
+        USER_LEVEL = level;
     }
 
     public String getName() {
         return USER_NAME;
+    }
+
+    public String getLevel(){
+        return USER_LEVEL;
     }
 
     public void setRound2Point(int point) {

@@ -31,6 +31,16 @@ public class Constants {
     public static final int C2S_R2L1_ANS = 0x114;
     public static final int S2C_R2L1_SCR = 0x115;
 
+    public static final int DIS_R2L2_EXP = 0x122;
+    public static final int DIS_R2L2_QST = 0x123;
+    public static final int C2S_R2L2_ANS = 0x124;
+    public static final int S2C_R2L2_SCR = 0x125;
+
+    public static final int DIS_R2L3_EXP = 0x132;
+    public static final int DIS_R2L3_QST = 0x133;
+    public static final int C2S_R2L3_ANS = 0x134;
+    public static final int S2C_R2L3_SCR = 0x135;
+
     public static final int SRC_SERVER = 0x1000000;
     public static final int SRC_R2L1 = 0x1000001;
     public static final int SRC_R2L2 = 0x1000002;

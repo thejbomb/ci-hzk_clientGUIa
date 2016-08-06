@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Level1Controller extends Round2Controller implements Initializable, TimerInterface {
+public class Level2Controller extends Round2Controller implements Initializable, TimerInterface {
 
     @FXML
     private AnchorPane ap_root;
@@ -66,8 +66,6 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @FXML
     private Label lb_question4;
     @FXML
-    private Label lb_question5;
-    @FXML
     private TextArea ta_answer1;
     @FXML
     private TextArea ta_answer2;
@@ -75,8 +73,6 @@ public class Level1Controller extends Round2Controller implements Initializable,
     private TextArea ta_answer3;
     @FXML
     private TextArea ta_answer4;
-    @FXML
-    private TextArea ta_answer5;
 
     private Round2Controller round2Controller;
 
@@ -106,7 +102,6 @@ public class Level1Controller extends Round2Controller implements Initializable,
         String answer2 = ta_answer2.getText();
         String answer3 = ta_answer3.getText();
         String answer4 = ta_answer4.getText();
-        String answer5 = ta_answer5.getText();
 
         LinkedList<String> result = new LinkedList<>();
         result.add("ANS1");
@@ -117,8 +112,6 @@ public class Level1Controller extends Round2Controller implements Initializable,
         result.add(answer3);
         result.add("ANS4");
         result.add(answer4);
-        result.add("ANS5");
-        result.add(answer5);
 
         return result;
 
@@ -146,37 +139,38 @@ public class Level1Controller extends Round2Controller implements Initializable,
         lb_question2.setId(StyleId.ROUND_QUESTIONS);
         lb_question3.setId(StyleId.ROUND_QUESTIONS);
         lb_question4.setId(StyleId.ROUND_QUESTIONS);
-        lb_question5.setId(StyleId.ROUND_QUESTIONS);
         ta_answer1.setId(StyleId.ROUND_ANSWERS);
         ta_answer2.setId(StyleId.ROUND_ANSWERS);
         ta_answer3.setId(StyleId.ROUND_ANSWERS);
         ta_answer4.setId(StyleId.ROUND_ANSWERS);
-        ta_answer5.setId(StyleId.ROUND_ANSWERS);
     }
 
     private void setData() {
-        lb_instructionBody_zh.setText(Main.R2L1_DATA.INSTRUCTION_ZH);
-        lb_instructionBody_en.setText(Main.R2L1_DATA.INSTRUCTION_EN);
-        String timeLimit_zh = "限时" + Main.R2L1_DATA.TIME_LIMIT + "分钟";
-        String timeLimit_en = "Time Limit: " + Main.R2L1_DATA.TIME_LIMIT + (Main.R2L1_DATA.TIME_LIMIT > 1 ? " minutes" : " minute");
+        lb_instructionBody_zh.setText(Main.R2L2_DATA.INSTRUCTION_ZH);
+        lb_instructionBody_en.setText(Main.R2L2_DATA.INSTRUCTION_EN);
+        String timeLimit_zh = "限时" + Main.R2L2_DATA.TIME_LIMIT + "分钟";
+        String timeLimit_en = "Time Limit: " + Main.R2L2_DATA.TIME_LIMIT + (Main.R2L2_DATA.TIME_LIMIT > 1 ? " minutes" : " minute");
         lb_instructionTime_zh.setText(timeLimit_zh);
         lb_instructionTime_en.setText(timeLimit_en);
 
-        lb_exampleBody.setText(Main.R2L1_DATA.EXAMPLES.get(0));
+        String cnExample = "";
+        for (String data : Main.R2L2_DATA.EXAMPLES) {
+            cnExample += data + "\n";
+        }
+        lb_exampleBody.setText(cnExample);
 
-        String timerLabel = Main.R2L1_DATA.TIME_LIMIT + ":00";
+        String timerLabel = Main.R2L2_DATA.TIME_LIMIT + ":00";
         lb_timer.setText(timerLabel);
-        lb_question1.setText(Main.R2L1_DATA.QUESTIONS.get(0));
-        lb_question2.setText(Main.R2L1_DATA.QUESTIONS.get(1));
-        lb_question3.setText(Main.R2L1_DATA.QUESTIONS.get(2));
-        lb_question4.setText(Main.R2L1_DATA.QUESTIONS.get(3));
-        lb_question5.setText(Main.R2L1_DATA.QUESTIONS.get(4));
+        lb_question1.setText(Main.R2L2_DATA.QUESTIONS.get(0));
+        lb_question2.setText(Main.R2L2_DATA.QUESTIONS.get(1));
+        lb_question3.setText(Main.R2L2_DATA.QUESTIONS.get(2));
+        lb_question4.setText(Main.R2L2_DATA.QUESTIONS.get(3));
     }
 
     @Override
     public void writeToServer(int command) {
         switch (command) {
-            case Constants.DIS_R2L1_EXP:
+            case Constants.DIS_R2L2_EXP:
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(true);
                 break;
@@ -193,19 +187,19 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
         switch (command) {
-            case Constants.DIS_R2L1_EXP:
+            case Constants.DIS_R2L2_EXP:
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(true);
                 gp_questions.setVisible(false);
                 break;
-            case Constants.DIS_R2L1_QST:
+            case Constants.DIS_R2L2_QST:
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(false);
                 gp_questions.setVisible(true);
 
-                new Timer(lb_timer, Main.R2L1_DATA.TIME_LIMIT * 60, this);
+                new Timer(lb_timer, Main.R2L2_DATA.TIME_LIMIT * 60, this);
 
                 break;
         }
@@ -225,8 +219,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
         ta_answer2.setEditable(false);
         ta_answer3.setEditable(false);
         ta_answer4.setEditable(false);
-        ta_answer5.setEditable(false);
-        writeToServer(Constants.C2S_R2L1_ANS, packageAnswers());
+        writeToServer(Constants.C2S_R2L2_ANS, packageAnswers());
         hide();
         round2Controller.show();
     }

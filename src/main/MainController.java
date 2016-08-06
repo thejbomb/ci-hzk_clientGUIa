@@ -119,7 +119,7 @@ public class MainController implements ServerInteractionInterface, Initializable
     public void handleServerData(int command, LinkedList<String> data) {
         switch (command) {
             case Constants.LOGIN_SUCCESS:
-                userData = new UserData(data.getFirst());
+                userData = new UserData(data.getFirst(),data.getLast());
                 cb_clientReady.setDisable(true);
                 tf_validationId.setEditable(false);
                 lb_message.setText("Welcome " + userData.getName() + "!");
@@ -133,6 +133,10 @@ public class MainController implements ServerInteractionInterface, Initializable
             case Constants.BEGIN_R2L1:
                 currentRound = Constants.ROUND2;
                 ap_round2InterfaceController.handleServerData(command, data);
+                break;
+            case Constants.BEGIN_R2L2:
+                currentRound = Constants.ROUND2;
+                ap_round2InterfaceController.handleServerData(command,data);
                 break;
             case Constants.ERROR_ID_NOT_FOUND:
                 lb_message.setText("ID was not found.");

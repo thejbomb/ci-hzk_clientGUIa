@@ -24,6 +24,10 @@ public class Round2Controller extends MainController implements Initializable, R
     @FXML
     private Level1Controller ap_level1InterfaceController;
     @FXML
+    private AnchorPane ap_level2Interface;
+    @FXML
+    private Level2Controller ap_level2InterfaceController;
+    @FXML
     private AnchorPane ap_root;
     @FXML
     private GridPane gp_titlePane;
@@ -61,6 +65,7 @@ public class Round2Controller extends MainController implements Initializable, R
     public void init(UserData user) {
         this.userData = user;
         lb_userName.setText(userData.getName());
+        lb_userLevel.setText(userData.getLevel());
         thread = new Thread(this);
         thread.start();
     }
@@ -86,6 +91,10 @@ public class Round2Controller extends MainController implements Initializable, R
 
     protected void show(){
         gp_round2.setVisible(true);
+    }
+
+    private void hide(){
+        gp_round2.setVisible(false);
     }
 
     @Override
@@ -116,12 +125,22 @@ public class Round2Controller extends MainController implements Initializable, R
         switch (command) {
             case Constants.BEGIN_R2L1:
                 currentLevel = Constants.LEVEL1;
-                gp_titlePane.setVisible(false);
-                gp_round2.setVisible(false);
-                ap_level1Interface.setVisible(true);
+                hide();
                 ap_level1InterfaceController.init(userData,this);
+                ap_level1InterfaceController.show();
                 break;
             case Constants.S2C_R2L1_SCR:
+                userData.setRound2Point(Integer.parseInt(data.getFirst()));
+                lb_userPoint2.setText(data.getFirst());
+                System.out.println(userData.getName() + " current total point for round 2 is " + data.getFirst());
+                break;
+            case Constants.BEGIN_R2L2:
+                currentLevel = Constants.LEVEL2;
+                hide();
+                ap_level2InterfaceController.init(userData,this);
+                ap_level2InterfaceController.show();
+                break;
+            case Constants.S2C_R2L2_SCR:
                 userData.setRound2Point(Integer.parseInt(data.getFirst()));
                 lb_userPoint2.setText(data.getFirst());
                 System.out.println(userData.getName() + " current total point for round 2 is " + data.getFirst());
@@ -132,6 +151,7 @@ public class Round2Controller extends MainController implements Initializable, R
                         ap_level1InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.LEVEL2:
+                        ap_level2InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.LEVEL3:
                         break;
@@ -151,6 +171,12 @@ public class Round2Controller extends MainController implements Initializable, R
         AnchorPane.setLeftAnchor(ap_level1Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level1Interface, 0.0);
         ap_level1Interface.setVisible(false);
+
+        AnchorPane.setBottomAnchor(ap_level2Interface, 0.0);
+        AnchorPane.setTopAnchor(ap_level2Interface, 0.0);
+        AnchorPane.setLeftAnchor(ap_level2Interface, 0.0);
+        AnchorPane.setRightAnchor(ap_level2Interface, 0.0);
+        ap_level2Interface.setVisible(false);
 
         setData();
     }

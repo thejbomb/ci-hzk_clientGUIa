@@ -1,6 +1,6 @@
 package tool;
 
-public class StyleID {
+public class StyleId {
     public static final String TITLE_ROUND_NUMBER_ZH = "font-titleRoundNumber-zh";
     public static final String TITLE_ROUND_NUMBER_EN = "font-titleRoundNumber-en";
     public static final String TITLE_ROUND_LEVEL_ZH = "font-titleRoundLevel-zh";
