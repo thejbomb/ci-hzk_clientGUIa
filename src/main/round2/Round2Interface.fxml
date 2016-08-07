@@ -12,6 +12,7 @@
     <children>
         <fx:include fx:id="ap_level1Interface" source="Level1Interface.fxml" />
         <fx:include fx:id="ap_level2Interface" source="Level2Interface.fxml" />
+        <fx:include fx:id="ap_level3Interface" source="Level3Interface.fxml" />
         <GridPane fx:id="gp_round2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
@@ -125,6 +126,6 @@
         </GridPane>
     </children>
     <stylesheets>
-        <URL value="@../round2/Round2Interface.css" />
+        <URL value="@Round2Style.css" />
     </stylesheets>
 </AnchorPane>

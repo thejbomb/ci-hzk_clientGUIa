@@ -40,6 +40,7 @@ public class Constants {
     public static final int DIS_R2L3_QST = 0x133;
     public static final int C2S_R2L3_ANS = 0x134;
     public static final int S2C_R2L3_SCR = 0x135;
+    public static final int C2S_R2L3_SEED = 0x13A;
 
     public static final int SRC_SERVER = 0x1000000;
     public static final int SRC_R2L1 = 0x1000001;

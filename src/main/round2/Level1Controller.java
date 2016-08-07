@@ -78,6 +78,9 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @FXML
     private TextArea ta_answer5;
 
+    private LinkedList<Label> questions;
+    private LinkedList<TextArea> answers;
+
     private Round2Controller round2Controller;
 
     public void init(UserData user, Round2Controller round2Controller) {
@@ -142,16 +145,11 @@ public class Level1Controller extends Round2Controller implements Initializable,
         lb_exampleWarning.setId(StyleId.EXAMPLE_WARNING);
 
         lb_timer.setId(StyleId.ROUND_TIMER);
-        lb_question1.setId(StyleId.ROUND_QUESTIONS);
-        lb_question2.setId(StyleId.ROUND_QUESTIONS);
-        lb_question3.setId(StyleId.ROUND_QUESTIONS);
-        lb_question4.setId(StyleId.ROUND_QUESTIONS);
-        lb_question5.setId(StyleId.ROUND_QUESTIONS);
-        ta_answer1.setId(StyleId.ROUND_ANSWERS);
-        ta_answer2.setId(StyleId.ROUND_ANSWERS);
-        ta_answer3.setId(StyleId.ROUND_ANSWERS);
-        ta_answer4.setId(StyleId.ROUND_ANSWERS);
-        ta_answer5.setId(StyleId.ROUND_ANSWERS);
+        for(Label question : questions)
+            question.setId(StyleId.ROUND_QUESTIONS);
+        for(TextArea answer : answers)
+            answer.setId(StyleId.ROUND_ANSWERS);
+
     }
 
     private void setData() {
@@ -166,11 +164,9 @@ public class Level1Controller extends Round2Controller implements Initializable,
 
         String timerLabel = Main.R2L1_DATA.TIME_LIMIT + ":00";
         lb_timer.setText(timerLabel);
-        lb_question1.setText(Main.R2L1_DATA.QUESTIONS.get(0));
-        lb_question2.setText(Main.R2L1_DATA.QUESTIONS.get(1));
-        lb_question3.setText(Main.R2L1_DATA.QUESTIONS.get(2));
-        lb_question4.setText(Main.R2L1_DATA.QUESTIONS.get(3));
-        lb_question5.setText(Main.R2L1_DATA.QUESTIONS.get(4));
+        for(int i = 0;i < questions.size();i++)
+            questions.get(i).setText(Main.R2L1_DATA.QUESTIONS.get(i));
+
     }
 
     @Override
@@ -221,11 +217,8 @@ public class Level1Controller extends Round2Controller implements Initializable,
 
     @Override
     public void takeNotice() {
-        ta_answer1.setEditable(false);
-        ta_answer2.setEditable(false);
-        ta_answer3.setEditable(false);
-        ta_answer4.setEditable(false);
-        ta_answer5.setEditable(false);
+        for(TextArea answer : answers)
+            answer.setEditable(false);
         writeToServer(Constants.C2S_R2L1_ANS, packageAnswers());
         hide();
         round2Controller.show();
@@ -233,6 +226,20 @@ public class Level1Controller extends Round2Controller implements Initializable,
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        questions = new LinkedList<>();
+        questions.add(lb_question1);
+        questions.add(lb_question2);
+        questions.add(lb_question3);
+        questions.add(lb_question4);
+        questions.add(lb_question5);
+
+        answers = new LinkedList<>();
+        answers.add(ta_answer1);
+        answers.add(ta_answer2);
+        answers.add(ta_answer3);
+        answers.add(ta_answer4);
+        answers.add(ta_answer5);
+
         gp_levelTitle.setVisible(true);
         gp_instruction.setVisible(false);
         gp_example.setVisible(false);

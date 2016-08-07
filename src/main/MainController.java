@@ -138,6 +138,10 @@ public class MainController implements ServerInteractionInterface, Initializable
                 currentRound = Constants.ROUND2;
                 ap_round2InterfaceController.handleServerData(command,data);
                 break;
+            case Constants.BEGIN_R2L3:
+                currentRound = Constants.ROUND2;
+                ap_round2InterfaceController.handleServerData(command,data);
+                break;
             case Constants.ERROR_ID_NOT_FOUND:
                 lb_message.setText("ID was not found.");
                 lb_message.setVisible(true);

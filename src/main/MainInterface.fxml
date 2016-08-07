@@ -59,6 +59,6 @@
       </GridPane>
    </children>
     <stylesheets>
-        <URL value="@../main/MainInterface.css" />
+        <URL value="@MainStyle.css" />
     </stylesheets>
 </AnchorPane>

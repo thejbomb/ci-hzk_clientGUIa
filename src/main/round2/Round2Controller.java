@@ -28,6 +28,10 @@ public class Round2Controller extends MainController implements Initializable, R
     @FXML
     private Level2Controller ap_level2InterfaceController;
     @FXML
+    private AnchorPane ap_level3Interface;
+    @FXML
+    private Level3Controller ap_level3InterfaceController;
+    @FXML
     private AnchorPane ap_root;
     @FXML
     private GridPane gp_titlePane;
@@ -145,6 +149,17 @@ public class Round2Controller extends MainController implements Initializable, R
                 lb_userPoint2.setText(data.getFirst());
                 System.out.println(userData.getName() + " current total point for round 2 is " + data.getFirst());
                 break;
+            case Constants.BEGIN_R2L3:
+                currentLevel = Constants.LEVEL3;
+                hide();
+                ap_level3InterfaceController.init(userData,this);
+                ap_level3InterfaceController.show();
+                break;
+            case Constants.S2C_R2L3_SCR:
+                userData.setRound2Point(Integer.parseInt(data.getFirst()));
+                lb_userPoint2.setText(data.getFirst());
+                System.out.println(userData.getName() + " current total point for round 2 is " + data.getFirst());
+                break;
             default:
                 switch (currentLevel) {
                     case Constants.LEVEL1:
@@ -154,6 +169,7 @@ public class Round2Controller extends MainController implements Initializable, R
                         ap_level2InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.LEVEL3:
+                        ap_level3InterfaceController.handleServerData(command, data);
                         break;
                     default:
                         break;
@@ -177,6 +193,12 @@ public class Round2Controller extends MainController implements Initializable, R
         AnchorPane.setLeftAnchor(ap_level2Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level2Interface, 0.0);
         ap_level2Interface.setVisible(false);
+
+        AnchorPane.setBottomAnchor(ap_level3Interface, 0.0);
+        AnchorPane.setTopAnchor(ap_level3Interface, 0.0);
+        AnchorPane.setLeftAnchor(ap_level3Interface, 0.0);
+        AnchorPane.setRightAnchor(ap_level3Interface, 0.0);
+        ap_level3Interface.setVisible(false);
 
         setData();
     }
