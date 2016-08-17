@@ -1,15 +1,17 @@
-package main.round2;
+package main.round5;
 
 import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import main.Main;
 import tool.Constants;
-import tool.StyleId;
 import tool.Timer;
 import tool.TimerInterface;
 
@@ -17,7 +19,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Level2Controller extends Round2Controller implements Initializable, TimerInterface {
+public class Level2Controller extends Round5Controller implements Initializable, TimerInterface {
 
     @FXML
     private AnchorPane ap_root;
@@ -58,30 +60,18 @@ public class Level2Controller extends Round2Controller implements Initializable,
     @FXML
     private Label lb_timer;
     @FXML
-    private Label lb_question1;
+    private FlowPane fp_text;
     @FXML
-    private Label lb_question2;
-    @FXML
-    private Label lb_question3;
-    @FXML
-    private Label lb_question4;
-    @FXML
-    private TextArea ta_answer1;
-    @FXML
-    private TextArea ta_answer2;
-    @FXML
-    private TextArea ta_answer3;
-    @FXML
-    private TextArea ta_answer4;
+    private FlowPane fp_answers;
 
-    private LinkedList<Label> questions;
-    private LinkedList<TextArea> answers;
+    private LinkedList<Integer> answerIndices;
+    private LinkedList<String> answers;
 
-    private Round2Controller round2Controller;
+    private Round5Controller round5Controller;
 
-    public void init(UserData user, Round2Controller controller) {
+    public void init(UserData user, Round5Controller controller) {
         this.userData = user;
-        this.round2Controller = controller;
+        this.round5Controller = controller;
         Runnable delay = new Runnable() {
             @Override
             public void run() {
@@ -101,49 +91,85 @@ public class Level2Controller extends Round2Controller implements Initializable,
     }
 
     private LinkedList<String> packageAnswers() {
-        String answer1 = ta_answer1.getText();
-        String answer2 = ta_answer2.getText();
-        String answer3 = ta_answer3.getText();
-        String answer4 = ta_answer4.getText();
-
         LinkedList<String> result = new LinkedList<>();
-        result.add("ANS1");
-        result.add(answer1);
-        result.add("ANS2");
-        result.add(answer2);
-        result.add("ANS3");
-        result.add(answer3);
-        result.add("ANS4");
-        result.add(answer4);
-
+        result.add("INDX");
+        for (int i : answerIndices) {
+            result.add(Integer.toString(i));
+        }
+        result.add("CANS");
+        for (int i = 0; i < fp_answers.getChildren().size(); i++) {
+            if (i % 2 == 1)
+                result.add(((TextField) (fp_answers.getChildren().get(i))).getText());
+        }
         return result;
-
     }
 
+
     private void setData() {
-        lb_instructionBody_zh.setText(Main.R2L2_DATA.INSTRUCTION_ZH);
-        lb_instructionBody_en.setText(Main.R2L2_DATA.INSTRUCTION_EN);
-        String timeLimit_zh = "限时" + Main.R2L2_DATA.TIME_LIMIT + "分钟";
-        String timeLimit_en = "Time Limit: " + Main.R2L2_DATA.TIME_LIMIT + (Main.R2L2_DATA.TIME_LIMIT > 1 ? " minutes" : " minute");
+        lb_instructionBody_zh.setText(Main.R5L2_DATA.INSTRUCTION_ZH);
+        lb_instructionBody_en.setText(Main.R5L2_DATA.INSTRUCTION_EN);
+        String timeLimit_zh = "限时" + Main.R5L2_DATA.TIME_LIMIT + "分钟";
+        String timeLimit_en = "Time Limit: " + Main.R5L2_DATA.TIME_LIMIT + (Main.R5L2_DATA.TIME_LIMIT > 1 ? " minutes" : " minute");
         lb_instructionTime_zh.setText(timeLimit_zh);
         lb_instructionTime_en.setText(timeLimit_en);
 
         String cnExample = "";
-        for (String data : Main.R2L2_DATA.EXAMPLES) {
+        for (String data : Main.R5L2_DATA.EXAMPLES) {
             cnExample += data + "\n";
         }
         lb_exampleBody.setText(cnExample);
 
-        String timerLabel = Main.R2L2_DATA.TIME_LIMIT + ":00";
+        String timerLabel = Main.R5L2_DATA.TIME_LIMIT + ":00";
         lb_timer.setText(timerLabel);
-        for(int i = 0;i <questions.size();i++)
-            questions.get(i).setText(Main.R2L2_DATA.QUESTIONS.get(i));
+        int index = 0;
+        for (Character c : Main.R5L2_DATA.parseText(Main.R5L2_DATA.QUESTIONS)) {
+            Label label = new Label(c.toString());
+            label.getStyleClass().set(0, "label-questionsText");
+            int finalIndex = index;
+            label.setOnMouseClicked(e -> {
+                if (answerIndices == null)
+                    answerIndices = new LinkedList<>();
+                if (label.getStyleClass().get(0).compareToIgnoreCase("label-questionsTextSelected") != 0) {
+                    label.getStyleClass().set(0, "label-questionsTextSelected");
+                    addWrongAnswers(label, finalIndex);
+                    answerIndices.add(finalIndex);
+                }
+            });
+            fp_text.getChildren().add(label);
+            index++;
+        }
+
+    }
+
+    private void addWrongAnswers(Label label, int index) {
+        Label label2 = new Label(label.getText() + ".");
+        TextField answer = new TextField();
+
+        label2.getStyleClass().set(0, "label-questionsText");
+
+        answer.setPrefColumnCount(2);
+        answer.setAlignment(Pos.CENTER);
+        answer.getStyleClass().add(0, "text-field-questionsAnswer");
+        answer.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.DELETE) {
+                fp_answers.getChildren().removeAll(label2, answer);
+                fp_text.getChildren().get(index).getStyleClass().set(0, "label-questionsText");
+                for (int i = 0; i < answerIndices.size(); i++) {
+                    if (answerIndices.get(i) == index) {
+                        System.out.println("Answer before deleted: " + answerIndices);
+                        answerIndices.remove(i);
+                        System.out.println("Answer after deleted: " + answerIndices);
+                    }
+                }
+            }
+        });
+        fp_answers.getChildren().addAll(label2, answer);
     }
 
     @Override
     public void writeToServer(int command) {
         switch (command) {
-            case Constants.DIS_R2L2_EXP:
+            case Constants.DIS_R5L2_EXP:
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(true);
                 break;
@@ -160,19 +186,19 @@ public class Level2Controller extends Round2Controller implements Initializable,
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
         switch (command) {
-            case Constants.DIS_R2L2_EXP:
+            case Constants.DIS_R5L2_EXP:
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(true);
                 gp_questions.setVisible(false);
                 break;
-            case Constants.DIS_R2L2_QST:
+            case Constants.DIS_R5L2_QST:
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(false);
                 gp_questions.setVisible(true);
 
-                new Timer(lb_timer, Main.R2L2_DATA.TIME_LIMIT * 60, this);
+                new Timer(lb_timer, Main.R5L2_DATA.TIME_LIMIT * 60, this);
 
                 break;
         }
@@ -188,27 +214,13 @@ public class Level2Controller extends Round2Controller implements Initializable,
 
     @Override
     public void takeNotice() {
-        for(TextArea answer : answers)
-            answer.setEditable(false);
-        writeToServer(Constants.C2S_R2L2_ANS, packageAnswers());
+        writeToServer(Constants.C2S_R5L2_ANS, packageAnswers());
         hide();
-        round2Controller.show();
+        round5Controller.show();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        questions = new LinkedList<>();
-        questions.add(lb_question1);
-        questions.add(lb_question2);
-        questions.add(lb_question3);
-        questions.add(lb_question4);
-
-        answers = new LinkedList<>();
-        answers.add(ta_answer1);
-        answers.add(ta_answer2);
-        answers.add(ta_answer3);
-        answers.add(ta_answer4);
-
         gp_levelTitle.setVisible(true);
         gp_instruction.setVisible(false);
         gp_example.setVisible(false);

@@ -9,6 +9,8 @@ public class UserData {
 
     private int round2Point = 0;
 
+    private int round5Point = 0;
+
     public UserData(String name, String level) {
         USER_NAME = name;
         USER_LEVEL = level;
@@ -24,5 +26,9 @@ public class UserData {
 
     public void setRound2Point(int point) {
         round2Point = point;
+    }
+
+    public void setRound5Point(int point){
+        round5Point = point;
     }
 }

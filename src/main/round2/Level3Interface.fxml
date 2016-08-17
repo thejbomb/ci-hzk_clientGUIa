@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
 
 <AnchorPane fx:id="ap_root" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round2.Level3Controller">
    <children>
@@ -29,27 +30,27 @@
          <children>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="lb_titleRoundNumber_zh" alignment="CENTER" text="第二关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_titleRoundNumber_zh" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第二关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="lb_titleRoundNumber_en" alignment="CENTER" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_titleRoundNumber_en" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label fx:id="lb_titleRoundLevel_zh" alignment="CENTER" text="高级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_titleRoundLevel_zh" alignment="CENTER" styleClass="label-roundLevel-zh" text="高级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="lb_titleRoundLevel_en" alignment="CENTER" text="Advance Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_titleRoundLevel_en" alignment="CENTER" styleClass="label-roundLevel-en" text="Advance Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <Label fx:id="lb_titleRoundDescription" alignment="TOP_CENTER" text="LEVEL_DESCRIPTION_PLACEHOLDER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_titleRoundDescription" alignment="TOP_CENTER" styleClass="label-roundDescription" text="ROUND_DESCRIPTION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>
@@ -71,17 +72,17 @@
          <children>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="lb_instructionHeader" alignment="CENTER" text="比赛要求" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_instructionHeader" alignment="CENTER" styleClass="label-instructionHeader" text="比赛要求" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="lb_instructionBody_zh" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" text="INSTRUCTION_BODY_ZH" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_instructionBody_zh" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" styleClass="label-instructionBody-zh" text="INSTRUCTION_BODY_ZH" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label fx:id="lb_instructionBody_en" alignment="TOP_CENTER" text="INSTRUCTION_BODY_EN" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_instructionBody_en" alignment="TOP_CENTER" styleClass="label-instructionTime-en" text="INSTRUCTION_BODY_EN" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -97,12 +98,12 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="lb_instructionTime_zh" alignment="TOP_CENTER" text="TIME_LIMIT_ZH" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Label fx:id="lb_instructionTime_zh" alignment="TOP_CENTER" styleClass="label-instructionTime-zh" text="TIME_LIMIT_ZH" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Label fx:id="lb_instructionTime_en" alignment="TOP_CENTER" text="TIME_LIMIT_EN" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Label fx:id="lb_instructionTime_en" alignment="TOP_CENTER" styleClass="label-instructionTime-en" text="TIME_LIMIT_EN" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -127,17 +128,17 @@
          <children>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="lb_exampleHeader" alignment="CENTER" text="Example" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_exampleHeader" alignment="CENTER" styleClass="label-exampleHeader" text="Example" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="lb_exampleBody" alignment="CENTER" text="EXAMPLE)BODY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_exampleBody" alignment="CENTER" styleClass="label-exampleBody" text="EXAMPLE_BODY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label fx:id="lb_exampleWarning" alignment="TOP_CENTER" text="Examples cannot be used toward answers." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_exampleWarning" alignment="TOP_CENTER" styleClass="label-exampleWarning" text="Examples cannot be used toward answers." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>
@@ -169,20 +170,20 @@
          <children>
             <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="lb_timer" alignment="CENTER" text="TIMER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_timer" alignment="CENTER" styleClass="label-questionsTimer" text="TIMER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                <right>
-                  <TextField fx:id="tf_answer1" onKeyReleased="#handleKeyboard" prefHeight="60.0" prefWidth="60.0" BorderPane.alignment="CENTER" />
+                  <TextField fx:id="tf_answer1" onKeyReleased="#handleKeyboard" prefHeight="60.0" prefWidth="60.0" styleClass="text-field-questionsAnswer" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="2">
                <left>
-                  <Label fx:id="lb_question1" text="QUESTION_1" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_question1" styleClass="label-questionsQuestion" text="QUESTION_1" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label fx:id="lb_choice1" text="CHOICE_1" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_choice1" styleClass="label-questionsChoice" text="CHOICE_1" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -192,10 +193,10 @@
             </BorderPane>
             <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="3">
                <left>
-                  <Label fx:id="lb_question2" text="QUESTION_2" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_question2" styleClass="label-questionsQuestion" text="QUESTION_2" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label fx:id="lb_choice2" text="CHOICE_2" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_choice2" styleClass="label-questionsChoice" text="CHOICE_2" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -205,10 +206,10 @@
             </BorderPane>
             <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="4">
                <left>
-                  <Label fx:id="lb_question3" text="QUESTION_3" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_question3" styleClass="label-questionsQuestion" text="QUESTION_3" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label fx:id="lb_choice3" text="CHOICE_3" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_choice3" styleClass="label-questionsChoice" text="CHOICE_3" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -218,10 +219,10 @@
             </BorderPane>
             <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="5">
                <left>
-                  <Label fx:id="lb_question4" text="QUESTION_4" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_question4" styleClass="label-questionsQuestion" text="QUESTION_4" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label fx:id="lb_choice4" text="CHOICE_4" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_choice4" styleClass="label-questionsChoice" text="CHOICE_4" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="6">
@@ -231,10 +232,10 @@
             </BorderPane>
             <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="6">
                <left>
-                  <Label fx:id="lb_question5" text="QUESTION_5" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_question5" styleClass="label-questionsQuestion" text="QUESTION_5" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label fx:id="lb_choice5" text="CHOICE_5" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_choice5" styleClass="label-questionsChoice" text="CHOICE_5" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="7">
@@ -244,10 +245,10 @@
             </BorderPane>
             <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="7">
                <left>
-                  <Label fx:id="lb_question6" text="QUESTION_6" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_question6" styleClass="label-questionsQuestion" text="QUESTION_6" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label fx:id="lb_choice6" text="CHOICE_6" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_choice6" styleClass="label-questionsChoice" text="CHOICE_6" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="8">
@@ -257,10 +258,10 @@
             </BorderPane>
             <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="8">
                <left>
-                  <Label fx:id="lb_question7" text="QUESTION_7" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_question7" styleClass="label-questionsQuestion" text="QUESTION_7" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label fx:id="lb_choice7" text="CHOICE_7" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_choice7" styleClass="label-questionsChoice" text="CHOICE_7" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="9">
@@ -270,10 +271,10 @@
             </BorderPane>
             <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="9">
                <left>
-                  <Label fx:id="lb_question8" text="QUESTION_8" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_question8" styleClass="label-questionsQuestion" text="QUESTION_8" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label fx:id="lb_choice8" text="CHOICE_8" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_choice8" styleClass="label-questionsChoice" text="CHOICE_8" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="10">
@@ -283,10 +284,10 @@
             </BorderPane>
             <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="10">
                <left>
-                  <Label fx:id="lb_question9" text="QUESTION_9" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_question9" styleClass="label-questionsQuestion" text="QUESTION_9" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label fx:id="lb_choice9" text="CHOICE_9" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_choice9" styleClass="label-questionsChoice" text="CHOICE_9" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="11">
@@ -296,14 +297,24 @@
             </BorderPane>
             <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="11">
                <left>
-                  <Label fx:id="lb_question10" text="QUESTION_10" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_question10" styleClass="label-questionsQuestion" text="QUESTION_10" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label fx:id="lb_choice10" text="CHOICE_10" BorderPane.alignment="CENTER" />
+                  <Label fx:id="lb_choice10" styleClass="label-questionsChoice" text="CHOICE_10" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
          </children>
       </GridPane>
+      <Line fx:id="line1" />
+      <Line fx:id="line2" />
+      <Line fx:id="line3" />
+      <Line fx:id="line4" />
+      <Line fx:id="line5" />
+      <Line fx:id="line6" />
+      <Line fx:id="line7" />
+      <Line fx:id="line8" />
+      <Line fx:id="line9" />
+      <Line fx:id="line10" />
    </children>
    <stylesheets>
       <URL value="@Level3Style.css" />

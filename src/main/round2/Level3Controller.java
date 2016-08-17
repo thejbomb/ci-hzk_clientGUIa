@@ -4,6 +4,8 @@ import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
+import javafx.geometry.Point2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -121,7 +123,25 @@ public class Level3Controller extends Round2Controller implements Initializable,
     @FXML
     private TextField tf_answer10;
     @FXML
+    private Line line1;
+    @FXML
     private Line line2;
+    @FXML
+    private Line line3;
+    @FXML
+    private Line line4;
+    @FXML
+    private Line line5;
+    @FXML
+    private Line line6;
+    @FXML
+    private Line line7;
+    @FXML
+    private Line line8;
+    @FXML
+    private Line line9;
+    @FXML
+    private Line line10;
 
     private LinkedList<Label> questions;
     private LinkedList<Label> choices;
@@ -132,9 +152,9 @@ public class Level3Controller extends Round2Controller implements Initializable,
 
     private Round2Controller round2Controller;
 
-    public void init(UserData user, Round2Controller round2Controller) {
+    public void init(UserData user, Round2Controller controller) {
         this.userData = user;
-        this.round2Controller = round2Controller;
+        this.round2Controller = controller;
 
         randomizedAnswers = randomizeAnswers(Main.R2L3_DATA.ANSWERS);
         for (int i = 0; i < choices.size(); i++)
@@ -186,32 +206,6 @@ public class Level3Controller extends Round2Controller implements Initializable,
 
     }
 
-    private void setStyle() {
-        lb_titleRoundNumber_zh.setId(StyleId.TITLE_ROUND_NUMBER_ZH);
-        lb_titleRoundNumber_en.setId(StyleId.TITLE_ROUND_NUMBER_EN);
-        lb_titleRoundLevel_zh.setId(StyleId.TITLE_ROUND_LEVEL_ZH);
-        lb_titleRoundLevel_en.setId(StyleId.TITLE_ROUND_LEVEL_EN);
-        lb_titleRoundDescription.setId(StyleId.TITLE_ROUND_DESCRIPTION);
-
-        lb_instructionHeader.setId(StyleId.INSTRUCTION_HEADER);
-        lb_instructionBody_zh.setId(StyleId.INSTRUCTION_BODY_ZH);
-        lb_instructionBody_en.setId(StyleId.INSTRUCTION_BODY_EN);
-        lb_instructionTime_zh.setId(StyleId.INSTRUCTION_TIME_ZH);
-        lb_instructionTime_en.setId(StyleId.INSTRUCTION_TIME_EN);
-
-        lb_exampleHeader.setId(StyleId.EXAMPLE_HEADER);
-        lb_exampleBody.setId(StyleId.EXAMPLE_BODY);
-        lb_exampleWarning.setId(StyleId.EXAMPLE_WARNING);
-
-        lb_timer.setId(StyleId.ROUND_TIMER);
-        for (Label question : questions)
-            question.setId(StyleId.ROUND_QUESTIONS);
-        for (Label choice : choices)
-            choice.setId(StyleId.ROUND_QUESTIONS);
-        for (TextField answer : answers)
-            answer.setId(StyleId.ROUND_ANSWERS);
-    }
-
     private void setData() {
         lb_instructionBody_zh.setText(Main.R2L3_DATA.INSTRUCTION_ZH);
         lb_instructionBody_en.setText(Main.R2L3_DATA.INSTRUCTION_EN);
@@ -233,15 +227,21 @@ public class Level3Controller extends Round2Controller implements Initializable,
         }
     }
 
+    private void drawLine(){
+
+    }
+
     @FXML
     private void handleKeyboard(KeyEvent e) {
-        for (int i1 = 0; i1 < answers.size(); i1++) {
-            TextField answer = answers.get(i1);
+        for (int j = 0; j < answers.size(); j++) {
+            TextField answer = answers.get(j);
             String input = answer.getText();
             if (input.compareTo("") != 0) {
                 input = input.toUpperCase();
                 if (input.length() > 1)
                     answer.setText(input.substring(0, 1));
+                else if(input.charAt(0) >= answers.size() + 0x41)
+                    answer.setText("");
                 else
                     answer.setText(input);
 
@@ -249,21 +249,25 @@ public class Level3Controller extends Round2Controller implements Initializable,
 
                 for (int i = 0; i < answers.size(); i++) {
                     if (_input == i + 0x41) {
-                       /* lines.get(i1).setStartX(choices.get(i).getLayoutX());
-                        lines.get(i1).setStartY(choices.get(i).getLayoutY());
-                        lines.get(i1).setEndX(questions.get(i1).getLayoutX() + questions.get(i1).getWidth());
-                        lines.get(i1).setEndY(questions.get(i1).getLayoutY() + questions.get(i1).getHeight());
-                        lines.get(i1).setVisible(true);
-                        lines.get(i1).setStrokeWidth(100);*/
-                        Bounds bounds = choices.get(i).getBoundsInParent();
-                        Bounds screenBounds = choices.get(i).localToScreen(bounds);
-                        double x = screenBounds.getMinX() - choices.get(i).getWidth();
-                        double y = screenBounds.getMinY();
+                        // ONLY WORK IN MAXIMIZED SCREEN MODE RIGHT NOW
+                        Scene scene = choices.get(i).getScene();
+                        Point2D windowC = new Point2D(scene.getWindow().getX(),scene.getWindow().getY());
+                        Point2D sceneC = new Point2D(scene.getX(),scene.getY());
+                        Point2D node = choices.get(i).localToScene(0.0,0.0);
+                        double x = windowC.getX() + sceneC.getX() + node.getX();
+                        double y = windowC.getY() + sceneC.getY() + node.getY();
+                        lines.get(j).setStartX(x);
+                        lines.get(j).setStartY(y);
+                        scene = questions.get(j).getScene();
+                        windowC = new Point2D(scene.getWindow().getX(),scene.getWindow().getY());
+                        sceneC = new Point2D(scene.getX(),scene.getY());
+                        node = questions.get(j).localToScene(0.0,0.0);
+                        x = windowC.getX() + sceneC.getX() + node.getX();
+                        y = windowC.getY() + sceneC.getY() + node.getY();
+                        lines.get(j).setEndX(x + questions.get(i).getWidth());
+                        lines.get(j).setEndY(y);
 
-                        line2.setStartX(x);
-                        line2.setStartY(y);
-                        line2.setEndX(questions.get(i1).getLayoutX() + questions.get(i1).getWidth());
-                        line2.setEndY(questions.get(i1).getLayoutY() + questions.get(i1).getHeight());
+                        lines.get(j).setVisible(true);
                     }
                 }
             }
@@ -364,8 +368,16 @@ public class Level3Controller extends Round2Controller implements Initializable,
         answers.add(tf_answer10);
 
         lines = new LinkedList<>();
-        for (int i = 0; i < answers.size(); i++)
-            lines.add(new Line());
+        lines.add(line1);
+        lines.add(line2);
+        lines.add(line3);
+        lines.add(line4);
+        lines.add(line5);
+        lines.add(line6);
+        lines.add(line7);
+        lines.add(line8);
+        lines.add(line9);
+        lines.add(line10);
 
         for (Line line : lines)
             line.setVisible(false);
@@ -374,7 +386,6 @@ public class Level3Controller extends Round2Controller implements Initializable,
         gp_example.setVisible(false);
         gp_questions.setVisible(false);
 
-        setStyle();
         setData();
     }
 

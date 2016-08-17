@@ -1,9 +1,12 @@
 package main;
 
 import com.google.gson.Gson;
-import data.Round2Level1Data;
-import data.Round2Level2Data;
-import data.Round2Level3Data;
+import data.round2.Round2Level1Data;
+import data.round2.Round2Level2Data;
+import data.round2.Round2Level3Data;
+import data.round5.Round5Level1Data;
+import data.round5.Round5Level2Data;
+import data.round5.Round5Level3Data;
 import network.Client;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,10 @@ public class Main extends Application {
     public static final Round2Level1Data R2L1_DATA = getRound2Level1Data();
     public static final Round2Level2Data R2L2_DATA = getRound2Level2Data();
     public static final Round2Level3Data R2L3_DATA = getRound2Level3Data();
+
+    public static final Round5Level1Data R5L1_DATA = getRound5Level1Data();
+    public static final Round5Level2Data R5L2_DATA = getRound5Level2Data();
+    public static final Round5Level3Data R5L3_DATA = getRound5Level3Data();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -69,4 +76,33 @@ public class Main extends Application {
         }
     }
 
+    private static Round5Level1Data getRound5Level1Data() {
+        String fileName = "src/data/Round5Level1Data.json";
+        try {
+            return new Gson().fromJson(new FileReader(fileName), Round5Level1Data.class);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    private static Round5Level2Data getRound5Level2Data() {
+        String fileName = "src/data/Round5Level2Data.json";
+        try {
+            return new Gson().fromJson(new FileReader(fileName), Round5Level2Data.class);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    private static Round5Level3Data getRound5Level3Data() {
+        String fileName = "src/data/Round5Level3Data.json";
+        try {
+            return new Gson().fromJson(new FileReader(fileName), Round5Level3Data.class);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
 }

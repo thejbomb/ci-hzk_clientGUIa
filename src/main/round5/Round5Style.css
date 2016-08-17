@@ -2,27 +2,22 @@
     -fx-background-color: rgb(255,255,255);
 }
 
-.label-roundNumberS-zh {
-    -fx-font: bold 60pt "KaiTi";
+.label-scoreName {
+    -fx-font: bold 30pt "KaiTi";
     -fx-text-fill: rgb(0,255,0);
 }
 
-.label-roundNumberS-en {
-    -fx-font: bold 40pt "Bell MT";
+.label-scoreLevel {
+    -fx-font: bold 30pt "KaiTi";
     -fx-text-fill: rgb(0,255,0);
 }
 
-.label-roundLevel-zh {
-    -fx-font: bold 50pt "KaiTi";
+.label-scoreRound {
+    -fx-font: bold 30pt "KaiTi";
     -fx-text-fill: rgb(0,255,0);
 }
 
-.label-roundLevel-en {
-    -fx-font: bold 30pt "Bell MT";
-    -fx-text-fill: rgb(0,255,0);
-}
-
-.label-roundDescription {
+.label-scorePoint {
     -fx-font: bold 30pt "KaiTi";
     -fx-text-fill: rgb(0,255,0);
 }
@@ -73,16 +68,6 @@
 }
 
 .label-questionsQuestion {
-    -fx-font: bold 40pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
-}
-
-.label-questionsChoice {
-    -fx-font: bold 40pt "KaiTi";
-    -fx-text-fill: rgb(0,0,255);
-}
-
-.text-field-questionsAnswer {
     -fx-font: bold 40pt "KaiTi";
     -fx-text-fill: rgb(0,255,0);
 }

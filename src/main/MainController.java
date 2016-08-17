@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import main.round2.Round2Controller;
+import main.round5.Round5Controller;
 import network.ServerHandlerInterface;
 import network.ServerInteractionInterface;
 import tool.Constants;
@@ -29,6 +30,10 @@ public class MainController implements ServerInteractionInterface, Initializable
     private AnchorPane ap_round2Interface;
     @FXML
     private Round2Controller ap_round2InterfaceController;
+    @FXML
+    private AnchorPane ap_round5Interface;
+    @FXML
+    private Round5Controller ap_round5InterfaceController;
     @FXML
     private AnchorPane ap_root;
     @FXML
@@ -127,8 +132,8 @@ public class MainController implements ServerInteractionInterface, Initializable
                 break;
             case Constants.BEGIN_COMP:
                 gp_pane.setVisible(false);
-                ap_round2Interface.setVisible(true);
-                ap_round2InterfaceController.init(userData);
+                ap_round5Interface.setVisible(true);
+                ap_round5InterfaceController.init(userData);
                 break;
             case Constants.BEGIN_R2L1:
                 currentRound = Constants.ROUND2;
@@ -141,6 +146,18 @@ public class MainController implements ServerInteractionInterface, Initializable
             case Constants.BEGIN_R2L3:
                 currentRound = Constants.ROUND2;
                 ap_round2InterfaceController.handleServerData(command,data);
+                break;
+            case Constants.BEGIN_R5L1:
+                currentRound = Constants.ROUND5;
+                ap_round5InterfaceController.handleServerData(command,data);
+                break;
+            case Constants.BEGIN_R5L2:
+                currentRound = Constants.ROUND5;
+                ap_round5InterfaceController.handleServerData(command,data);
+                break;
+            case Constants.BEGIN_R5L3:
+                currentRound = Constants.ROUND5;
+                ap_round5InterfaceController.handleServerData(command,data);
                 break;
             case Constants.ERROR_ID_NOT_FOUND:
                 lb_message.setText("ID was not found.");
@@ -165,7 +182,7 @@ public class MainController implements ServerInteractionInterface, Initializable
                         // ap_round2InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.ROUND5:
-                        // ap_round2InterfaceController.handleServerData(command, data);
+                        ap_round5InterfaceController.handleServerData(command, data);
                         break;
                 }
                 break;
@@ -186,8 +203,13 @@ public class MainController implements ServerInteractionInterface, Initializable
         AnchorPane.setTopAnchor(ap_round2Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_round2Interface, 0.0);
         AnchorPane.setRightAnchor(ap_round2Interface, 0.0);
-
         ap_round2Interface.setVisible(false);
+
+        AnchorPane.setBottomAnchor(ap_round5Interface, 0.0);
+        AnchorPane.setTopAnchor(ap_round5Interface, 0.0);
+        AnchorPane.setLeftAnchor(ap_round5Interface, 0.0);
+        AnchorPane.setRightAnchor(ap_round5Interface, 0.0);
+        ap_round5Interface.setVisible(false);
     }
 
 

@@ -83,9 +83,9 @@ public class Level1Controller extends Round2Controller implements Initializable,
 
     private Round2Controller round2Controller;
 
-    public void init(UserData user, Round2Controller round2Controller) {
+    public void init(UserData user, Round2Controller controller) {
         this.userData = user;
-        this.round2Controller = round2Controller;
+        this.round2Controller = controller;
         Runnable delay = new Runnable() {
             @Override
             public void run() {
@@ -124,31 +124,6 @@ public class Level1Controller extends Round2Controller implements Initializable,
         result.add(answer5);
 
         return result;
-
-    }
-
-    private void setStyle() {
-        lb_titleRoundNumber_zh.setId(StyleId.TITLE_ROUND_NUMBER_ZH);
-        lb_titleRoundNumber_en.setId(StyleId.TITLE_ROUND_NUMBER_EN);
-        lb_titleRoundLevel_zh.setId(StyleId.TITLE_ROUND_LEVEL_ZH);
-        lb_titleRoundLevel_en.setId(StyleId.TITLE_ROUND_LEVEL_EN);
-        lb_titleRoundDescription.setId(StyleId.TITLE_ROUND_DESCRIPTION);
-
-        lb_instructionHeader.setId(StyleId.INSTRUCTION_HEADER);
-        lb_instructionBody_zh.setId(StyleId.INSTRUCTION_BODY_ZH);
-        lb_instructionBody_en.setId(StyleId.INSTRUCTION_BODY_EN);
-        lb_instructionTime_zh.setId(StyleId.INSTRUCTION_TIME_ZH);
-        lb_instructionTime_en.setId(StyleId.INSTRUCTION_TIME_EN);
-
-        lb_exampleHeader.setId(StyleId.EXAMPLE_HEADER);
-        lb_exampleBody.setId(StyleId.EXAMPLE_BODY);
-        lb_exampleWarning.setId(StyleId.EXAMPLE_WARNING);
-
-        lb_timer.setId(StyleId.ROUND_TIMER);
-        for(Label question : questions)
-            question.setId(StyleId.ROUND_QUESTIONS);
-        for(TextArea answer : answers)
-            answer.setId(StyleId.ROUND_ANSWERS);
 
     }
 
@@ -244,7 +219,6 @@ public class Level1Controller extends Round2Controller implements Initializable,
         gp_instruction.setVisible(false);
         gp_example.setVisible(false);
         gp_questions.setVisible(false);
-        setStyle();
         setData();
     }
 

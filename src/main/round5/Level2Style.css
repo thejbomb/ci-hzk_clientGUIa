@@ -72,17 +72,17 @@
     -fx-text-fill: rgb(0,255,0);
 }
 
-.label-questionsQuestion {
-    -fx-font: bold 40pt "KaiTi";
+.label-questionsText {
+    -fx-font: bold 25pt "KaiTi";
     -fx-text-fill: rgb(0,255,0);
 }
 
-.label-questionsChoice {
-    -fx-font: bold 40pt "KaiTi";
-    -fx-text-fill: rgb(0,0,255);
+.label-questionsTextSelected {
+    -fx-font: bold 25pt "KaiTi";
+    -fx-text-fill: rgb(255,0,0);
 }
 
 .text-field-questionsAnswer {
-    -fx-font: bold 40pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-font: bold 25pt "KaiTi";
+    -fx-text-fill: rgb(255,0,0);
 }
