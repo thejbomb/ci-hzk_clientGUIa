@@ -12,6 +12,7 @@
 <AnchorPane fx:id="ap_root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
    <children>
        <fx:include fx:id="ap_round2Interface" source="round2/Round2Interface.fxml" />
+       <fx:include fx:id="ap_round4Interface" source="round4/Round4Interface.fxml" />
        <fx:include fx:id="ap_round5Interface" source="round5/Round5Interface.fxml" />
       <GridPane fx:id="gp_pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>

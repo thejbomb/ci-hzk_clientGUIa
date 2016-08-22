@@ -9,7 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import main.Main;
 import tool.Constants;
-import tool.StyleId;
 import tool.Timer;
 import tool.TimerInterface;
 
@@ -172,7 +171,7 @@ public class Level2Controller extends Round2Controller implements Initializable,
                 gp_example.setVisible(false);
                 gp_questions.setVisible(true);
 
-                new Timer(lb_timer, Main.R2L2_DATA.TIME_LIMIT * 60, this);
+                new Timer(lb_timer, Main.R2L2_DATA.TIME_LIMIT * 60, this,0);
 
                 break;
         }

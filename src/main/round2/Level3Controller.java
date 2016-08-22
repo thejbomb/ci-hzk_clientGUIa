@@ -3,11 +3,9 @@ package main.round2;
 import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -15,7 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Line;
 import main.Main;
 import tool.Constants;
-import tool.StyleId;
 import tool.Timer;
 import tool.TimerInterface;
 
@@ -306,7 +303,7 @@ public class Level3Controller extends Round2Controller implements Initializable,
                 gp_example.setVisible(false);
                 gp_questions.setVisible(true);
 
-                new Timer(lb_timer, Main.R2L3_DATA.TIME_LIMIT * 60, this);
+                new Timer(lb_timer, Main.R2L3_DATA.TIME_LIMIT * 60, this,0);
 
                 break;
         }

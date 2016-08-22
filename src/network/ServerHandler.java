@@ -19,6 +19,7 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
     private LinkedList<String> outputQueue = null;
     private LinkedList<String> inputQueue = null;
     private Socket socket = null;
+
     public ServerHandler(String hostName, int portNumber) {
         HOST_NAME = hostName;
         PORT_NUMBER = portNumber;
@@ -51,9 +52,10 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
     public void writeToServer(int command, LinkedList<String> data) {
         data.addFirst(Integer.toString(command));
         outputQueue = data;
+        System.out.println("CLIENT -> SERVER BEGIN TRANSMISSION");
+        System.out.println("SH To Server: command = " + Integer.toHexString(command) + " | data = " + data);
         out.println(Constants.TRANSMISSION_BEGIN);
     }
-
 
     private String readFromServer() throws IOException {
         return in.readLine();
@@ -72,31 +74,43 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
         try {
             while (listening) {
                 String response = readFromServer();
-                System.out.println(response);
-                if (response.compareTo(Constants.TRANSMISSION_BEGIN) == 0) {
+                System.out.println("RESPONSE FROM SERVER: " + response);
+
+                if (response != null && response.compareTo(Constants.TRANSMISSION_BEGIN) == 0) {
+                    System.out.println("TO SERVER: SERV_SEND_NEXT");
                     out.println(Constants.SERVER_SEND_NEXT);
                     response = readFromServer();
+
                     while (response.compareTo(Constants.TRANSMISSION_END) != 0) {
                         System.out.println("From server: " + response);
                         if (inputQueue == null)
                             inputQueue = new LinkedList<>();
                         inputQueue.add(response);
                         response = in.readLine();
+
                     }
 
-                    int command = Integer.parseInt(inputQueue.getFirst());
+
+                    System.out.println("GOT EVERYTHING FROM SERVER");
+                    System.out.println("DATA GOT FROM SERVER: " + inputQueue);
+                    int command = Integer.parseInt(inputQueue.removeFirst());
+                    System.out.println("DATA FROM SERVER (NO COMMAND): " + inputQueue);
                     System.out.println("Server command: " + Integer.toHexString(command));
-                    inputQueue.removeFirst();
-                    switch (command) {
+                    final int COMMAND = command;
+                    final LinkedList<String> DATA = inputQueue;
+                    switch (COMMAND) {
                         default:
                             Platform.runLater(() -> {
-                                mainController.handleServerData(command, inputQueue);
+                                System.out.println("HANDLING COMMAND " + COMMAND + " NOW");
+                                System.out.println("HANDLING DATA " + DATA + " NOW");
+                                mainController.handleServerData(COMMAND, DATA);
                                 inputQueue = null;
+                                System.out.println("FINISHED HANDLING COMMAND " + COMMAND + " AND DATA " + DATA);
                             });
                             break;
                     }
 
-                } else if (response.compareTo(Constants.CLIENT_SEND_NEXT) == 0) {
+                } else if (response != null && response.compareTo(Constants.CLIENT_SEND_NEXT) == 0) {
 
                     while (!outputQueue.isEmpty()) {
                         System.out.println("To server: " + outputQueue.getFirst());
@@ -104,7 +118,6 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
                         outputQueue.removeFirst();
                         if (outputQueue.isEmpty())
                             out.println(Constants.TRANSMISSION_END);
-
                     }
                     outputQueue = null;
                 }

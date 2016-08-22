@@ -9,7 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import main.Main;
 import tool.Constants;
-import tool.StyleId;
 import tool.Timer;
 import tool.TimerInterface;
 
@@ -147,10 +146,6 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @Override
     public void writeToServer(int command) {
         switch (command) {
-            case Constants.DIS_R2L1_EXP:
-                gp_instruction.setVisible(false);
-                gp_example.setVisible(true);
-                break;
             default:
                 break;
         }
@@ -176,7 +171,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
                 gp_example.setVisible(false);
                 gp_questions.setVisible(true);
 
-                new Timer(lb_timer, Main.R2L1_DATA.TIME_LIMIT * 60, this);
+                new Timer(lb_timer, Main.R2L1_DATA.TIME_LIMIT * 60, this,0);
 
                 break;
         }

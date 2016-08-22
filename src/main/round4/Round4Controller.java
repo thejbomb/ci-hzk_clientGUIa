@@ -1,4 +1,4 @@
-package main.round5;
+package main.round4;
 
 import data.UserData;
 import javafx.fxml.FXML;
@@ -16,20 +16,20 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Round5Controller extends MainController implements Initializable, Runnable, ServerInteractionInterface, ServerHandlerInterface {
+public class Round4Controller extends MainController implements Initializable, Runnable, ServerInteractionInterface, ServerHandlerInterface {
 
     @FXML
     private AnchorPane ap_level1Interface;
     @FXML
     private Level1Controller ap_level1InterfaceController;
-    @FXML
-    private AnchorPane ap_level2Interface;
-    @FXML
+  /*  @FXML
+    private AnchorPane ap_level2Interface;*/
+   /* @FXML
     private Level2Controller ap_level2InterfaceController;
     @FXML
     private AnchorPane ap_level3Interface;
     @FXML
-    private Level3Controller ap_level3InterfaceController;
+    private Level3Controller ap_level3InterfaceController;*/
     @FXML
     private AnchorPane ap_root;
     @FXML
@@ -110,7 +110,8 @@ public class Round5Controller extends MainController implements Initializable, R
 
     @Override
     public void writeToServer(int command) {
-
+        System.out.println("R4 TO: command = " + Integer.toHexString(command) + " | data = ");
+        super.writeToServer(command);
     }
 
 
@@ -121,37 +122,37 @@ public class Round5Controller extends MainController implements Initializable, R
 
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
-        System.out.println("R5 FROM: command = " + Integer.toHexString(command) + " | data = " + data);
+        System.out.println("R4 FROM: command = " + Integer.toHexString(command) + " | data = " + data);
         switch (command) {
-            case Constants.BEGIN_R5L1:
+            case Constants.BEGIN_R4L1:
                 currentLevel = Constants.LEVEL1;
                 hide();
                 ap_level1InterfaceController.init(userData,this);
                 ap_level1InterfaceController.show();
                 break;
-            case Constants.S2C_R5L1_SCR:
+            case Constants.S2C_R4L1_SCR:
                 userData.setRound5Point(Integer.parseInt(data.getFirst()));
                 lb_userPoint5.setText(data.getFirst());
                 System.out.println(userData.getName() + " current total point for round 5 is " + data.getFirst());
                 break;
-            case Constants.BEGIN_R5L2:
+            case Constants.BEGIN_R4L2:
                 currentLevel = Constants.LEVEL2;
                 hide();
-                ap_level2InterfaceController.init(userData,this);
-                ap_level2InterfaceController.show();
+               // ap_level2InterfaceController.init(userData,this);
+               // ap_level2InterfaceController.show();
                 break;
-            case Constants.S2C_R5L2_SCR:
+            case Constants.S2C_R4L2_SCR:
                 userData.setRound5Point(Integer.parseInt(data.getFirst()));
                 lb_userPoint5.setText(data.getFirst());
                 System.out.println(userData.getName() + " current total point for round 5 is " + data.getFirst());
                 break;
-            case Constants.BEGIN_R5L3:
+            case Constants.BEGIN_R4L3:
                 currentLevel = Constants.LEVEL3;
                 hide();
-                ap_level3InterfaceController.init(userData,this);
-                ap_level3InterfaceController.show();
+               // ap_level3InterfaceController.init(userData,this);
+               // ap_level3InterfaceController.show();
                 break;
-            case Constants.S2C_R5L3_SCR:
+            case Constants.S2C_R4L3_SCR:
                 userData.setRound5Point(Integer.parseInt(data.getFirst()));
                 lb_userPoint5.setText(data.getFirst());
                 System.out.println(userData.getName() + " current total point for round 5 is " + data.getFirst());
@@ -162,10 +163,10 @@ public class Round5Controller extends MainController implements Initializable, R
                         ap_level1InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.LEVEL2:
-                        ap_level2InterfaceController.handleServerData(command, data);
+                       // ap_level2InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.LEVEL3:
-                        ap_level3InterfaceController.handleServerData(command, data);
+                       // ap_level3InterfaceController.handleServerData(command, data);
                         break;
                     default:
                         break;
@@ -183,18 +184,18 @@ public class Round5Controller extends MainController implements Initializable, R
         AnchorPane.setLeftAnchor(ap_level1Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level1Interface, 0.0);
         ap_level1Interface.setVisible(false);
-
+/*
         AnchorPane.setBottomAnchor(ap_level2Interface, 0.0);
         AnchorPane.setTopAnchor(ap_level2Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_level2Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level2Interface, 0.0);
-        ap_level2Interface.setVisible(false);
+        ap_level2Interface.setVisible(false);*/
 
-        AnchorPane.setBottomAnchor(ap_level3Interface, 0.0);
+/*        AnchorPane.setBottomAnchor(ap_level3Interface, 0.0);
         AnchorPane.setTopAnchor(ap_level3Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_level3Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level3Interface, 0.0);
-        ap_level3Interface.setVisible(false);
+        ap_level3Interface.setVisible(false);*/
 
         setData();
     }

@@ -180,6 +180,7 @@ public class Level1Controller extends Round5Controller implements Initializable,
 
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
+        System.out.println("R5L1 FROM: command = " + Integer.toHexString(command) + " | data = " + data);
         switch (command) {
             case Constants.DIS_R5L1_EXP:
                 gp_levelTitle.setVisible(false);
@@ -193,7 +194,7 @@ public class Level1Controller extends Round5Controller implements Initializable,
                 gp_example.setVisible(false);
                 gp_questions.setVisible(true);
 
-                new Timer(lb_timer, Main.R5L1_DATA.TIME_LIMIT * 60, this);
+                new Timer(lb_timer, Main.R5L1_DATA.TIME_LIMIT * 60, this,0);
 
                 break;
         }

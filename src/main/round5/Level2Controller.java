@@ -198,7 +198,7 @@ public class Level2Controller extends Round5Controller implements Initializable,
                 gp_example.setVisible(false);
                 gp_questions.setVisible(true);
 
-                new Timer(lb_timer, Main.R5L2_DATA.TIME_LIMIT * 60, this);
+                new Timer(lb_timer, Main.R5L2_DATA.TIME_LIMIT * 60, this,0);
 
                 break;
         }
