@@ -44,9 +44,9 @@ public class MainController implements ServerInteractionInterface, Initializable
     @FXML
     private GridPane gp_pane;
     @FXML
-    private Label lb_zhTitle;
+    private Label lb_title_zh;
     @FXML
-    private Label lb_enTitle;
+    private Label lb_title_en;
     @FXML
     private CheckBox cb_clientReady;
     @FXML
@@ -190,13 +190,13 @@ public class MainController implements ServerInteractionInterface, Initializable
             default:
                 switch (currentRound) {
                     case Constants.ROUND1:
-                        //ap_round2InterfaceController.handleServerData(command, data);
+                        //ap_round1InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.ROUND2:
                         ap_round2InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.ROUND3:
-                        //  ap_round2InterfaceController.handleServerData(command, data);
+                        //  ap_round3InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.ROUND4:
                         ap_round4InterfaceController.handleServerData(command, data);
@@ -215,8 +215,8 @@ public class MainController implements ServerInteractionInterface, Initializable
 
         ap_root.getStyleClass().addAll("pane");
 
-        lb_zhTitle.setId(CSS_ZH_TITLE);
-        lb_enTitle.setId(CSS_EN_TITLE);
+        lb_title_zh.setId(CSS_ZH_TITLE);
+        lb_title_en.setId(CSS_EN_TITLE);
         lb_message.setId(CSS_EN_MESSAGE);
 
         AnchorPane.setBottomAnchor(ap_round2Interface, 0.0);

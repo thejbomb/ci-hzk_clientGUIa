@@ -97,14 +97,14 @@ public class ServerHandler implements ServerInteractionInterface, Runnable {
                     System.out.println("DATA FROM SERVER (NO COMMAND): " + inputQueue);
                     System.out.println("Server command: " + Integer.toHexString(command));
                     final int COMMAND = command;
-                    final LinkedList<String> DATA = inputQueue;
+                    final LinkedList<String> DATA = new LinkedList<>(inputQueue);
+                    inputQueue.clear();
                     switch (COMMAND) {
                         default:
                             Platform.runLater(() -> {
                                 System.out.println("HANDLING COMMAND " + COMMAND + " NOW");
                                 System.out.println("HANDLING DATA " + DATA + " NOW");
                                 mainController.handleServerData(COMMAND, DATA);
-                                inputQueue = null;
                                 System.out.println("FINISHED HANDLING COMMAND " + COMMAND + " AND DATA " + DATA);
                             });
                             break;

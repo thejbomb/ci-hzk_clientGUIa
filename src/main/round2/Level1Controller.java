@@ -158,6 +158,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
 
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
+        System.out.println("R2L1 HANDLE: " + command + " | " + data);
         switch (command) {
             case Constants.DIS_R2L1_EXP:
                 gp_levelTitle.setVisible(false);
