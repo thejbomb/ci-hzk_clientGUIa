@@ -184,7 +184,6 @@ public class Level1Controller extends Round4Controller implements Initializable,
         }
     }
 
-
     private void displayChoices(int questionNumber) throws Exception {
         if (questionNumber < 0 || questionNumber >= Main.R4L1_DATA.getQuestions().size())
             throw new Exception("No such question exist");
@@ -200,14 +199,14 @@ public class Level1Controller extends Round4Controller implements Initializable,
                     fp_choices.getChildren().get(j).setDisable(true);
                     lb_timer.setVisible(false);
                 }
-                timer.stop();
+                if (timer.isRunning())
+                    timer.stop();
                 fp_choices.getChildren().get(finalI).getStyleClass().set(0, "button-questionsUserChoice");
             });
         }
         fp_choices.getChildren().clear();
         fp_choices.getChildren().addAll(choices);
     }
-
 
     @Override
     public void writeToServer(int command) {
@@ -236,7 +235,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
                 break;
             case Constants.DIS_R4L1_QST:
                 lb_timer.setText("5");
-                if (timer != null)
+                if (timer != null && timer.isRunning())
                     timer.stop();
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);
@@ -269,8 +268,12 @@ public class Level1Controller extends Round4Controller implements Initializable,
                 fp_choices.setVisible(false);
                 break;
             case Constants.S2C_R4LX_CRCT:
+                if (timer.isRunning())
+                    timer.stop();
                 break;
             case Constants.S2C_R4LX_WRNG:
+                if (timer.isRunning())
+                    timer.stop();
                 break;
         }
     }

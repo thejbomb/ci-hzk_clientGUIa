@@ -17,6 +17,7 @@ import main.round5.Round5Controller;
 import network.ServerHandlerInterface;
 import network.ServerInteractionInterface;
 import tool.Constants;
+import tool.DrawingPad;
 
 import java.net.URL;
 import java.util.LinkedList;
@@ -140,8 +141,8 @@ public class MainController implements ServerInteractionInterface, Initializable
                 break;
             case Constants.BEGIN_COMP:
                 gp_pane.setVisible(false);
-                ap_round4Interface.setVisible(true);
-                ap_round4InterfaceController.init(userData);
+                ap_round2Interface.setVisible(true);
+                ap_round2InterfaceController.init(userData);
                 break;
             case Constants.BEGIN_R2L1:
                 currentRound = Constants.ROUND2;
@@ -218,6 +219,17 @@ public class MainController implements ServerInteractionInterface, Initializable
         lb_title_zh.setId(CSS_ZH_TITLE);
         lb_title_en.setId(CSS_EN_TITLE);
         lb_message.setId(CSS_EN_MESSAGE);
+
+
+        lb_title_zh.setOnMouseClicked(e -> {
+            DrawingPad draw = new DrawingPad();
+            draw.startDrawing();
+            ap_root.getChildren().add(draw);
+            AnchorPane.setBottomAnchor(draw, 0.0);
+            AnchorPane.setTopAnchor(draw, 0.0);
+            AnchorPane.setLeftAnchor(draw, 0.0);
+            AnchorPane.setRightAnchor(draw, 0.0);
+        });
 
         AnchorPane.setBottomAnchor(ap_round2Interface, 0.0);
         AnchorPane.setTopAnchor(ap_round2Interface, 0.0);
