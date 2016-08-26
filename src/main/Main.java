@@ -1,6 +1,7 @@
 package main;
 
 import com.google.gson.Gson;
+import javafx.scene.input.KeyCombination;
 import network.Client;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

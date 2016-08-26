@@ -5,6 +5,7 @@ import data.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -115,6 +116,7 @@ public class MainController implements ServerInteractionInterface, Initializable
             cb_clientReady.setSelected(false);
         }
     }
+
 
     @Override
     public void writeToServer(int command) {
@@ -231,6 +233,8 @@ public class MainController implements ServerInteractionInterface, Initializable
             AnchorPane.setRightAnchor(draw, 0.0);
         });
 
+
+
         AnchorPane.setBottomAnchor(ap_round2Interface, 0.0);
         AnchorPane.setTopAnchor(ap_round2Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_round2Interface, 0.0);
@@ -249,6 +253,5 @@ public class MainController implements ServerInteractionInterface, Initializable
         AnchorPane.setRightAnchor(ap_round5Interface, 0.0);
         ap_round5Interface.setVisible(false);
     }
-
 
 }

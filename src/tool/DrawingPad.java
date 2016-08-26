@@ -1,5 +1,7 @@
 package tool;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -12,6 +14,10 @@ import java.util.LinkedList;
  */
 public class DrawingPad extends Pane {
     private LinkedList<Polyline> lines;
+
+    public void init() {
+        setPrefSize(getScene().getWindow().getWidth() / 4, getScene().getWindow().getWidth() / 4);
+    }
 
     public void startDrawing() {
         lines = new LinkedList<>();
@@ -59,6 +65,7 @@ public class DrawingPad extends Pane {
     }
 
     public LinkedList<Polyline> getSmaller(double scale) {
+        autoResize();
         LinkedList<Polyline> result = new LinkedList<>();
         for (Polyline pl : lines) {
             Polyline line = new Polyline();
@@ -69,5 +76,39 @@ public class DrawingPad extends Pane {
         }
 
         return result;
+    }
+
+    private void autoResize() {
+        double smallestX = 999999999;
+        double largestX = -1;
+        double smallestY = 999999999;
+        double largestY = -1;
+
+        for (Polyline pl : lines) {
+            for (int i = 0; i < pl.getPoints().size(); i++) {
+                if (i / 2 == 0) {
+                    if (pl.getPoints().get(i) < smallestX)
+                        smallestX = pl.getPoints().get(i);
+                    if (pl.getPoints().get(i) > largestX)
+                        largestX = pl.getPoints().get(i);
+                } else {
+                    if (pl.getPoints().get(i) < smallestY)
+                        smallestY = pl.getPoints().get(i);
+                    if (pl.getPoints().get(i) > largestY)
+                        largestY = pl.getPoints().get(i);
+                }
+            }
+        }
+
+        for (Polyline pl : lines) {
+            for (int i = 0; i < pl.getPoints().size(); i++) {
+                if (i / 2 == 0) {
+                    pl.getPoints().set(i, pl.getPoints().get(i) - smallestX);
+                } else {
+                    pl.getPoints().set(i, pl.getPoints().get(i) - smallestY);
+                }
+            }
+        }
+
     }
 }

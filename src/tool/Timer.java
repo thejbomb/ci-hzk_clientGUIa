@@ -16,8 +16,6 @@ public class Timer {
                 timerRunning = true;
                 int timeLeft = time;
                 while (timeLeft > 0) {
-                    if (timeLeft == 0)
-                        timerInterface.takeNotice();
                     String time;
                     if (type == 0)
                         time = refreshTimer1(timeLeft);
@@ -25,6 +23,8 @@ public class Timer {
                         time = Integer.toString(timeLeft);
                     Platform.runLater(() -> timerLabel.setText(time));
                     timeLeft--;
+                    if (timeLeft == 0)
+                        timerInterface.takeNotice();
                     Thread.sleep(1000);
                 }
                 return null;

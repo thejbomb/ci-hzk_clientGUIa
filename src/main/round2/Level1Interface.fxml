@@ -153,11 +153,11 @@
         <rowConstraints>
             <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
             <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-          <RowConstraints vgrow="SOMETIMES" />
-          <RowConstraints vgrow="SOMETIMES" />
-          <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="14.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="14.0" vgrow="SOMETIMES" />
+          <RowConstraints percentHeight="14.0" vgrow="SOMETIMES" />
+          <RowConstraints percentHeight="14.0" vgrow="SOMETIMES" />
+          <RowConstraints percentHeight="14.0" vgrow="SOMETIMES" />
             <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>

@@ -1,10 +1,17 @@
 package main.round2;
 
 import data.UserData;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Polyline;
 import main.Main;
@@ -14,6 +21,7 @@ import tool.Timer;
 import tool.TimerInterface;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
@@ -111,12 +119,103 @@ public class Level1Controller extends Round2Controller implements Initializable,
         };
         Thread delayThread = new Thread(delay);
         delayThread.start();
+        DrawingPad pad = new DrawingPad();
+        pad.setStyle("-fx-background-color: white;");
+        ap_drawingPane.setVisible(false);
+        ap_drawingPane.getChildren().add(pad);
+        pad.init();
+        for (int i = 0; i < questions.size(); i++) {
+            Label lb = questions.get(i);
+            int finalI = i;
+            lb.setOnMouseClicked(e -> {
+                currentQuestion = finalI;
+                ap_drawingPane.setVisible(true);
+                pad.getChildren().clear();
+                pad.startDrawing();
+                System.out.println((ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                AnchorPane.setLeftAnchor(bt_submit, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                AnchorPane.setRightAnchor(bt_clear, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                AnchorPane.setTopAnchor(bt_submit, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getHeight() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2 -
+                        bt_submit.localToScene(bt_submit.getBoundsInLocal()).getHeight());
+                AnchorPane.setTopAnchor(bt_clear, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getHeight() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2 -
+                        bt_clear.localToScene(bt_clear.getBoundsInLocal()).getHeight());
+                AnchorPane.setLeftAnchor(pad, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                AnchorPane.setRightAnchor(pad, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                AnchorPane.setTopAnchor(pad, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getHeight() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2);
+                AnchorPane.setBottomAnchor(pad, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getHeight() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2);
+                ap_drawingPane.widthProperty().addListener(((observable, oldValue, newValue) -> {
+                    pad.resize(ap_drawingPane.getScene().getWindow().getWidth() / 4, ap_drawingPane.getScene().getWindow().getWidth() / 4);
+                    AnchorPane.setLeftAnchor(bt_submit, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                    AnchorPane.setRightAnchor(bt_clear, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                    AnchorPane.setLeftAnchor(pad, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                    AnchorPane.setRightAnchor(pad, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                }));
+                ap_drawingPane.heightProperty().addListener((observable, oldValue, newValue) -> {
+                    AnchorPane.setTopAnchor(bt_submit, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2 -
+                            bt_submit.localToScene(bt_submit.getBoundsInLocal()).getHeight());
+                    AnchorPane.setTopAnchor(bt_clear, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2 -
+                            bt_clear.localToScene(bt_clear.getBoundsInLocal()).getHeight());
+                    AnchorPane.setTopAnchor(pad, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2);
+                    AnchorPane.setBottomAnchor(pad, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2);
+                });
+            });
+        }
+
+        bt_submit.setOnMouseClicked(e -> {
+            ap_drawingPane.setVisible(false);
+            lines[currentQuestion].add(pad.getSmaller(6));
+            String s = lines[currentQuestion].toString();
+            System.out.println(s);
+            answers.get(currentQuestion).getChildren().clear();
+            for (LinkedList<Polyline> ll : lines[currentQuestion]) {
+                Pane pane = new Pane();
+                pane.setStyle("-fx-background-color: yellow;");
+                pane.setOnMouseClicked(ee -> {
+                    if (ee.getButton() == MouseButton.SECONDARY && pane.getStyle().compareTo("-fx-background-color: red") == 0) {
+                        for (FlowPane fp : answers)
+                            fp.getChildren().remove(pane);
+                        for (LinkedList<LinkedList<Polyline>> lll : lines)
+                            lll.remove(ll);
+                    } else if (ee.getButton() == MouseButton.PRIMARY) {
+                        if (pane.getStyle().compareTo("-fx-background-color: red") != 0) {
+                            pane.setStyle("-fx-background-color: red");
+                        } else {
+                            pane.setStyle("-fx-background-color: yellow;");
+                        }
+                    }
+
+                });
+
+                pane.getChildren().addAll(ll);
+                answers.get(currentQuestion).getChildren().add(pane);
+            }
+            answers.get(currentQuestion).setVisible(true);
+        });
+
+        bt_clear.setOnMouseClicked(e -> {
+            pad.startDrawing();
+            pad.getChildren().clear();
+        });
     }
 
     private LinkedList<String> packageAnswers() {
-
         LinkedList<String> result = new LinkedList<>();
-
+        result.add("ANS1");
+        System.out.println(result);
+        result.add(lines[0].toString());
+        result.add("ANS2");
+        System.out.println(result);
+        result.add(lines[1].toString());
+        result.add("ANS3");
+        System.out.println(result);
+        result.add(lines[2].toString());
+        result.add("ANS4");
+        System.out.println(result);
+        result.add(lines[3].toString());
+        result.add("ANS5");
+        System.out.println(result);
+        result.add(lines[4].toString());
+        System.out.println(result);
         return result;
 
     }
@@ -184,7 +283,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @Override
     public void takeNotice() {
         writeToServer(Constants.C2S_R2L1_ANS, packageAnswers());
-        hide();
+       // hide();
         round2Controller.show();
     }
 
@@ -203,49 +302,14 @@ public class Level1Controller extends Round2Controller implements Initializable,
         answers.add(fp_answers4);
         answers.add(fp_answers5);
 
-        for (FlowPane fp : answers)
+        for (FlowPane fp : answers) {
             fp.setVisible(false);
+            fp.setHgap(5);
+            fp.setVgap(5);
+        }
 
         for (int i = 0; i < lines.length; i++)
             lines[i] = new LinkedList<>();
-
-        DrawingPad pad = new DrawingPad();
-        ap_drawingPane.setStyle("-fx-background-color: black;");
-        pad.setStyle("-fx-background-color: white;");
-        ap_drawingPane.setVisible(false);
-        for (int i = 0; i < questions.size(); i++) {
-            Label lb = questions.get(i);
-            int finalI = i;
-            lb.setOnMouseClicked(e -> {
-                currentQuestion = finalI;
-                ap_drawingPane.setVisible(true);
-                pad.getChildren().clear();
-                pad.startDrawing();
-                AnchorPane.setLeftAnchor(pad, 0.0);
-                AnchorPane.setRightAnchor(pad, 0.0);
-                AnchorPane.setTopAnchor(pad, bt_clear.localToScene(bt_clear.getBoundsInLocal()).getHeight());
-                AnchorPane.setBottomAnchor(pad, 0.0);
-                ap_drawingPane.getChildren().remove(pad);
-                ap_drawingPane.getChildren().add(pad);
-            });
-        }
-
-        bt_submit.setOnMouseClicked(e -> {
-            ap_drawingPane.setVisible(false);
-            lines[currentQuestion].add(pad.getSmaller(5));
-            answers.get(currentQuestion).getChildren().clear();
-            for (LinkedList<Polyline> ll : lines[currentQuestion]) {
-                Pane pane = new Pane();
-                pane.getChildren().addAll(ll);
-                answers.get(currentQuestion).getChildren().add(pane);
-            }
-            answers.get(currentQuestion).setVisible(true);
-        });
-
-        bt_clear.setOnMouseClicked(e -> {
-            pad.startDrawing();
-            pad.getChildren().clear();
-        });
 
         gp_levelTitle.setVisible(true);
         gp_instruction.setVisible(false);
