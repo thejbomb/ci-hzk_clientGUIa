@@ -103,22 +103,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
     public void init(UserData user, Round2Controller controller) {
         this.userData = user;
         this.round2Controller = controller;
-        Runnable delay = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                    gp_levelTitle.setVisible(false);
-                    gp_instruction.setVisible(true);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                    System.out.println(ex.getMessage() + " " + getClass());
-                }
 
-            }
-        };
-        Thread delayThread = new Thread(delay);
-        delayThread.start();
         DrawingPad pad = new DrawingPad();
         pad.setStyle("-fx-background-color: white;");
         ap_drawingPane.setVisible(false);
@@ -254,6 +239,12 @@ public class Level1Controller extends Round2Controller implements Initializable,
     public void handleServerData(int command, LinkedList<String> data) {
         System.out.println("R2L1 HANDLE: " + command + " | " + data);
         switch (command) {
+            case Constants.DIS_R2L1_INS:
+                gp_levelTitle.setVisible(false);
+                gp_instruction.setVisible(true);
+                gp_example.setVisible(false);
+                gp_questions.setVisible(false);
+                break;
             case Constants.DIS_R2L1_EXP:
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);
@@ -283,7 +274,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @Override
     public void takeNotice() {
         writeToServer(Constants.C2S_R2L1_ANS, packageAnswers());
-       // hide();
+        // hide();
         round2Controller.show();
     }
 

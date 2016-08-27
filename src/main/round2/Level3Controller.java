@@ -156,22 +156,6 @@ public class Level3Controller extends Round2Controller implements Initializable,
         randomizedAnswers = randomizeAnswers(Main.R2L3_DATA.ANSWERS);
         for (int i = 0; i < choices.size(); i++)
             choices.get(i).setText((char) (i + 0x41) + "." + randomizedAnswers.get(i));
-        Runnable delay = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                    gp_levelTitle.setVisible(false);
-                    gp_instruction.setVisible(true);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                    System.out.println(ex.getMessage() + " " + getClass());
-                }
-
-            }
-        };
-        Thread delayThread = new Thread(delay);
-        delayThread.start();
     }
 
     private LinkedList<String> packageData(Object data) {
@@ -224,7 +208,7 @@ public class Level3Controller extends Round2Controller implements Initializable,
         }
     }
 
-    private void drawLine(){
+    private void drawLine() {
 
     }
 
@@ -237,7 +221,7 @@ public class Level3Controller extends Round2Controller implements Initializable,
                 input = input.toUpperCase();
                 if (input.length() > 1)
                     answer.setText(input.substring(0, 1));
-                else if(input.charAt(0) >= answers.size() + 0x41)
+                else if (input.charAt(0) >= answers.size() + 0x41)
                     answer.setText("");
                 else
                     answer.setText(input);
@@ -248,17 +232,17 @@ public class Level3Controller extends Round2Controller implements Initializable,
                     if (_input == i + 0x41) {
                         // ONLY WORK IN MAXIMIZED SCREEN MODE RIGHT NOW
                         Scene scene = choices.get(i).getScene();
-                        Point2D windowC = new Point2D(scene.getWindow().getX(),scene.getWindow().getY());
-                        Point2D sceneC = new Point2D(scene.getX(),scene.getY());
-                        Point2D node = choices.get(i).localToScene(0.0,0.0);
+                        Point2D windowC = new Point2D(scene.getWindow().getX(), scene.getWindow().getY());
+                        Point2D sceneC = new Point2D(scene.getX(), scene.getY());
+                        Point2D node = choices.get(i).localToScene(0.0, 0.0);
                         double x = windowC.getX() + sceneC.getX() + node.getX();
                         double y = windowC.getY() + sceneC.getY() + node.getY();
                         lines.get(j).setStartX(x);
                         lines.get(j).setStartY(y);
                         scene = questions.get(j).getScene();
-                        windowC = new Point2D(scene.getWindow().getX(),scene.getWindow().getY());
-                        sceneC = new Point2D(scene.getX(),scene.getY());
-                        node = questions.get(j).localToScene(0.0,0.0);
+                        windowC = new Point2D(scene.getWindow().getX(), scene.getWindow().getY());
+                        sceneC = new Point2D(scene.getX(), scene.getY());
+                        node = questions.get(j).localToScene(0.0, 0.0);
                         x = windowC.getX() + sceneC.getX() + node.getX();
                         y = windowC.getY() + sceneC.getY() + node.getY();
                         lines.get(j).setEndX(x + questions.get(i).getWidth());
@@ -291,6 +275,12 @@ public class Level3Controller extends Round2Controller implements Initializable,
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
         switch (command) {
+            case Constants.DIS_R2L3_INS:
+                gp_levelTitle.setVisible(false);
+                gp_instruction.setVisible(true);
+                gp_example.setVisible(false);
+                gp_questions.setVisible(false);
+                break;
             case Constants.DIS_R2L3_EXP:
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);
@@ -303,7 +293,7 @@ public class Level3Controller extends Round2Controller implements Initializable,
                 gp_example.setVisible(false);
                 gp_questions.setVisible(true);
 
-                new Timer(lb_timer, Main.R2L3_DATA.TIME_LIMIT * 60, this,0);
+                new Timer(lb_timer, Main.R2L3_DATA.TIME_LIMIT * 60, this, 0);
 
                 break;
         }

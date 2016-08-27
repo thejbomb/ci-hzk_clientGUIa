@@ -178,8 +178,6 @@ public class Round2Controller extends MainController implements Initializable, R
         }
 
     }
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         AnchorPane.setBottomAnchor(ap_level1Interface, 0.0);

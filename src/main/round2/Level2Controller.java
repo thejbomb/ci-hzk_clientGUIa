@@ -96,22 +96,6 @@ public class Level2Controller extends Round2Controller implements Initializable,
     public void init(UserData user, Round2Controller controller) {
         userData = user;
         round2Controller = controller;
-        Runnable delay = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                    gp_levelTitle.setVisible(false);
-                    gp_instruction.setVisible(true);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                    System.out.println(ex.getMessage() + " " + getClass());
-                }
-            }
-        };
-        Thread delayThread = new Thread(delay);
-        delayThread.start();
-
         DrawingPad pad = new DrawingPad();
         pad.setStyle("-fx-background-color: white;");
         ap_drawingPane.setVisible(false);
@@ -221,14 +205,6 @@ public class Level2Controller extends Round2Controller implements Initializable,
 
     @Override
     public void writeToServer(int command) {
-        switch (command) {
-            case Constants.DIS_R2L2_EXP:
-                gp_instruction.setVisible(false);
-                gp_example.setVisible(true);
-                break;
-            default:
-                break;
-        }
     }
 
     @Override
@@ -238,7 +214,14 @@ public class Level2Controller extends Round2Controller implements Initializable,
 
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
+        System.out.println("R2L2 FROM: command = " + command + " | data = " + data);
         switch (command) {
+            case Constants.DIS_R2L2_INS:
+                gp_levelTitle.setVisible(false);
+                gp_instruction.setVisible(true);
+                gp_example.setVisible(false);
+                gp_questions.setVisible(false);
+                break;
             case Constants.DIS_R2L2_EXP:
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);
