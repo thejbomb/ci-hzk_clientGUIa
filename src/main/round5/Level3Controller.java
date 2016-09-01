@@ -73,22 +73,6 @@ public class Level3Controller extends Round5Controller implements Initializable,
     public void init(UserData user, Round5Controller controller) {
         this.userData = user;
         this.round5Controller = controller;
-        Runnable delay = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                    gp_levelTitle.setVisible(false);
-                    gp_instruction.setVisible(true);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                    System.out.println(ex.getMessage() + " " + getClass());
-                }
-
-            }
-        };
-        Thread delayThread = new Thread(delay);
-        delayThread.start();
     }
 
     private LinkedList<String> packageData(Object data) {
@@ -209,6 +193,12 @@ public class Level3Controller extends Round5Controller implements Initializable,
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
         switch (command) {
+            case Constants.DIS_R5L1_INS:
+                gp_levelTitle.setVisible(false);
+                gp_instruction.setVisible(true);
+                gp_example.setVisible(false);
+                gp_questions.setVisible(false);
+                break;
             case Constants.DIS_R5L3_EXP:
                 gp_levelTitle.setVisible(false);
                 gp_instruction.setVisible(false);

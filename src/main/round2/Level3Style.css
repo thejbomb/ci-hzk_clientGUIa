@@ -83,6 +83,6 @@
 }
 
 .text-field-questionsAnswer {
-    -fx-font: bold 40pt "KaiTi";
+    -fx-font: bold 25pt "KaiTi";
     -fx-text-fill: rgb(0,255,0);
 }

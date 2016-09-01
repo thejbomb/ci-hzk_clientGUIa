@@ -62,6 +62,8 @@ public class MainController implements ServerInteractionInterface, Initializable
 
     private int currentRound = 0;
 
+    private int userLevel = 0;
+
     public void setServerNotify(ServerInteractionInterface controller) {
         serverController = controller;
     }
@@ -136,6 +138,12 @@ public class MainController implements ServerInteractionInterface, Initializable
         switch (command) {
             case Constants.LOGIN_SUCCESS:
                 userData = new UserData(data.getFirst(), data.getLast());
+                if (data.getLast().compareTo("初级 Beginner") == 0)
+                    userLevel = 1;
+                else if (data.getLast().compareTo("中级 Intermediate") == 0)
+                    userLevel = 2;
+                else if (data.getLast().compareTo("高级 Advance") == 0)
+                    userLevel = 3;
                 cb_clientReady.setDisable(true);
                 tf_validationId.setEditable(false);
                 lb_message.setText("Welcome " + userData.getName() + "!");
@@ -143,8 +151,8 @@ public class MainController implements ServerInteractionInterface, Initializable
                 break;
             case Constants.BEGIN_COMP:
                 gp_pane.setVisible(false);
-                ap_round2Interface.setVisible(true);
-                ap_round2InterfaceController.init(userData);
+                ap_round5Interface.setVisible(true);
+                ap_round5InterfaceController.init(userData);
                 break;
             case Constants.BEGIN_R2L1:
                 currentRound = Constants.ROUND2;
@@ -232,7 +240,6 @@ public class MainController implements ServerInteractionInterface, Initializable
             AnchorPane.setLeftAnchor(draw, 0.0);
             AnchorPane.setRightAnchor(draw, 0.0);
         });
-
 
 
         AnchorPane.setBottomAnchor(ap_round2Interface, 0.0);

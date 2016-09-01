@@ -3,16 +3,23 @@ package main.round2;
 import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polyline;
 import main.Main;
 import tool.Constants;
+import tool.DrawingPad;
 import tool.Timer;
 import tool.TimerInterface;
 
@@ -80,72 +87,39 @@ public class Level3Controller extends Round2Controller implements Initializable,
     @FXML
     private Label lb_question10;
     @FXML
-    private Label lb_choice1;
+    private AnchorPane ap_drawingPane;
     @FXML
-    private Label lb_choice2;
+    private Button bt_submit;
     @FXML
-    private Label lb_choice3;
+    private Button bt_clear;
     @FXML
-    private Label lb_choice4;
+    private FlowPane fp_answer1;
     @FXML
-    private Label lb_choice5;
+    private FlowPane fp_answer2;
     @FXML
-    private Label lb_choice6;
+    private FlowPane fp_answer3;
     @FXML
-    private Label lb_choice7;
+    private FlowPane fp_answer4;
     @FXML
-    private Label lb_choice8;
+    private FlowPane fp_answer5;
     @FXML
-    private Label lb_choice9;
+    private FlowPane fp_answer6;
     @FXML
-    private Label lb_choice10;
+    private FlowPane fp_answer7;
     @FXML
-    private TextField tf_answer1;
+    private FlowPane fp_answer8;
     @FXML
-    private TextField tf_answer2;
+    private FlowPane fp_answer9;
     @FXML
-    private TextField tf_answer3;
-    @FXML
-    private TextField tf_answer4;
-    @FXML
-    private TextField tf_answer5;
-    @FXML
-    private TextField tf_answer6;
-    @FXML
-    private TextField tf_answer7;
-    @FXML
-    private TextField tf_answer8;
-    @FXML
-    private TextField tf_answer9;
-    @FXML
-    private TextField tf_answer10;
-    @FXML
-    private Line line1;
-    @FXML
-    private Line line2;
-    @FXML
-    private Line line3;
-    @FXML
-    private Line line4;
-    @FXML
-    private Line line5;
-    @FXML
-    private Line line6;
-    @FXML
-    private Line line7;
-    @FXML
-    private Line line8;
-    @FXML
-    private Line line9;
-    @FXML
-    private Line line10;
+    private FlowPane fp_answer10;
+
 
     private LinkedList<Label> questions;
-    private LinkedList<Label> choices;
-    private LinkedList<TextField> answers;
-    private LinkedList<Line> lines;
+    private LinkedList<LinkedList<Polyline>> lines = new LinkedList<>();
+    private LinkedList<FlowPane> answers;
 
     private LinkedList<String> randomizedAnswers;
+    private int currentQuestion = 0;
 
     private Round2Controller round2Controller;
 
@@ -153,9 +127,12 @@ public class Level3Controller extends Round2Controller implements Initializable,
         this.userData = user;
         this.round2Controller = controller;
 
+        lines = new LinkedList<>();
+        for (int i = 0; i < questions.size(); i++)
+            lines.add(new LinkedList<>());
         randomizedAnswers = randomizeAnswers(Main.R2L3_DATA.ANSWERS);
-        for (int i = 0; i < choices.size(); i++)
-            choices.get(i).setText((char) (i + 0x41) + "." + randomizedAnswers.get(i));
+
+        setData();
     }
 
     private LinkedList<String> packageData(Object data) {
@@ -180,9 +157,10 @@ public class Level3Controller extends Round2Controller implements Initializable,
 
     private LinkedList<String> packageAnswers() {
         LinkedList<String> result = new LinkedList<>();
-        for (TextField answer : answers)
-            result.add(answer.getText());
-
+        for (int i = 0; i < answers.size(); i++) {
+            result.add("ANS" + (i + 1));
+            result.add(lines.get(i).toString());
+        }
         return result;
 
     }
@@ -203,56 +181,81 @@ public class Level3Controller extends Round2Controller implements Initializable,
 
         String timerLabel = Main.R2L3_DATA.TIME_LIMIT + ":00";
         lb_timer.setText(timerLabel);
+        DrawingPad pad = new DrawingPad();
+        pad.setStyle("-fx-background-color: white;");
+        ap_drawingPane.setVisible(false);
+        ap_drawingPane.getChildren().add(pad);
+        pad.init();
         for (int i = 0; i < questions.size(); i++) {
-            questions.get(i).setText(Main.R2L3_DATA.QUESTIONS.get(i));
+            questions.get(i).setText((i + 1) + "." + Main.R2L3_DATA.QUESTIONS.get(i));
+
+            int finalI = i;
+            questions.get(i).setOnMouseClicked(e -> {
+                currentQuestion = finalI;
+                ap_drawingPane.setVisible(true);
+                pad.getChildren().clear();
+                pad.startDrawing();
+                AnchorPane.setLeftAnchor(bt_submit, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                AnchorPane.setRightAnchor(bt_clear, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                AnchorPane.setTopAnchor(bt_submit, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getHeight() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2 -
+                        bt_submit.localToScene(bt_submit.getBoundsInLocal()).getHeight());
+                AnchorPane.setTopAnchor(bt_clear, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getHeight() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2 -
+                        bt_clear.localToScene(bt_clear.getBoundsInLocal()).getHeight());
+                AnchorPane.setLeftAnchor(pad, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                AnchorPane.setRightAnchor(pad, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                AnchorPane.setTopAnchor(pad, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getHeight() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2);
+                AnchorPane.setBottomAnchor(pad, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getHeight() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2);
+                ap_drawingPane.widthProperty().addListener(((observable, oldValue, newValue) -> {
+                    pad.resize(ap_drawingPane.getScene().getWindow().getWidth() / 4, ap_drawingPane.getScene().getWindow().getWidth() / 4);
+                    AnchorPane.setLeftAnchor(bt_submit, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                    AnchorPane.setRightAnchor(bt_clear, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                    AnchorPane.setLeftAnchor(pad, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                    AnchorPane.setRightAnchor(pad, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
+                }));
+                ap_drawingPane.heightProperty().addListener((observable, oldValue, newValue) -> {
+                    AnchorPane.setTopAnchor(bt_submit, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2 -
+                            bt_submit.localToScene(bt_submit.getBoundsInLocal()).getHeight());
+                    AnchorPane.setTopAnchor(bt_clear, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2 -
+                            bt_clear.localToScene(bt_clear.getBoundsInLocal()).getHeight());
+                    AnchorPane.setTopAnchor(pad, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2);
+                    AnchorPane.setBottomAnchor(pad, (newValue.doubleValue() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2);
+                });
+            });
         }
-    }
 
-    private void drawLine() {
+        bt_submit.setOnMouseClicked(e -> {
+            ap_drawingPane.setVisible(false);
+            lines.set(currentQuestion, pad.getSmaller(3));
+            answers.get(currentQuestion).getChildren().clear();
 
-    }
-
-    @FXML
-    private void handleKeyboard(KeyEvent e) {
-        for (int j = 0; j < answers.size(); j++) {
-            TextField answer = answers.get(j);
-            String input = answer.getText();
-            if (input.compareTo("") != 0) {
-                input = input.toUpperCase();
-                if (input.length() > 1)
-                    answer.setText(input.substring(0, 1));
-                else if (input.charAt(0) >= answers.size() + 0x41)
-                    answer.setText("");
-                else
-                    answer.setText(input);
-
-                int _input = input.charAt(0);
-
-                for (int i = 0; i < answers.size(); i++) {
-                    if (_input == i + 0x41) {
-                        // ONLY WORK IN MAXIMIZED SCREEN MODE RIGHT NOW
-                        Scene scene = choices.get(i).getScene();
-                        Point2D windowC = new Point2D(scene.getWindow().getX(), scene.getWindow().getY());
-                        Point2D sceneC = new Point2D(scene.getX(), scene.getY());
-                        Point2D node = choices.get(i).localToScene(0.0, 0.0);
-                        double x = windowC.getX() + sceneC.getX() + node.getX();
-                        double y = windowC.getY() + sceneC.getY() + node.getY();
-                        lines.get(j).setStartX(x);
-                        lines.get(j).setStartY(y);
-                        scene = questions.get(j).getScene();
-                        windowC = new Point2D(scene.getWindow().getX(), scene.getWindow().getY());
-                        sceneC = new Point2D(scene.getX(), scene.getY());
-                        node = questions.get(j).localToScene(0.0, 0.0);
-                        x = windowC.getX() + sceneC.getX() + node.getX();
-                        y = windowC.getY() + sceneC.getY() + node.getY();
-                        lines.get(j).setEndX(x + questions.get(i).getWidth());
-                        lines.get(j).setEndY(y);
-
-                        lines.get(j).setVisible(true);
+            Pane pane = new Pane();
+            pane.setStyle("-fx-background-color: yellow;");
+            pane.setOnMouseClicked(ee -> {
+                if (ee.getButton() == MouseButton.SECONDARY && pane.getStyle().compareTo("-fx-background-color: red") == 0) {
+                    for (FlowPane fp : answers)
+                        fp.getChildren().remove(pane);
+                    lines.set(currentQuestion,new LinkedList<>());
+                } else if (ee.getButton() == MouseButton.PRIMARY) {
+                    if (pane.getStyle().compareTo("-fx-background-color: red") != 0) {
+                        pane.setStyle("-fx-background-color: red");
+                    } else {
+                        pane.setStyle("-fx-background-color: yellow;");
                     }
                 }
-            }
-        }
+
+            });
+
+            pane.getChildren().addAll(lines.get(currentQuestion));
+            answers.get(currentQuestion).getChildren().add(pane);
+
+            answers.get(currentQuestion).setVisible(true);
+        });
+
+        bt_clear.setOnMouseClicked(e -> {
+            pad.startDrawing();
+            pad.getChildren().clear();
+        });
+
     }
 
     @Override
@@ -309,8 +312,7 @@ public class Level3Controller extends Round2Controller implements Initializable,
 
     @Override
     public void takeNotice() {
-        for (TextField answer : answers)
-            answer.setEditable(false);
+
         writeToServer(Constants.C2S_R2L3_ANS, packageAnswers());
         hide();
         round2Controller.show();
@@ -330,50 +332,22 @@ public class Level3Controller extends Round2Controller implements Initializable,
         questions.add(lb_question9);
         questions.add(lb_question10);
 
-        choices = new LinkedList<>();
-        choices.add(lb_choice1);
-        choices.add(lb_choice2);
-        choices.add(lb_choice3);
-        choices.add(lb_choice4);
-        choices.add(lb_choice5);
-        choices.add(lb_choice6);
-        choices.add(lb_choice7);
-        choices.add(lb_choice8);
-        choices.add(lb_choice9);
-        choices.add(lb_choice10);
-
         answers = new LinkedList<>();
-        answers.add(tf_answer1);
-        answers.add(tf_answer2);
-        answers.add(tf_answer3);
-        answers.add(tf_answer4);
-        answers.add(tf_answer5);
-        answers.add(tf_answer6);
-        answers.add(tf_answer7);
-        answers.add(tf_answer8);
-        answers.add(tf_answer9);
-        answers.add(tf_answer10);
+        answers.add(fp_answer1);
+        answers.add(fp_answer2);
+        answers.add(fp_answer3);
+        answers.add(fp_answer4);
+        answers.add(fp_answer5);
+        answers.add(fp_answer6);
+        answers.add(fp_answer7);
+        answers.add(fp_answer8);
+        answers.add(fp_answer9);
+        answers.add(fp_answer10);
 
-        lines = new LinkedList<>();
-        lines.add(line1);
-        lines.add(line2);
-        lines.add(line3);
-        lines.add(line4);
-        lines.add(line5);
-        lines.add(line6);
-        lines.add(line7);
-        lines.add(line8);
-        lines.add(line9);
-        lines.add(line10);
-
-        for (Line line : lines)
-            line.setVisible(false);
         gp_levelTitle.setVisible(true);
         gp_instruction.setVisible(false);
         gp_example.setVisible(false);
         gp_questions.setVisible(false);
-
-        setData();
     }
 
 

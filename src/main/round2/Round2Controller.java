@@ -62,9 +62,9 @@ public class Round2Controller extends MainController implements Initializable, R
     @FXML
     private Label lb_userPoint5;
 
-    private int currentLevel = -1;
-
     private Thread thread;
+
+    private int currentLevel = 0;
 
     public void init(UserData user) {
         this.userData = user;
@@ -128,7 +128,6 @@ public class Round2Controller extends MainController implements Initializable, R
     public void handleServerData(int command, LinkedList<String> data) {
         switch (command) {
             case Constants.BEGIN_R2L1:
-                currentLevel = Constants.LEVEL1;
                 hide();
                 ap_level1InterfaceController.init(userData,this);
                 ap_level1InterfaceController.show();
@@ -139,7 +138,6 @@ public class Round2Controller extends MainController implements Initializable, R
                 System.out.println(userData.getName() + " current total point for round 2 is " + data.getFirst());
                 break;
             case Constants.BEGIN_R2L2:
-                currentLevel = Constants.LEVEL2;
                 hide();
                 ap_level2InterfaceController.init(userData,this);
                 ap_level2InterfaceController.show();
@@ -150,7 +148,6 @@ public class Round2Controller extends MainController implements Initializable, R
                 System.out.println(userData.getName() + " current total point for round 2 is " + data.getFirst());
                 break;
             case Constants.BEGIN_R2L3:
-                currentLevel = Constants.LEVEL3;
                 hide();
                 ap_level3InterfaceController.init(userData,this);
                 ap_level3InterfaceController.show();
@@ -161,19 +158,9 @@ public class Round2Controller extends MainController implements Initializable, R
                 System.out.println(userData.getName() + " current total point for round 2 is " + data.getFirst());
                 break;
             default:
-                switch (currentLevel) {
-                    case Constants.LEVEL1:
-                        ap_level1InterfaceController.handleServerData(command, data);
-                        break;
-                    case Constants.LEVEL2:
-                        ap_level2InterfaceController.handleServerData(command, data);
-                        break;
-                    case Constants.LEVEL3:
-                        ap_level3InterfaceController.handleServerData(command, data);
-                        break;
-                    default:
-                        break;
-                }
+                ap_level1InterfaceController.handleServerData(command, data);
+                ap_level2InterfaceController.handleServerData(command, data);
+                ap_level3InterfaceController.handleServerData(command, data);
 
         }
 

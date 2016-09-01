@@ -17,15 +17,16 @@ public class Timer {
                 int timeLeft = time;
                 while (timeLeft > 0) {
                     String time;
+                    timeLeft--;
                     if (type == 0)
-                        time = refreshTimer1(timeLeft);
+                        time = refreshTimer(timeLeft);
                     else
                         time = Integer.toString(timeLeft);
                     Platform.runLater(() -> timerLabel.setText(time));
-                    timeLeft--;
+
                     if (timeLeft == 0)
                         timerInterface.takeNotice();
-                    Thread.sleep(1000);
+                    Thread.sleep(20);
                 }
                 return null;
             }
@@ -34,7 +35,7 @@ public class Timer {
         refreshTime.start();
     }
 
-    private String refreshTimer1(int timeLeft) {
+    private String refreshTimer(int timeLeft) {
         int minute = timeLeft / 60;
         int second = timeLeft % 60;
         return minute + ":" + (second > 9 ? second : ("0" + second));

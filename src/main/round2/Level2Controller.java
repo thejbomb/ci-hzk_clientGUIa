@@ -109,7 +109,6 @@ public class Level2Controller extends Round2Controller implements Initializable,
                 ap_drawingPane.setVisible(true);
                 pad.getChildren().clear();
                 pad.startDrawing();
-                System.out.println((ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
                 AnchorPane.setLeftAnchor(bt_submit, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
                 AnchorPane.setRightAnchor(bt_clear, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
                 AnchorPane.setTopAnchor(bt_submit, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getHeight() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2 -
@@ -142,7 +141,6 @@ public class Level2Controller extends Round2Controller implements Initializable,
             ap_drawingPane.setVisible(false);
             lines[currentQuestion].add(pad.getSmaller(6));
             String s = lines[currentQuestion].toString();
-            System.out.println(s);
             answers.get(currentQuestion).getChildren().clear();
             for (LinkedList<Polyline> ll : lines[currentQuestion]) {
                 Pane pane = new Pane();
@@ -178,7 +176,19 @@ public class Level2Controller extends Round2Controller implements Initializable,
     private LinkedList<String> packageAnswers() {
 
         LinkedList<String> result = new LinkedList<>();
-
+        result.add("ANS1");
+        System.out.println(result);
+        result.add(lines[0].toString());
+        result.add("ANS2");
+        System.out.println(result);
+        result.add(lines[1].toString());
+        result.add("ANS3");
+        System.out.println(result);
+        result.add(lines[2].toString());
+        result.add("ANS4");
+        System.out.println(result);
+        result.add(lines[3].toString());
+        System.out.println(result);
         return result;
 
     }
@@ -252,7 +262,7 @@ public class Level2Controller extends Round2Controller implements Initializable,
     public void takeNotice() {
 
         writeToServer(Constants.C2S_R2L2_ANS, packageAnswers());
-        hide();
+        //hide();
         round2Controller.show();
     }
 

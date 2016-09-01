@@ -101,8 +101,8 @@ public class Level1Controller extends Round2Controller implements Initializable,
     private Round2Controller round2Controller;
 
     public void init(UserData user, Round2Controller controller) {
-        this.userData = user;
-        this.round2Controller = controller;
+        userData = user;
+        round2Controller = controller;
 
         DrawingPad pad = new DrawingPad();
         pad.setStyle("-fx-background-color: white;");
@@ -117,7 +117,6 @@ public class Level1Controller extends Round2Controller implements Initializable,
                 ap_drawingPane.setVisible(true);
                 pad.getChildren().clear();
                 pad.startDrawing();
-                System.out.println((ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
                 AnchorPane.setLeftAnchor(bt_submit, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
                 AnchorPane.setRightAnchor(bt_clear, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getWidth() - pad.localToScene(pad.getBoundsInLocal()).getWidth()) / 2);
                 AnchorPane.setTopAnchor(bt_submit, (ap_drawingPane.localToScene(ap_drawingPane.getBoundsInLocal()).getHeight() - pad.localToScene(pad.getBoundsInLocal()).getHeight()) / 2 -
@@ -149,8 +148,6 @@ public class Level1Controller extends Round2Controller implements Initializable,
         bt_submit.setOnMouseClicked(e -> {
             ap_drawingPane.setVisible(false);
             lines[currentQuestion].add(pad.getSmaller(6));
-            String s = lines[currentQuestion].toString();
-            System.out.println(s);
             answers.get(currentQuestion).getChildren().clear();
             for (LinkedList<Polyline> ll : lines[currentQuestion]) {
                 Pane pane = new Pane();
@@ -237,7 +234,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
 
     @Override
     public void handleServerData(int command, LinkedList<String> data) {
-        System.out.println("R2L1 HANDLE: " + command + " | " + data);
+        System.out.println("R2L1 FROM: " + command + " | " + data);
         switch (command) {
             case Constants.DIS_R2L1_INS:
                 gp_levelTitle.setVisible(false);
