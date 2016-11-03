@@ -291,5 +291,4 @@ public class Level2Controller extends Round4Controller implements Initializable,
         setData();
     }
 
-
 }
