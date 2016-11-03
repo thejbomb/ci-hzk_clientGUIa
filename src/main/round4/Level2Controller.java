@@ -71,6 +71,8 @@ public class Level2Controller extends Round4Controller implements Initializable,
     private Button bt_buzzer;
     @FXML
     private GridPane gp_questions;
+    @FXML
+    private Label lb_score;
 
     private Timer timer;
 
@@ -281,6 +283,8 @@ public class Level2Controller extends Round4Controller implements Initializable,
         gp_example.setVisible(false);
         gp_questions.setVisible(false);
         fp_choices.setVisible(false);
+
+        lb_score.setText("0");
 
         lb_timer.setVisible(false);
 

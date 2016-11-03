@@ -151,8 +151,14 @@ public class MainController implements ServerInteractionInterface, Initializable
                 break;
             case Constants.BEGIN_COMP:
                 gp_pane.setVisible(false);
-                ap_round5Interface.setVisible(true);
-                ap_round5InterfaceController.init(userData);
+                ap_round2Interface.setVisible(true);
+                ap_round2InterfaceController.init(userData);
+                break;
+            case Constants.BEGIN_RND4:
+                currentRound = Constants.ROUND4;
+                ap_round4Interface.setVisible(true);
+                ap_round2Interface.setVisible(false);
+                ap_round4InterfaceController.init(userData);
                 break;
             case Constants.BEGIN_R2L1:
                 currentRound = Constants.ROUND2;
@@ -178,8 +184,15 @@ public class MainController implements ServerInteractionInterface, Initializable
                 currentRound = Constants.ROUND4;
                 ap_round4InterfaceController.handleServerData(command, data);
                 break;
+            case Constants.BEGIN_RND5:
+                currentRound = Constants.ROUND5;
+                ap_round5Interface.setVisible(true);
+                ap_round4Interface.setVisible(false);
+                ap_round5InterfaceController.init(userData);
+                break;
             case Constants.BEGIN_R5L1:
                 currentRound = Constants.ROUND5;
+
                 ap_round5InterfaceController.handleServerData(command, data);
                 break;
             case Constants.BEGIN_R5L2:

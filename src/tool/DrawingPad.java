@@ -65,7 +65,7 @@ public class DrawingPad extends Pane {
     }
 
     public LinkedList<Polyline> getSmaller(double scale) {
-        autoResize();
+        //autoResize();
         LinkedList<Polyline> result = new LinkedList<>();
         for (Polyline pl : lines) {
             Polyline line = new Polyline();

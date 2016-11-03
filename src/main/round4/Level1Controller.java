@@ -303,6 +303,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
         fp_choices.setVisible(false);
 
         lb_timer.setVisible(false);
+        lb_score.setText("0");
 
         setData();
     }
