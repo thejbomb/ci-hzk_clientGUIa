@@ -133,6 +133,16 @@ public class Level3Controller extends Round4Controller implements Initializable,
         }
     }
 
+    @FXML
+    private void handleKeyboard(){
+        System.out.println("Action Event detected");
+        fp_choices.setDisable(false);
+        writeToServer(Constants.C2S_R4L1_BUZZ);
+        int time = 5; // time to answer the question (seconds)
+        timer = new Timer(lb_timer, time, this, 1);
+        lb_timer.setVisible(true);
+    }
+
     private void displayInstruction(int questionNumber) throws Exception {
         if (questionNumber < 0 || questionNumber >= Main.R4L3_DATA.getQuestions().size())
             throw new Exception("R4L1: No such question exist");
@@ -142,6 +152,9 @@ public class Level3Controller extends Round4Controller implements Initializable,
             lb_instruction.setText(instruction);
         } else if (Main.R4L3_DATA.getQuestionType(questionNumber) == 1) {
             instruction += Main.R4L3_DATA.QUESTION_INSTRUCTION2_ZH + "\n" + Main.R4L3_DATA.QUESTION_INSTRUCTION2_EN;
+            lb_instruction.setText(instruction);
+        } else if(Main.R4L3_DATA.getQuestionType(questionNumber) == 2) {
+            instruction += Main.R4L3_DATA.QUESTION_INSTRUCTION3_ZH + "\n" + Main.R4L3_DATA.QUESTION_INSTRUCTION3_EN;
             lb_instruction.setText(instruction);
         }
     }
@@ -198,6 +211,7 @@ public class Level3Controller extends Round4Controller implements Initializable,
         }
         fp_choices.getChildren().clear();
         fp_choices.getChildren().addAll(choices);
+        fp_choices.setVisible(true);
     }
 
 
@@ -237,7 +251,6 @@ public class Level3Controller extends Round4Controller implements Initializable,
                 gp_questions.setVisible(true);
                 ap_buzzer.setVisible(true);
                 bt_buzzer.setDisable(false);
-                fp_choices.setVisible(false);
                 int currentQuestion = Integer.parseInt(data.getFirst());
                 System.out.println("Current question: " + currentQuestion);
                 try {
@@ -256,7 +269,6 @@ public class Level3Controller extends Round4Controller implements Initializable,
                 bt_buzzer.setDisable(true);
                 ap_buzzer.setVisible(false);
                 fp_choices.setDisable(false);
-                fp_choices.setVisible(false);
                 break;
         }
     }
@@ -282,7 +294,6 @@ public class Level3Controller extends Round4Controller implements Initializable,
         gp_instruction.setVisible(false);
         gp_example.setVisible(false);
         gp_questions.setVisible(false);
-        fp_choices.setVisible(false);
 
         lb_score.setText("0");
 

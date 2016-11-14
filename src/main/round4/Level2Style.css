@@ -82,6 +82,21 @@
     -fx-text-fill: rgb(255,0,0);
 }
 
+.label-questionsScoreLabel {
+    -fx-font: bold 20pt "Bell MT";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+.label-questionsScoreNumber {
+    -fx-font: bold 25pt "Bell MT";
+    -fx-text-fill: rgb(255,0,0);
+}
+
+.label-questionsQuestion {
+    -fx-font: bold 60pt "KaiTi";
+    -fx-text-fill: rgb(0,0,160);
+}
+
 .label-questionsText {
     -fx-font: bold 25pt "KaiTi";
     -fx-text-fill: rgb(0,0,160);

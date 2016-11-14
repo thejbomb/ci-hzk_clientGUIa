@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="ap_root" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round4.Level3Controller">
+<AnchorPane fx:id="ap_root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round4.Level3Controller">
     <children>
         <GridPane fx:id="gp_levelTitle" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
@@ -152,7 +152,7 @@
             <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
             <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
             <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="40.0" vgrow="SOMETIMES" />
             <RowConstraints vgrow="SOMETIMES" />
             <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
@@ -166,7 +166,7 @@
             <FlowPane fx:id="fp_choices" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <AnchorPane fx:id="ap_buzzer" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Button fx:id="bt_buzzer" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="HIT ME!" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="bt_buzzer" defaultButton="true" mnemonicParsing="false" onAction="#handleKeyboard" onMouseClicked="#handleMouseClick" opacity="0.0" text="BUZZ!" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -174,8 +174,8 @@
                   <Label fx:id="lb_timer" alignment="CENTER" styleClass="label-questionsTimer" text="TIMER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <FlowPane alignment="CENTER_RIGHT" hgap="10.0" layoutX="1562.0" layoutY="-10.0">
                      <children>
-                        <Label fx:id="lb_scoreLabel" text="Your score:" />
-                        <Label fx:id="lb_score" text="CURRENT_SCORE" />
+                        <Label fx:id="lb_scoreLabel" styleClass="label-questionsScoreLabel" text="Current score:" />
+                        <Label fx:id="lb_score" styleClass="label-questionsScoreNumber" text="CURRENT_SCORE" />
                      </children>
                   </FlowPane>
                </children>

@@ -9,12 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
 import main.Main;
@@ -225,21 +223,31 @@ public class Level3Controller extends Round2Controller implements Initializable,
 
         bt_submit.setOnMouseClicked(e -> {
             ap_drawingPane.setVisible(false);
-            lines.set(currentQuestion, pad.getSmaller(3));
+            lines.set(currentQuestion, pad.getSmaller(4));
             answers.get(currentQuestion).getChildren().clear();
 
             Pane pane = new Pane();
-            pane.setStyle("-fx-background-color: yellow;");
+            pane.setPrefSize(Main.WINDOW_WIDTH/16,Main.WINDOW_WIDTH/16);
+            Image image = new Image("file:src/main/round2/paper.jpg");
+            BackgroundImage bgi = new BackgroundImage(image,null,null,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+            Background bg = new Background(bgi);
+            image = new Image("file:src/main/round2/paper2.jpg");
+            bgi = new BackgroundImage(image,null,null,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+            Background bg2 = new Background(bgi);
+            pane.setBackground(bg);
+            pane.setUserData("notSelected");
             pane.setOnMouseClicked(ee -> {
-                if (ee.getButton() == MouseButton.SECONDARY && pane.getStyle().compareTo("-fx-background-color: red") == 0) {
+                if (ee.getButton() == MouseButton.SECONDARY && pane.getUserData().toString().compareTo("selected") == 0) {
                     for (FlowPane fp : answers)
                         fp.getChildren().remove(pane);
                     lines.set(currentQuestion,new LinkedList<>());
                 } else if (ee.getButton() == MouseButton.PRIMARY) {
-                    if (pane.getStyle().compareTo("-fx-background-color: red") != 0) {
-                        pane.setStyle("-fx-background-color: red");
+                    if (pane.getUserData().toString().compareTo("selected") != 0) {
+                        pane.setUserData("selected");
+                        pane.setBackground(bg2);
                     } else {
-                        pane.setStyle("-fx-background-color: yellow;");
+                        pane.setUserData("notSelected");
+                        pane.setBackground(bg);
                     }
                 }
 

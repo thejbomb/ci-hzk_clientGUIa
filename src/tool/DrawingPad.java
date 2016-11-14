@@ -6,6 +6,7 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polyline;
+import main.Main;
 
 import java.util.LinkedList;
 
@@ -16,7 +17,7 @@ public class DrawingPad extends Pane {
     private LinkedList<Polyline> lines;
 
     public void init() {
-        setPrefSize(getScene().getWindow().getWidth() / 4, getScene().getWindow().getWidth() / 4);
+        setPrefSize(Main.WINDOW_WIDTH / 4, Main.WINDOW_WIDTH / 4);
     }
 
     public void startDrawing() {

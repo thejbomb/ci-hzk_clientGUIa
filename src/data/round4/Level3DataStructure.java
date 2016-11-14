@@ -13,8 +13,8 @@ public class Level3DataStructure extends DataStructure{
     private ArrayList<String> QUESTIONS3;
     private ArrayList<String> CHOICES3;
 
-    public final String QUESTION_INSTRUCTION3_ZH = "";
-    public final String QUESTION_INSTRUCTION3_EN = "";
+    public final String QUESTION_INSTRUCTION3_ZH = "选出正确的答案";
+    public final String QUESTION_INSTRUCTION3_EN = "Choose the idiom that goes with the image";
 
     public void init(long seed) {
         this.seed = seed;

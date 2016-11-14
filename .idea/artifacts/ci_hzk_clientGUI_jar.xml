@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="ci-hzk_clientGUI:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/ci_hzk_clientGUI_jar</output-path>
-    <root id="archive" name="ci-hzk_clientGUI.jar">
-      <element id="module-output" name="ci-hzk_clientGUI" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.7/gson-2.7.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>

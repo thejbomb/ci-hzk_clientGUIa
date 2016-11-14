@@ -2,6 +2,7 @@ package main.round4;
 
 import data.UserData;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -131,13 +132,22 @@ public class Level1Controller extends Round4Controller implements Initializable,
     @FXML
     private void handleMouseClick(MouseEvent e) {
         if (e.getSource() == bt_buzzer) {
-            ap_buzzer.setVisible(false);
-            fp_choices.setVisible(true);
             writeToServer(Constants.C2S_R4L1_BUZZ);
             int time = 5; // time to answer the question (seconds)
             timer = new Timer(lb_timer, time, this, 1);
             lb_timer.setVisible(true);
         }
+    }
+
+    @FXML
+    private void handleKeyboard(ActionEvent e){
+        System.out.println("Action Event detected");
+        fp_choices.setDisable(false);
+        writeToServer(Constants.C2S_R4L1_BUZZ);
+        int time = 5; // time to answer the question (seconds)
+        timer = new Timer(lb_timer, time, this, 1);
+        lb_timer.setVisible(true);
+
     }
 
     private void displayInstruction(int questionNumber) throws Exception {
@@ -147,9 +157,11 @@ public class Level1Controller extends Round4Controller implements Initializable,
         if (Main.R4L1_DATA.getQuestionType(questionNumber) == 0) {
             instruction += Main.R4L1_DATA.QUESTION_INSTRUCTION1_ZH + "\n" + Main.R4L1_DATA.QUESTION_INSTRUCTION1_EN;
             lb_instruction.setText(instruction);
+            lb_instruction.getStyleClass().set(0, "label-questionsInstruction-en");
         } else if (Main.R4L1_DATA.getQuestionType(questionNumber) == 1) {
             instruction += Main.R4L1_DATA.QUESTION_INSTRUCTION2_ZH + "\n" + Main.R4L1_DATA.QUESTION_INSTRUCTION2_EN;
             lb_instruction.setText(instruction);
+            lb_instruction.getStyleClass().set(0, "label-questionsInstruction-en");
         }
     }
 
@@ -206,6 +218,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
         }
         fp_choices.getChildren().clear();
         fp_choices.getChildren().addAll(choices);
+        fp_choices.setDisable(true);
     }
 
     @Override
@@ -241,9 +254,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(false);
                 gp_questions.setVisible(true);
-                ap_buzzer.setVisible(true);
                 bt_buzzer.setDisable(false);
-                fp_choices.setVisible(false);
                 int currentQuestion = Integer.parseInt(data.getFirst());
                 System.out.println("Current question: " + currentQuestion);
                 try {
@@ -263,9 +274,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
                 break;
             case Constants.S2C_R4L1_BUZZ:
                 bt_buzzer.setDisable(true);
-                ap_buzzer.setVisible(false);
                 fp_choices.setDisable(false);
-                fp_choices.setVisible(false);
                 break;
             case Constants.S2C_R4LX_CRCT:
                 if (timer.isRunning())
@@ -300,7 +309,6 @@ public class Level1Controller extends Round4Controller implements Initializable,
         gp_instruction.setVisible(false);
         gp_example.setVisible(false);
         gp_questions.setVisible(false);
-        fp_choices.setVisible(false);
 
         lb_timer.setVisible(false);
         lb_score.setText("0");

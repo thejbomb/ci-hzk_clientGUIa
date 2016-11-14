@@ -13,6 +13,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class Main extends Application {
+    public static final double WINDOW_WIDTH = 1250;
+    public static final double WINDOW_HEIGHT = 720;
+
     public static final data.round2.Level1DataStructure R2L1_DATA;
     public static final data.round2.Level2DataStructure R2L2_DATA;
     public static final data.round2.Level3DataStructure R2L3_DATA;
@@ -82,7 +85,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainInterface.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("HZK_client");
-        primaryStage.setScene(new Scene(root, 1280, 720));
+        primaryStage.setScene(new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT));
         primaryStage.show();
         Client newClient = new Client();
         MainController c = loader.getController();

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 <?import java.net.URL?>
-<AnchorPane fx:id="ap_root" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round4.Round4Controller">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ap_root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round4.Round4Controller">
     <children>
         <fx:include fx:id="ap_level1Interface" source="Level1Interface.fxml" />
         <fx:include fx:id="ap_level2Interface" source="Level2Interface.fxml" />
@@ -29,58 +33,58 @@
             <children>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                     <children>
-                        <Label fx:id="lb_userName" styleClass="label-scoreName" text="USER_NAME" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <Label fx:id="lb_userLevel" alignment="CENTER_RIGHT" styleClass="label-scoreLevel" text="USER_LEVEL" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_userName" styleClass="label-userName" text="USER_NAME" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_userLevel" alignment="CENTER_RIGHT" styleClass="label-userLevel" text="USER_LEVEL" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <Label fx:id="lb_point1" styleClass="label-scoreRound" text="Round 1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_point1" styleClass="label-scoreRoundNumber" text="Round 1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <Label fx:id="lb_point2" styleClass="label-scoreRound" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_point2" styleClass="label-scoreRoundNumber" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <children>
-                        <Label fx:id="lb_point3" styleClass="label-scoreRound" text="Round 3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_point3" styleClass="label-scoreRoundNumber" text="Round 3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <children>
-                        <Label fx:id="lb_point4" styleClass="label-scoreRound" text="Round 4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_point4" styleClass="label-scoreRoundNumber" text="Round 4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                     <children>
-                        <Label fx:id="lb_point5" styleClass="label-scoreRound" text="Round 5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_point5" styleClass="label-scoreRoundNumber" text="Round 5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <children>
-                        <Label fx:id="lb_userPoint1" styleClass="label-scorePoint" text="ROUND_1_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_userPoint1" styleClass="label-scoreRoundPoint" text="ROUND_1_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <children>
-                        <Label fx:id="lb_userPoint2" styleClass="label-scorePoint" text="ROUND_2_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_userPoint2" styleClass="label-scoreRoundPoint" text="ROUND_2_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                     <children>
-                        <Label fx:id="lb_userPoint3" styleClass="label-scorePoint" text="ROUND_3_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_userPoint3" styleClass="label-scoreRoundPoint" text="ROUND_3_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                     <children>
-                        <Label fx:id="lb_userPoint4" styleClass="label-scorePoint" text="ROUND_4_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_userPoint4" styleClass="label-scoreRoundPoint" text="ROUND_4_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                     <children>
-                        <Label fx:id="lb_userPoint5" styleClass="label-scorePoint" text="ROUND_5_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_userPoint5" styleClass="label-scoreRoundPoint" text="ROUND_5_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
             </children>
@@ -97,7 +101,7 @@
             <children>
                 <AnchorPane>
                     <children>
-                        <Label fx:id="lb_cnRoundTitle" alignment="CENTER" text="淘汰赛&#10;第四关" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                        <Label fx:id="lb_cnRoundTitle" alignment="CENTER" styleClass="label-roundNumber-zh" text="淘汰赛&#10;第四关" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                             <font>
                                 <Font name="KaiTi" size="49.0" />
                             </font>
@@ -106,7 +110,7 @@
                 </AnchorPane>
                 <AnchorPane GridPane.rowIndex="1">
                     <children>
-                        <Label fx:id="lb_enRoundTitle" alignment="CENTER" text="Round 4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="lb_enRoundTitle" alignment="CENTER" styleClass="label-roundNumber-en" text="Round 4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <font>
                                 <Font name="Bell MT" size="30.0" />
                             </font>
@@ -115,7 +119,7 @@
                 </AnchorPane>
                 <AnchorPane GridPane.rowIndex="2">
                     <children>
-                        <Label fx:id="lb_cnRoundDescription" alignment="CENTER" text="ROUND_4_DESCRIPTION_PLACEHOLDER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_cnRoundDescription" alignment="CENTER" styleClass="label-roundDescription" text="ROUND_4_DESCRIPTION_PLACEHOLDER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
             </children>

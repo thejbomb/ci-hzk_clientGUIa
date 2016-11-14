@@ -19,7 +19,7 @@ public class DataStructure {
     public final String QUESTION_INSTRUCTION1_ZH = "选字填空";
     public final String QUESTION_INSTRUCTION1_EN = "Fill in the blank with the correct answer";
     public final String QUESTION_INSTRUCTION2_ZH = "读出汉字意思，并说出英文意思";
-    public final String QUESTION_INSTRUCTION2_EN = "Read aloud the characters and say the meaning of the word in English";
+    public final String QUESTION_INSTRUCTION2_EN = "Read the word aloud and translate it into English";
     protected LinkedList<Integer> questionType;
 
     protected LinkedList<String> questions;
