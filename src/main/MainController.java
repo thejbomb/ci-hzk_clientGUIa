@@ -12,7 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import main.round1.Round1Controller;
 import main.round2.Round2Controller;
+import main.round3.Round3Controller;
 import main.round4.Round4Controller;
 import main.round5.Round5Controller;
 import network.ServerHandlerInterface;
@@ -30,9 +32,17 @@ public class MainController implements ServerInteractionInterface, Initializable
     private static final String CSS_EN_MESSAGE = "en-message";
 
     @FXML
+    private AnchorPane ap_round1Interface;
+    @FXML
+    private Round1Controller ap_round1InterfaceController;
+    @FXML
     private AnchorPane ap_round2Interface;
     @FXML
     private Round2Controller ap_round2InterfaceController;
+    @FXML
+    private AnchorPane ap_round3Interface;
+    @FXML
+    private Round3Controller ap_round3InterfaceController;
     @FXML
     private AnchorPane ap_round4Interface;
     @FXML
@@ -151,14 +161,46 @@ public class MainController implements ServerInteractionInterface, Initializable
                 break;
             case Constants.BEGIN_COMP:
                 gp_pane.setVisible(false);
+                ap_round1Interface.setVisible(true);
+                ap_round1InterfaceController.init(userData);
+/*              ap_round2Interface.setVisible(true);
+                ap_round2InterfaceController.init(userData);*/
+                break;
+            case Constants.BEGIN_RND2:
+                currentRound = Constants.ROUND2;
                 ap_round2Interface.setVisible(true);
+                ap_round1Interface.setVisible(false);
                 ap_round2InterfaceController.init(userData);
+                break;
+            case Constants.BEGIN_RND3:
+                currentRound = Constants.ROUND3;
+                ap_round3Interface.setVisible(true);
+                ap_round2Interface.setVisible(false);
+                ap_round3InterfaceController.init(userData);
                 break;
             case Constants.BEGIN_RND4:
                 currentRound = Constants.ROUND4;
                 ap_round4Interface.setVisible(true);
-                ap_round2Interface.setVisible(false);
+                ap_round3Interface.setVisible(false);
                 ap_round4InterfaceController.init(userData);
+                break;
+            case Constants.BEGIN_RND5:
+                currentRound = Constants.ROUND5;
+                ap_round5Interface.setVisible(true);
+                ap_round4Interface.setVisible(false);
+                ap_round5InterfaceController.init(userData);
+                break;
+            case Constants.BEGIN_R1L1:
+                currentRound = Constants.ROUND1;
+                ap_round1InterfaceController.handleServerData(command, data);
+                break;
+            case Constants.BEGIN_R1L2:
+                currentRound = Constants.ROUND1;
+                ap_round1InterfaceController.handleServerData(command, data);
+                break;
+            case Constants.BEGIN_R1L3:
+                currentRound = Constants.ROUND1;
+                ap_round1InterfaceController.handleServerData(command, data);
                 break;
             case Constants.BEGIN_R2L1:
                 currentRound = Constants.ROUND2;
@@ -172,6 +214,18 @@ public class MainController implements ServerInteractionInterface, Initializable
                 currentRound = Constants.ROUND2;
                 ap_round2InterfaceController.handleServerData(command, data);
                 break;
+            case Constants.BEGIN_R3L1:
+                currentRound = Constants.ROUND3;
+                ap_round3InterfaceController.handleServerData(command, data);
+                break;
+            case Constants.BEGIN_R3L2:
+                currentRound = Constants.ROUND3;
+                ap_round3InterfaceController.handleServerData(command, data);
+                break;
+            case Constants.BEGIN_R3L3:
+                currentRound = Constants.ROUND3;
+                ap_round3InterfaceController.handleServerData(command, data);
+                break;
             case Constants.BEGIN_R4L1:
                 currentRound = Constants.ROUND4;
                 ap_round4InterfaceController.handleServerData(command, data);
@@ -184,15 +238,8 @@ public class MainController implements ServerInteractionInterface, Initializable
                 currentRound = Constants.ROUND4;
                 ap_round4InterfaceController.handleServerData(command, data);
                 break;
-            case Constants.BEGIN_RND5:
-                currentRound = Constants.ROUND5;
-                ap_round5Interface.setVisible(true);
-                ap_round4Interface.setVisible(false);
-                ap_round5InterfaceController.init(userData);
-                break;
             case Constants.BEGIN_R5L1:
                 currentRound = Constants.ROUND5;
-
                 ap_round5InterfaceController.handleServerData(command, data);
                 break;
             case Constants.BEGIN_R5L2:
@@ -214,13 +261,13 @@ public class MainController implements ServerInteractionInterface, Initializable
             default:
                 switch (currentRound) {
                     case Constants.ROUND1:
-                        //ap_round1InterfaceController.handleServerData(command, data);
+                        ap_round1InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.ROUND2:
                         ap_round2InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.ROUND3:
-                        //  ap_round3InterfaceController.handleServerData(command, data);
+                        ap_round3InterfaceController.handleServerData(command, data);
                         break;
                     case Constants.ROUND4:
                         ap_round4InterfaceController.handleServerData(command, data);
@@ -254,12 +301,23 @@ public class MainController implements ServerInteractionInterface, Initializable
             AnchorPane.setRightAnchor(draw, 0.0);
         });
 
+        AnchorPane.setBottomAnchor(ap_round1Interface, 0.0);
+        AnchorPane.setTopAnchor(ap_round1Interface, 0.0);
+        AnchorPane.setLeftAnchor(ap_round1Interface, 0.0);
+        AnchorPane.setRightAnchor(ap_round1Interface, 0.0);
+        ap_round1Interface.setVisible(false);
 
         AnchorPane.setBottomAnchor(ap_round2Interface, 0.0);
         AnchorPane.setTopAnchor(ap_round2Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_round2Interface, 0.0);
         AnchorPane.setRightAnchor(ap_round2Interface, 0.0);
         ap_round2Interface.setVisible(false);
+
+        AnchorPane.setBottomAnchor(ap_round3Interface, 0.0);
+        AnchorPane.setTopAnchor(ap_round3Interface, 0.0);
+        AnchorPane.setLeftAnchor(ap_round3Interface, 0.0);
+        AnchorPane.setRightAnchor(ap_round3Interface, 0.0);
+        ap_round3Interface.setVisible(false);
 
         AnchorPane.setBottomAnchor(ap_round4Interface, 0.0);
         AnchorPane.setTopAnchor(ap_round4Interface, 0.0);
