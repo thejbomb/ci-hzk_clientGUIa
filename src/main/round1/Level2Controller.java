@@ -179,7 +179,7 @@ public class Level2Controller extends Round1Controller implements Initializable,
             FlowPane area = answers.get(j);
             Label label = new Label(input);
             words[j].add(label.getText());
-            label.setStyle("-fx-font: bold 40pt KaiTi; -fx-text-fill: rgb(0,255,0)");
+            label.setStyle("-fx-font: bold 40pt KaiTi; -fx-text-fill: rgb(0,0,255)");
             area.getChildren().add(label);
             //answers.get(j).setText(label.getText());
             answer.clear();

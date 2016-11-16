@@ -4,38 +4,37 @@
     -fx-font: 16px "Veranda";
 }
 
-#font-button {
+.label-roundNumber-zh {
+    -fx-font: bold 80pt "KaiTi";
+    -fx-text-fill: rgb(0,0,160);
+}
+
+.label-roundNumber-en {
+    -fx-font: bold 50pt "Bell MT";
+    -fx-text-fill: rgb(0,0,160);
+}
+
+.label-roundDescription {
+    -fx-font: bold 30pt "KaiTi";
+    -fx-text-fill: rgb(150,0,0);
+}
+
+.label-userName {
     -fx-font: bold 20pt "KaiTi";
+    -fx-text-fill: rgb(150,0,0);
 }
 
-#cnFont-roundTitle {
-    -fx-font: bold 90pt "KaiTi";
+.label-userLevel {
+    -fx-font: bold 20pt "KaiTi";
+    -fx-text-fill: rgb(150,0,0);
 }
 
-#enFont-roundTitle {
-    -fx-font: bold 40pt "Bell MT";
+.label-scoreRoundNumber {
+    -fx-font: bold 15pt "Bell MT";
+    -fx-text-fill: rgb(150,0,0);
 }
 
-#cnFont-roundNumber {
-    -fx-font: bold 40pt "KaiTi";
-}
-
-#enFont-roundNumber {
-    -fx-font: bold 40pt "Bell MT";
-}
-
-#cnFont-roundDescription {
-    -fx-font: bold 50pt "KaiTi";
-}
-
-#enFont-roundDescription {
-    -fx-font: bold 40pt "Bell MT";
-}
-
-#cnFont-roundLevel {
-    -fx-font: bold 50pt "KaiTi";
-}
-
-#enFont-roundLevel {
-    -fx-font: bold 40pt "Bell MT";
+.label-scoreRoundPoint {
+    -fx-font: bold 15pt "Bell MT";
+    -fx-text-fill: rgb(150,0,0);
 }

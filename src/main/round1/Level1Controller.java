@@ -179,12 +179,10 @@ public class Level1Controller extends Round1Controller implements Initializable,
             FlowPane area = answers.get(j);
             Label label = new Label(input);
             words[j].add(label.getText());
-            label.setStyle("-fx-font: bold 40pt KaiTi; -fx-text-fill: rgb(0,255,0)");
+            label.setStyle("-fx-font: bold 40pt KaiTi; -fx-text-fill: rgb(0,0,255)");
             area.getChildren().add(label);
-            //answers.get(j).getChildren().add((label));
-            //answers.get(j).setVisible(true);
+            //answers.get(j).setText(label.getText());
             answer.clear();
-
         }
     }
 
@@ -198,6 +196,7 @@ public class Level1Controller extends Round1Controller implements Initializable,
 
         lb_exampleBody.setText(Main.R1L1_DATA.EXAMPLES.get(0));
 
+
         String timerLabel = Main.R1L1_DATA.TIME_LIMIT + ":00";
         lb_timer.setText(timerLabel);
         for(int i = 0;i <questions.size();i++)
@@ -207,7 +206,7 @@ public class Level1Controller extends Round1Controller implements Initializable,
     @Override
     public void writeToServer(int command) {
         switch (command) {
-            /*case Constants.DIS_R1L1_EXP:
+            /*case Constants.DIS_R1L2_EXP:
                 gp_instruction.setVisible(false);
                 gp_example.setVisible(true);
                 break;*/
