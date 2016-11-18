@@ -159,7 +159,7 @@ public class Level3Controller extends Round3Controller implements Initializable,
         return result;*/
         LinkedList<String> result = new LinkedList<>();
         for (int i = 0; i < answer.length && answer[i] != null; i++) {
-            result.add("ANS");
+            //result.add("ANS");
             result.add(answer[i]);
             //result.add(lines.get(i).toString());
         }
