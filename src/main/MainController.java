@@ -163,8 +163,6 @@ public class MainController implements ServerInteractionInterface, Initializable
                 gp_pane.setVisible(false);
                 ap_round1Interface.setVisible(true);
                 ap_round1InterfaceController.init(userData);
-/*              ap_round2Interface.setVisible(true);
-                ap_round2InterfaceController.init(userData);*/
                 break;
             case Constants.BEGIN_RND2:
                 currentRound = Constants.ROUND2;

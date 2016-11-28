@@ -3,6 +3,7 @@ package main.round1;
 import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -181,7 +182,6 @@ public class Level1Controller extends Round1Controller implements Initializable,
             words[j].add(label.getText());
             label.setStyle("-fx-font: bold 40pt KaiTi; -fx-text-fill: rgb(0,0,255)");
             area.getChildren().add(label);
-            //answers.get(j).setText(label.getText());
             answer.clear();
         }
     }
@@ -196,7 +196,6 @@ public class Level1Controller extends Round1Controller implements Initializable,
 
         lb_exampleBody.setText(Main.R1L1_DATA.EXAMPLES.get(0));
 
-
         String timerLabel = Main.R1L1_DATA.TIME_LIMIT + ":00";
         lb_timer.setText(timerLabel);
         for(int i = 0;i <questions.size();i++)
@@ -206,10 +205,6 @@ public class Level1Controller extends Round1Controller implements Initializable,
     @Override
     public void writeToServer(int command) {
         switch (command) {
-            /*case Constants.DIS_R1L2_EXP:
-                gp_instruction.setVisible(false);
-                gp_example.setVisible(true);
-                break;*/
             default:
                 break;
         }
@@ -257,10 +252,7 @@ public class Level1Controller extends Round1Controller implements Initializable,
 
     @Override
     public void takeNotice() {
-        /*for(TextField answer : textFields)
-            answer.setEditable(false);*/
         writeToServer(Constants.C2S_R1L1_ANS, packageAnswers());
-        //hide();
         round1Controller.show();
     }
 
