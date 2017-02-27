@@ -240,7 +240,7 @@ public class Level2Controller extends Round1Controller implements Initializable,
                 gp_example.setVisible(false);
                 gp_questions.setVisible(true);
 
-                new Timer(lb_timer, Main.R1L1_DATA.TIME_LIMIT * 60, this,0);
+                new Timer(lb_timer, Main.R1L2_DATA.TIME_LIMIT * 60, this,0);
 
                 break;
         }

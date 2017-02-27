@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-
 <?import javafx.scene.text.Font?>
+
 <AnchorPane fx:id="ap_root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round1.Level3Controller">
    <children>
       <GridPane fx:id="gp_levelTitle" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -169,7 +170,7 @@
             <HBox alignment="CENTER_LEFT" layoutX="666.0" layoutY="1521.0" prefHeight="100.0" prefWidth="200.0" spacing="80.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <children>
                   <Label fx:id="lb_question10" styleClass="label-questionsQuestion" text="QUESTION_10" />
-                  <TextField fx:id="tf_answer10" prefHeight="60.0" prefWidth="120.0" styleClass="text-field-questionsAnswer" />
+                  <TextField fx:id="tf_answer10" onAction="#createSubmitted" prefHeight="60.0" prefWidth="120.0" styleClass="text-field-questionsAnswer" />
                </children>
             </HBox>
             <FlowPane fx:id="fp_answer9" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
