@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/out/artifacts/artifacts.iml" filepath="$PROJECT_DIR$/out/artifacts/artifacts.iml" />
       <module fileurl="file://$PROJECT_DIR$/ci-hzk_clientGUI.iml" filepath="$PROJECT_DIR$/ci-hzk_clientGUI.iml" />
     </modules>
   </component>
