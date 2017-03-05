@@ -167,9 +167,9 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.69230769230762" minWidth="11.692307692307622" percentWidth="5.0" prefWidth="41.69230769230762" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="200.0" minHeight="100.0" prefHeight="180.0" vgrow="SOMETIMES" />
+                  <RowConstraints percentHeight="8.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="8.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="120.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="150.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
@@ -281,12 +281,12 @@
                         <Label styleClass="label-questionsQuestion" text="右边" />
                      </children>
                   </HBox>
-                  <Label text="Choose a character from each side and then press the button to submit each answer." GridPane.columnIndex="3">
+                  <Label styleClass="label-instruction" text="Choose a character from each side and then press the button" GridPane.columnIndex="3">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <Label text="Previous answers will appear below." GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <Label styleClass="label-instruction" text=" to submit each answer. Previous answers will appear below." GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
                         <Font size="19.0" />
                      </font>

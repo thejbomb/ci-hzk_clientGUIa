@@ -245,7 +245,7 @@ public class Level2Controller extends Round3Controller implements Initializable,
         answer[counter] = l_root.getText() + l_char.getText();
         Label label = new Label();
         label.setText(l_root.getText() + l_char.getText() + "/");
-        label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(255,0,0)");
+        label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
         fp_answer1.getChildren().add(label);
         counter++;
     }

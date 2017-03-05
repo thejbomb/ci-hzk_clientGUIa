@@ -151,17 +151,9 @@ public class Level1Controller extends Round3Controller implements Initializable,
     }
 
     private LinkedList<String> packageAnswers() {
-
-        /*LinkedList<String> result = new LinkedList<>();
-        result.add("ANS");
-        result.add(answer);
-
-        return result;*/
         LinkedList<String> result = new LinkedList<>();
         for (int i = 0; i < answer.length && answer[i] != null; i++) {
-            //result.add("ANS");
             result.add(answer[i]);
-            //result.add(lines.get(i).toString());
         }
         return result;
 
@@ -246,7 +238,7 @@ public class Level1Controller extends Round3Controller implements Initializable,
         answer[counter] = l_root.getText() + l_char.getText();
         Label label = new Label();
         label.setText(l_root.getText() + l_char.getText() + "/");
-        label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(255,0,0)");
+        label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
         fp_answer1.getChildren().add(label);
         counter++;
     }

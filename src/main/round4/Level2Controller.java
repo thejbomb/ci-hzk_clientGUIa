@@ -137,7 +137,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
     private void handleKeyboard(){
         System.out.println("Action Event detected");
         fp_choices.setDisable(false);
-        writeToServer(Constants.C2S_R4L1_BUZZ);
+        writeToServer(Constants.C2S_R4L2_BUZZ);
         int time = 5; // time to answer the question (seconds)
         timer = new Timer(lb_timer, time, this, 1);
         lb_timer.setVisible(true);
@@ -189,11 +189,11 @@ public class Level2Controller extends Round4Controller implements Initializable,
 
 
     private void displayChoices(int questionNumber) throws Exception {
-        if (questionNumber < 0 || questionNumber >= Main.R4L1_DATA.getQuestions().size())
+        if (questionNumber < 0 || questionNumber >= Main.R4L2_DATA.getQuestions().size())
             throw new Exception("No such question exist");
         Button[] choices = new Button[Main.R4L2_DATA.getChoices(questionNumber).size()];
         for (int i = 0; i < choices.length; i++) {
-            choices[i] = new Button((char) (0x41 + i) + "." + Main.R4L1_DATA.getChoices(questionNumber).get(i));
+            choices[i] = new Button((char) (0x41 + i) + "." + Main.R4L2_DATA.getChoices(questionNumber).get(i));
             choices[i].getStyleClass().set(0, "button-questionsChoice");
             int finalI = i;
             choices[i].setOnMouseClicked(e -> {

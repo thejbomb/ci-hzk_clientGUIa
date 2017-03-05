@@ -3,11 +3,10 @@ package main.round1;
 import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import main.Main;
 import tool.Constants;
 import tool.Timer;
@@ -58,65 +57,7 @@ public class Level3Controller extends Round1Controller implements Initializable,
     @FXML
     private Label lb_timer;
     @FXML
-    private Label lb_question1;
-    @FXML
-    private Label lb_question2;
-    @FXML
-    private Label lb_question3;
-    @FXML
-    private Label lb_question4;
-    @FXML
-    private Label lb_question5;
-    @FXML
-    private Label lb_question6;
-    @FXML
-    private Label lb_question7;
-    @FXML
-    private Label lb_question8;
-    @FXML
-    private Label lb_question9;
-    @FXML
-    private Label lb_question10;
-    @FXML
-    private TextField tf_answer1;
-    @FXML
-    private TextField tf_answer2;
-    @FXML
-    private TextField tf_answer3;
-    @FXML
-    private TextField tf_answer4;
-    @FXML
-    private TextField tf_answer5;
-    @FXML
-    private TextField tf_answer6;
-    @FXML
-    private TextField tf_answer7;
-    @FXML
-    private TextField tf_answer8;
-    @FXML
-    private TextField tf_answer9;
-    @FXML
-    private TextField tf_answer10;
-    @FXML
-    private FlowPane fp_answer1;
-    @FXML
-    private FlowPane fp_answer2;
-    @FXML
-    private FlowPane fp_answer3;
-    @FXML
-    private FlowPane fp_answer4;
-    @FXML
-    private FlowPane fp_answer5;
-    @FXML
-    private FlowPane fp_answer6;
-    @FXML
-    private FlowPane fp_answer7;
-    @FXML
-    private FlowPane fp_answer8;
-    @FXML
-    private FlowPane fp_answer9;
-    @FXML
-    private FlowPane fp_answer10;
+    private VBox question;
 
     private LinkedList<Label> questions;
     private LinkedList<TextField> textFields;
@@ -166,7 +107,16 @@ public class Level3Controller extends Round1Controller implements Initializable,
         result.add("ANS9");
         result.add(words[8].toString());
         result.add("ANS10");
-        result.add(words[9].toString());
+        result.add(words[9].toString());/*
+        for(int i = 0; i < words[i].size(); i++) {
+            if(words[i].isEmpty()) {
+                result.add("ANS");
+                result.add(" ");
+            } else {
+                result.add("ANS");
+                result.add(words[i].toString());
+            }
+        }*/
 
         return result;
 
@@ -270,43 +220,32 @@ public class Level3Controller extends Round1Controller implements Initializable,
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         questions = new LinkedList<>();
-        questions.add(lb_question1);
-        questions.add(lb_question2);
-        questions.add(lb_question3);
-        questions.add(lb_question4);
-        questions.add(lb_question5);
-        questions.add(lb_question6);
-        questions.add(lb_question7);
-        questions.add(lb_question8);
-        questions.add(lb_question9);
-        questions.add(lb_question10);
 
         textFields = new LinkedList<>();
-        textFields.add(tf_answer1);
-        textFields.add(tf_answer2);
-        textFields.add(tf_answer3);
-        textFields.add(tf_answer4);
-        textFields.add(tf_answer5);
-        textFields.add(tf_answer6);
-        textFields.add(tf_answer7);
-        textFields.add(tf_answer8);
-        textFields.add(tf_answer9);
-        textFields.add(tf_answer10);
 
         answers = new LinkedList<>();
-        answers.add(fp_answer1);
-        answers.add(fp_answer2);
-        answers.add(fp_answer3);
-        answers.add(fp_answer4);
-        answers.add(fp_answer5);
-        answers.add(fp_answer6);
-        answers.add(fp_answer7);
-        answers.add(fp_answer8);
-        answers.add(fp_answer9);
-        answers.add(fp_answer10);
 
         for(int i = 0; i < words.length; i++) {
             words[i] = new LinkedList<>();
+        }
+
+        for(int i = 0; i < Main.R1L1_DATA.QUESTIONS.size(); i++) {
+            HBox hbox = new HBox();
+            VBox vbox = new VBox();
+            vbox.setAlignment(Pos.CENTER);
+            Label l = new Label(Main.R1L3_DATA.QUESTIONS.get(i));
+            questions.add(l);
+            l.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+            TextField text = new TextField();
+            text.setOnAction(e -> createSubmitted());
+            textFields.add(text);
+            text.setPrefWidth(120);
+            FlowPane flow = new FlowPane();
+            answers.add(flow);
+            flow.setPrefWidth(800);
+            vbox.getChildren().add(l);
+            hbox.getChildren().addAll(vbox, text, flow);
+            question.getChildren().add(hbox);
         }
 
         gp_levelTitle.setVisible(true);

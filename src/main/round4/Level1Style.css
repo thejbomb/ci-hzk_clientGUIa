@@ -68,7 +68,7 @@
 }
 
 .label-questionsInstruction-zh {
-    -fx-font: 20pt "KaiTi";
+    -fx-font: bold 25pt "KaiTi";
     -fx-text-fill: rgb(0,162,232);
 }
 
