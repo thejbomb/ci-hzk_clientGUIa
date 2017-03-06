@@ -66,15 +66,11 @@ public class Level3Controller extends Round3Controller implements Initializable,
     @FXML
     private Label lb_timer;
     @FXML
-    private Label l_root;
-    @FXML
-    private Label l_char;
+    private FlowPane chosen;
     @FXML
     private Button b_submit;
     @FXML
     private FlowPane root;
-    @FXML
-    private FlowPane chara;
     @FXML
     private FlowPane fp_answer1;
     @FXML
@@ -82,7 +78,6 @@ public class Level3Controller extends Round3Controller implements Initializable,
 
     private LinkedList<String> answer;
     private LinkedList<Button> roots;
-    private LinkedList<Button> chars;
 
     private Round3Controller round3Controller;
 
@@ -125,10 +120,6 @@ public class Level3Controller extends Round3Controller implements Initializable,
 
         String timerLabel = Main.R3L3_DATA.TIME_LIMIT + ":00";
         lb_timer.setText(timerLabel);
-        for(int i = 0; i < chars.size(); i++) {
-            chars.get(i).setText(Main.R3L3_DATA.CHARS.get(i));
-            chara.getChildren().add(chars.get(i));
-        }
         for(int i = 0; i < roots.size(); i++) {
             roots.get(i).setText(Main.R3L3_DATA.ROOTS.get(i));
             root.getChildren().add(roots.get(i));
@@ -182,18 +173,21 @@ public class Level3Controller extends Round3Controller implements Initializable,
 
     @FXML
     public void rootClicked(Button button) {
-        l_root.setText(button.getText());
-    }
-
-    @FXML
-    public void charClicked(Button button) {
-        l_char.setText(button.getText());
+        Label l = new Label(button.getText());
+        l.setStyle("-fx-font: bold 45pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+        chosen.getChildren().add(l);
     }
 
     @FXML
     public void submitAnswer() {
         Label label = new Label();
-        label.setText(l_root.getText() + l_char.getText() + "/");
+        String string = "";
+        for(int i = 0; i < chosen.getChildren().size(); i++) {
+            string = string + ((Label) chosen.getChildren().get(i)).getText();
+        }
+        string = string.replaceAll("[,]","");
+        chosen.getChildren().clear();
+        label.setText(string + "/");
         label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
         final DropShadow dropShadow = new DropShadow();
         final Glow glow = new Glow();
@@ -208,7 +202,7 @@ public class Level3Controller extends Round3Controller implements Initializable,
                 ans.setText(s);
                 label.setEffect(dropShadow);
                 answer.add(ans.getText());
-                ans.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+                ans.setStyle("-fx-font: bold 28pt KaiTi; -fx-text-fill: rgb(150,0,250)");
                 ans.setOnMousePressed(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
@@ -269,14 +263,6 @@ public class Level3Controller extends Round3Controller implements Initializable,
             button.setOnAction( e -> rootClicked(button));
             button.setPadding(s);
             roots.add(button);
-        }
-
-        chars = new LinkedList<>();
-        for(int i = 0;i < Main.R3L3_DATA.CHARS.size();i++) {
-            Button button = new Button();
-            button.setOnAction( e -> charClicked(button));
-            button.setPadding(s);
-            chars.add(button);
         }
 
         answer = new LinkedList<>();

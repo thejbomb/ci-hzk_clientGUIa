@@ -89,10 +89,30 @@ public class Level1Controller extends Round1Controller implements Initializable,
 
     private LinkedList<String> packageAnswers() {
         LinkedList<String> result = new LinkedList<>();
-        for(int i = 0; i < words[i].size(); i++) {
+        result.add("ANS1");
+        result.add(words[0].toString());
+        result.add("ANS2");
+        result.add(words[1].toString());
+        result.add("ANS3");
+        result.add(words[2].toString());
+        result.add("ANS4");
+        result.add(words[3].toString());
+        result.add("ANS5");
+        result.add(words[4].toString());
+        result.add("ANS6");
+        result.add(words[5].toString());
+        result.add("ANS7");
+        result.add(words[6].toString());
+        result.add("ANS8");
+        result.add(words[7].toString());
+        result.add("ANS9");
+        result.add(words[8].toString());
+        result.add("ANS10");
+        result.add(words[9].toString());
+        /*for(int i = 0; i < words[i].size(); i++) {
             result.add("ANS");
             result.add(words[i].toString());
-        }
+        }*/
 
         return result;
 

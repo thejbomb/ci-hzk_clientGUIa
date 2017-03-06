@@ -3,6 +3,7 @@ package main.round3;
 import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -58,76 +59,16 @@ public class Level1Controller extends Round3Controller implements Initializable,
     @FXML
     private Label lb_timer;
     @FXML
-    private Label l_root;
+    private FlowPane chosen;
     @FXML
-    private Label l_char;
+    private FlowPane root;
     @FXML
     private Button b_submit;
     @FXML
-    private Button b_root1;
-    @FXML
-    private Button b_root2;
-    @FXML
-    private Button b_root3;
-    @FXML
-    private Button b_root4;
-    @FXML
-    private Button b_root5;
-    @FXML
-    private Button b_root6;
-    @FXML
-    private Button b_root7;
-    @FXML
-    private Button b_root8;
-    @FXML
-    private Button b_root9;
-    @FXML
-    private Button b_root10;
-    @FXML
-    private Button b_char1;
-    @FXML
-    private Button b_char2;
-    @FXML
-    private Button b_char3;
-    @FXML
-    private Button b_char4;
-    @FXML
-    private Button b_char5;
-    @FXML
-    private Button b_char6;
-    @FXML
-    private Button b_char7;
-    @FXML
-    private Button b_char8;
-    @FXML
-    private Button b_char9;
-    @FXML
-    private Button b_char10;
-    @FXML
-    private Button b_char11;
-    @FXML
-    private Button b_char12;
-    @FXML
-    private Button b_char13;
-    @FXML
-    private Button b_char14;
-    @FXML
-    private Button b_char15;
-    @FXML
-    private Button b_char16;
-    @FXML
-    private Button b_char17;
-    @FXML
-    private Button b_char18;
-    @FXML
     private FlowPane fp_answer1;
 
-    private int counter;
-    private String[] answer = new String[180];
+    private LinkedList<String> answer;
     private LinkedList<Button> roots;
-    private LinkedList<Button> chars;
-    private LinkedList<FlowPane> answers;
-    private LinkedList<LinkedList<String>> temp;
 
     private Round3Controller round3Controller;
 
@@ -152,9 +93,7 @@ public class Level1Controller extends Round3Controller implements Initializable,
 
     private LinkedList<String> packageAnswers() {
         LinkedList<String> result = new LinkedList<>();
-        for (int i = 0; i < answer.length && answer[i] != null; i++) {
-            result.add(answer[i]);
-        }
+        result = answer;
         return result;
 
     }
@@ -172,10 +111,10 @@ public class Level1Controller extends Round3Controller implements Initializable,
 
         String timerLabel = Main.R3L1_DATA.TIME_LIMIT + ":00";
         lb_timer.setText(timerLabel);
-        for(int i = 0; i < chars.size(); i++)
-            chars.get(i).setText(Main.R3L1_DATA.CHARS.get(i));
-        for(int i = 0; i < roots.size(); i++)
-            roots.get(i).setText(Main.R3L1_DATA.ROOTS.get(i));
+        for(int i = 0; i < roots.size(); i++) {
+            roots.get(i).setText(Main.R3L3_DATA.ROOTS.get(i));
+            root.getChildren().add(roots.get(i));
+        }
     }
 
     @Override
@@ -225,22 +164,24 @@ public class Level1Controller extends Round3Controller implements Initializable,
 
     @FXML
     public void rootClicked(Button button) {
-        l_root.setText(button.getText());
-    }
-
-    @FXML
-    public void charClicked(Button button) {
-        l_char.setText(button.getText());
+        Label l = new Label(button.getText());
+        l.setStyle("-fx-font: bold 45pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+        chosen.getChildren().add(l);
     }
 
     @FXML
     public void submitAnswer() {
-        answer[counter] = l_root.getText() + l_char.getText();
         Label label = new Label();
-        label.setText(l_root.getText() + l_char.getText() + "/");
+        String string = "";
+        for(int i = 0; i < chosen.getChildren().size(); i++) {
+            string = string + ((Label) chosen.getChildren().get(i)).getText();
+        }
+        string = string.replaceAll("[,]","");
+        chosen.getChildren().clear();
+        answer.add(string);
+        label.setText(string + "/");
         label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
         fp_answer1.getChildren().add(label);
-        counter++;
     }
 
 
@@ -261,73 +202,15 @@ public class Level1Controller extends Round3Controller implements Initializable,
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Insets s = new Insets(20, 10, 20, 10);
         roots = new LinkedList<>();
-        roots.add(b_root1);
-        roots.add(b_root2);
-        roots.add(b_root3);
-        roots.add(b_root4);
-        roots.add(b_root5);
-        roots.add(b_root6);
-        roots.add(b_root7);
-        roots.add(b_root8);
-        roots.add(b_root9);
-        roots.add(b_root10);
-
-
-        chars = new LinkedList<>();
-        chars.add(b_char1);
-        chars.add(b_char2);
-        chars.add(b_char3);
-        chars.add(b_char4);
-        chars.add(b_char5);
-        chars.add(b_char6);
-        chars.add(b_char7);
-        chars.add(b_char8);
-        chars.add(b_char9);
-        chars.add(b_char10);
-        chars.add(b_char11);
-        chars.add(b_char12);
-        chars.add(b_char13);
-        chars.add(b_char14);
-        chars.add(b_char15);
-        chars.add(b_char16);
-        chars.add(b_char17);
-        chars.add(b_char18);
-
-
-        answers = new LinkedList<>();
-
-
-        b_root1.setOnAction( e -> rootClicked(b_root1));
-        b_root2.setOnAction( e -> rootClicked(b_root2));
-        b_root3.setOnAction( e -> rootClicked(b_root3));
-        b_root4.setOnAction( e -> rootClicked(b_root4));
-        b_root5.setOnAction( e -> rootClicked(b_root5));
-        b_root6.setOnAction( e -> rootClicked(b_root6));
-        b_root7.setOnAction( e -> rootClicked(b_root7));
-        b_root8.setOnAction( e -> rootClicked(b_root8));
-        b_root9.setOnAction( e -> rootClicked(b_root9));
-        b_root10.setOnAction( e -> rootClicked(b_root10));
-
-
-        b_char1.setOnAction( e -> charClicked(b_char1));
-        b_char2.setOnAction( e -> charClicked(b_char2));
-        b_char3.setOnAction( e -> charClicked(b_char3));
-        b_char4.setOnAction( e -> charClicked(b_char4));
-        b_char5.setOnAction( e -> charClicked(b_char5));
-        b_char6.setOnAction( e -> charClicked(b_char6));
-        b_char7.setOnAction( e -> charClicked(b_char7));
-        b_char8.setOnAction( e -> charClicked(b_char8));
-        b_char9.setOnAction( e -> charClicked(b_char9));
-        b_char10.setOnAction( e -> charClicked(b_char10));
-        b_char11.setOnAction( e -> charClicked(b_char11));
-        b_char12.setOnAction( e -> charClicked(b_char12));
-        b_char13.setOnAction( e -> charClicked(b_char13));
-        b_char14.setOnAction( e -> charClicked(b_char14));
-        b_char15.setOnAction( e -> charClicked(b_char15));
-        b_char16.setOnAction( e -> charClicked(b_char16));
-        b_char17.setOnAction( e -> charClicked(b_char17));
-        b_char18.setOnAction( e -> charClicked(b_char18));
+        for(int i = 0;i < Main.R3L3_DATA.ROOTS.size();i++) {
+            Button button = new Button();
+            button.setOnAction( e -> rootClicked(button));
+            button.setPadding(s);
+            roots.add(button);
+        }
+        answer = new LinkedList<>();
 
 
         gp_levelTitle.setVisible(true);
