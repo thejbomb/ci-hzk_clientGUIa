@@ -64,6 +64,7 @@ public class Main extends Application {
 
     static {
         try {
+
             String fileName = System.getProperty("user.dir") + "/src/data/Round1Level1Data.json";
             R1L1_DATA = new Gson().fromJson(new FileReader(fileName), data.round1.Level1DataStructure.class);
             fileName = System.getProperty("user.dir") + "/src/data/Round1Level2Data.json";

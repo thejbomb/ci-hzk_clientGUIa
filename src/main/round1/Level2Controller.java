@@ -107,10 +107,26 @@ public class Level2Controller extends Round1Controller implements Initializable,
         result.add(words[8].toString());
         result.add("ANS10");
         result.add(words[9].toString());
-        /*for(int i = 0; i < words[i].size(); i++) {
-            result.add("ANS" + i + 1);
-            result.add(words[i].toString());
-        }*/
+        result.add("ANS11");
+        result.add(words[10].toString());
+        result.add("ANS12");
+        result.add(words[11].toString());
+        result.add("ANS13");
+        result.add(words[12].toString());
+        result.add("ANS14");
+        result.add(words[13].toString());
+        result.add("ANS15");
+        result.add(words[14].toString());
+        result.add("ANS16");
+        result.add(words[15].toString());
+        result.add("ANS17");
+        result.add(words[16].toString());
+        result.add("ANS18");
+        result.add(words[17].toString());
+        result.add("ANS19");
+        result.add(words[18].toString());
+        result.add("ANS20");
+        result.add(words[19].toString());
 
         return result;
 
@@ -220,7 +236,7 @@ public class Level2Controller extends Round1Controller implements Initializable,
             words[i] = new LinkedList<>();
         }
 
-        for(int i = 0; i < Main.R1L1_DATA.QUESTIONS.size(); i++) {
+        for(int i = 0; i < Main.R1L2_DATA.QUESTIONS.size(); i++) {
             HBox hbox = new HBox();
             VBox vbox = new VBox();
             vbox.setAlignment(Pos.CENTER);

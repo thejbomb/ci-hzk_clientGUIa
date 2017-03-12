@@ -4,7 +4,9 @@ import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -65,55 +67,17 @@ public class Level3Controller extends Round2Controller implements Initializable,
     @FXML
     private Label lb_timer;
     @FXML
-    private Label lb_question1;
-    @FXML
-    private Label lb_question2;
-    @FXML
-    private Label lb_question3;
-    @FXML
-    private Label lb_question4;
-    @FXML
-    private Label lb_question5;
-    @FXML
-    private Label lb_question6;
-    @FXML
-    private Label lb_question7;
-    @FXML
-    private Label lb_question8;
-    @FXML
-    private Label lb_question9;
-    @FXML
-    private Label lb_question10;
+    private VBox question;
     @FXML
     private AnchorPane ap_drawingPane;
     @FXML
     private Button bt_submit;
     @FXML
     private Button bt_clear;
-    @FXML
-    private FlowPane fp_answer1;
-    @FXML
-    private FlowPane fp_answer2;
-    @FXML
-    private FlowPane fp_answer3;
-    @FXML
-    private FlowPane fp_answer4;
-    @FXML
-    private FlowPane fp_answer5;
-    @FXML
-    private FlowPane fp_answer6;
-    @FXML
-    private FlowPane fp_answer7;
-    @FXML
-    private FlowPane fp_answer8;
-    @FXML
-    private FlowPane fp_answer9;
-    @FXML
-    private FlowPane fp_answer10;
 
 
     private LinkedList<Label> questions;
-    private LinkedList<LinkedList<Polyline>> lines = new LinkedList<>();
+    private LinkedList<LinkedList<Polyline>>[] lines = new LinkedList[Main.R2L3_DATA.QUESTIONS.size()];
     private LinkedList<FlowPane> answers;
 
     private LinkedList<String> randomizedAnswers;
@@ -122,73 +86,18 @@ public class Level3Controller extends Round2Controller implements Initializable,
     private Round2Controller round2Controller;
 
     public void init(UserData user, Round2Controller controller) {
-        this.userData = user;
-        this.round2Controller = controller;
+        userData = user;
+        round2Controller = controller;
 
-        lines = new LinkedList<>();
-        for (int i = 0; i < questions.size(); i++)
-            lines.add(new LinkedList<>());
-        randomizedAnswers = randomizeAnswers(Main.R2L3_DATA.ANSWERS);
-
-        setData();
-    }
-
-    private LinkedList<String> packageData(Object data) {
-        LinkedList<String> result = new LinkedList<>();
-        if (data.getClass() == Long.class)
-            result.add(Long.toString((long) data));
-
-        return result;
-    }
-
-    private LinkedList<String> randomizeAnswers(ArrayList<String> data) {
-        LinkedList<String> result = new LinkedList<>(data);
-
-        long seed = System.nanoTime();
-
-        writeToServer(Constants.C2S_R2L3_SEED, packageData(seed));
-
-        Collections.shuffle(result, new Random(seed));
-
-        return result;
-    }
-
-    private LinkedList<String> packageAnswers() {
-        LinkedList<String> result = new LinkedList<>();
-        for (int i = 0; i < answers.size(); i++) {
-            result.add("ANS" + (i + 1));
-            result.add(lines.get(i).toString());
-        }
-        return result;
-
-    }
-
-    private void setData() {
-        lb_instructionBody_zh.setText(Main.R2L3_DATA.INSTRUCTION_ZH);
-        lb_instructionBody_en.setText(Main.R2L3_DATA.INSTRUCTION_EN);
-        String timeLimit_zh = "限时" + Main.R2L3_DATA.TIME_LIMIT + "分钟";
-        String timeLimit_en = "Time Limit: " + Main.R2L3_DATA.TIME_LIMIT + (Main.R2L3_DATA.TIME_LIMIT > 1 ? " minutes" : " minute");
-        lb_instructionTime_zh.setText(timeLimit_zh);
-        lb_instructionTime_en.setText(timeLimit_en);
-
-        String cnExample = "";
-        for (String data : Main.R2L3_DATA.EXAMPLES) {
-            cnExample += data + "\n";
-        }
-        lb_exampleBody.setText(cnExample);
-
-        String timerLabel = Main.R2L3_DATA.TIME_LIMIT + ":00";
-        lb_timer.setText(timerLabel);
         DrawingPad pad = new DrawingPad();
         pad.setStyle("-fx-background-color: white;");
         ap_drawingPane.setVisible(false);
         ap_drawingPane.getChildren().add(pad);
         pad.init();
         for (int i = 0; i < questions.size(); i++) {
-            questions.get(i).setText((i + 1) + "." + Main.R2L3_DATA.QUESTIONS.get(i));
-
+            Label lb = questions.get(i);
             int finalI = i;
-            questions.get(i).setOnMouseClicked(e -> {
+            lb.setOnMouseClicked(e -> {
                 currentQuestion = finalI;
                 ap_drawingPane.setVisible(true);
                 pad.getChildren().clear();
@@ -223,39 +132,40 @@ public class Level3Controller extends Round2Controller implements Initializable,
 
         bt_submit.setOnMouseClicked(e -> {
             ap_drawingPane.setVisible(false);
-            lines.set(currentQuestion, pad.getSmaller(4));
+            lines[currentQuestion].add(pad.getSmaller(6));
             answers.get(currentQuestion).getChildren().clear();
-
-            Pane pane = new Pane();
-            pane.setPrefSize(Main.WINDOW_WIDTH/16,Main.WINDOW_WIDTH/16);
-            Image image = new Image("file:src/main/round2/paper.jpg");
-            BackgroundImage bgi = new BackgroundImage(image,null,null,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
-            Background bg = new Background(bgi);
-            image = new Image("file:src/main/round2/paper2.jpg");
-            bgi = new BackgroundImage(image,null,null,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
-            Background bg2 = new Background(bgi);
-            pane.setBackground(bg);
-            pane.setUserData("notSelected");
-            pane.setOnMouseClicked(ee -> {
-                if (ee.getButton() == MouseButton.SECONDARY && pane.getUserData().toString().compareTo("selected") == 0) {
-                    for (FlowPane fp : answers)
-                        fp.getChildren().remove(pane);
-                    lines.set(currentQuestion,new LinkedList<>());
-                } else if (ee.getButton() == MouseButton.PRIMARY) {
-                    if (pane.getUserData().toString().compareTo("selected") != 0) {
-                        pane.setUserData("selected");
-                        pane.setBackground(bg2);
-                    } else {
-                        pane.setUserData("notSelected");
-                        pane.setBackground(bg);
+            for (LinkedList<Polyline> ll : lines[currentQuestion]) {
+                Pane pane = new Pane();
+                Image image = new Image("file:src/main/round2/paper.jpg");
+                BackgroundImage bgi = new BackgroundImage(image,null,null,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+                Background bg = new Background(bgi);
+                image = new Image("file:src/main/round2/paper2.jpg");
+                bgi = new BackgroundImage(image,null,null,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+                Background bg2 = new Background(bgi);
+                pane.setBackground(bg);
+                pane.setUserData("notSelected");
+                System.out.println(pane.getUserData().toString());
+                pane.setOnMouseClicked(ee -> {
+                    if (ee.getButton() == MouseButton.SECONDARY && pane.getUserData().toString().compareTo("selected") == 0) {
+                        for (FlowPane fp : answers)
+                            fp.getChildren().remove(pane);
+                        for (LinkedList<LinkedList<Polyline>> lll : lines)
+                            lll.remove(ll);
+                    } else if (ee.getButton() == MouseButton.PRIMARY) {
+                        if (pane.getUserData().toString().compareTo("selected") != 0) {
+                            pane.setUserData("selected");
+                            pane.setBackground(bg2);
+                        } else {
+                            pane.setUserData("notSelected");
+                            pane.setBackground(bg);
+                        }
                     }
-                }
 
-            });
+                });
 
-            pane.getChildren().addAll(lines.get(currentQuestion));
-            answers.get(currentQuestion).getChildren().add(pane);
-
+                pane.getChildren().addAll(ll);
+                answers.get(currentQuestion).getChildren().add(pane);
+            }
             answers.get(currentQuestion).setVisible(true);
         });
 
@@ -263,6 +173,116 @@ public class Level3Controller extends Round2Controller implements Initializable,
             pad.startDrawing();
             pad.getChildren().clear();
         });
+    }
+
+    private LinkedList<String> packageData(Object data) {
+        LinkedList<String> result = new LinkedList<>();
+        if (data.getClass() == Long.class)
+            result.add(Long.toString((long) data));
+
+        return result;
+    }
+
+    private LinkedList<String> randomizeAnswers(ArrayList<String> data) {
+        LinkedList<String> result = new LinkedList<>(data);
+
+        long seed = System.nanoTime();
+
+        writeToServer(Constants.C2S_R2L3_SEED, packageData(seed));
+
+        Collections.shuffle(result, new Random(seed));
+
+        return result;
+    }
+
+    private LinkedList<String> packageAnswers() {
+        /*LinkedList<String> result = new LinkedList<>();
+        for (int i = 0; i < answers.size(); i++) {
+            result.add("ANS" + (i + 1));
+            result.add(lines.get(i).toString());
+        }*/
+        LinkedList<String> result = new LinkedList<>();
+        result.add("ANS1");
+        System.out.println(result);
+        result.add(lines[0].toString());
+        result.add("ANS2");
+        System.out.println(result);
+        result.add(lines[1].toString());
+        result.add("ANS3");
+        System.out.println(result);
+        result.add(lines[2].toString());
+        result.add("ANS4");
+        System.out.println(result);
+        result.add(lines[3].toString());
+        result.add("ANS5");
+        System.out.println(result);
+        result.add(lines[4].toString());
+        System.out.println(result);
+        result.add("ANS6");
+        System.out.println(result);
+        result.add(lines[5].toString());
+        result.add("ANS7");
+        System.out.println(result);
+        result.add(lines[6].toString());
+        result.add("ANS8");
+        System.out.println(result);
+        result.add(lines[7].toString());
+        result.add("ANS9");
+        System.out.println(result);
+        result.add(lines[8].toString());
+        result.add("ANS10");
+        System.out.println(result);
+        result.add(lines[9].toString());
+        result.add("ANS11");
+        System.out.println(result);
+        result.add(lines[10].toString());
+        result.add("ANS12");
+        System.out.println(result);
+        result.add(lines[11].toString());
+        result.add("ANS13");
+        System.out.println(result);
+        result.add(lines[12].toString());
+        result.add("ANS14");
+        System.out.println(result);
+        result.add(lines[13].toString());
+        result.add("ANS15");
+        System.out.println(result);
+        result.add(lines[14].toString());
+        System.out.println(result);
+        result.add("ANS16");
+        System.out.println(result);
+        result.add(lines[15].toString());
+        result.add("ANS17");
+        System.out.println(result);
+        result.add(lines[16].toString());
+        result.add("ANS18");
+        System.out.println(result);
+        result.add(lines[17].toString());
+        result.add("ANS19");
+        System.out.println(result);
+        result.add(lines[18].toString());
+        result.add("ANS20");
+        System.out.println(result);
+        result.add(lines[19].toString());
+        System.out.println(result);
+        return result;
+
+    }
+
+    private void setData() {
+        lb_instructionBody_zh.setText(Main.R2L3_DATA.INSTRUCTION_ZH);
+        lb_instructionBody_en.setText(Main.R2L3_DATA.INSTRUCTION_EN);
+        String timeLimit_zh = "限时" + Main.R2L3_DATA.TIME_LIMIT + "分钟";
+        String timeLimit_en = "Time Limit: " + Main.R2L3_DATA.TIME_LIMIT + (Main.R2L3_DATA.TIME_LIMIT > 1 ? " minutes" : " minute");
+        lb_instructionTime_zh.setText(timeLimit_zh);
+        lb_instructionTime_en.setText(timeLimit_en);
+
+        lb_exampleBody.setText(Main.R2L3_DATA.EXAMPLES.get(0));
+
+        String timerLabel = Main.R2L3_DATA.TIME_LIMIT + ":00";
+        lb_timer.setText(timerLabel);
+        for (int i = 0; i < questions.size(); i++)
+            questions.get(i).setText(Main.R2L3_DATA.QUESTIONS.get(i));
 
     }
 
@@ -329,34 +349,41 @@ public class Level3Controller extends Round2Controller implements Initializable,
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         questions = new LinkedList<>();
-        questions.add(lb_question1);
-        questions.add(lb_question2);
-        questions.add(lb_question3);
-        questions.add(lb_question4);
-        questions.add(lb_question5);
-        questions.add(lb_question6);
-        questions.add(lb_question7);
-        questions.add(lb_question8);
-        questions.add(lb_question9);
-        questions.add(lb_question10);
 
         answers = new LinkedList<>();
-        answers.add(fp_answer1);
-        answers.add(fp_answer2);
-        answers.add(fp_answer3);
-        answers.add(fp_answer4);
-        answers.add(fp_answer5);
-        answers.add(fp_answer6);
-        answers.add(fp_answer7);
-        answers.add(fp_answer8);
-        answers.add(fp_answer9);
-        answers.add(fp_answer10);
+
+        Insets s = new Insets(15, 0, 15, 0);
+
+        for(int i = 0; i < Main.R2L3_DATA.QUESTIONS.size(); i++) {
+            HBox hbox = new HBox();
+            VBox vbox = new VBox();
+            vbox.setAlignment(Pos.CENTER);
+            Label l = new Label();
+            questions.add(l);
+            l.setStyle("-fx-font: bold 40pt KaiTi; -fx-text-fill: rgb(0,0,160)");
+            l.setPadding(s);
+            FlowPane flow = new FlowPane();
+            answers.add(flow);
+            flow.setPrefWidth(5000);
+            vbox.getChildren().add(l);
+            hbox.getChildren().addAll(vbox, flow);
+            question.getChildren().add(hbox);
+        }/*, "變", "関", "車", "龍",
+    "廠", "買", "蘋", "無", "萬", "開", "華", "畵", "饜", "寶", "國", "齊", "槍", "倉", "於", "問"*/ //remaining 20 characters
+
+        for (FlowPane fp : answers) {
+            fp.setVisible(false);
+            fp.setHgap(5);
+            fp.setVgap(5);
+        }
+
+        for (int i = 0; i < lines.length; i++)
+            lines[i] = new LinkedList<>();
 
         gp_levelTitle.setVisible(true);
         gp_instruction.setVisible(false);
         gp_example.setVisible(false);
         gp_questions.setVisible(false);
+        setData();
     }
-
-
 }

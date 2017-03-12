@@ -62,7 +62,7 @@ public class Level3Controller extends Round1Controller implements Initializable,
     private LinkedList<Label> questions;
     private LinkedList<TextField> textFields;
     private LinkedList<FlowPane> answers;
-    private LinkedList<String>[] words = new LinkedList[10];
+    private LinkedList<String>[] words = new LinkedList[Main.R1L3_DATA.QUESTIONS.size()];
 
     private Round1Controller round1Controller;
 
@@ -107,16 +107,29 @@ public class Level3Controller extends Round1Controller implements Initializable,
         result.add("ANS9");
         result.add(words[8].toString());
         result.add("ANS10");
-        result.add(words[9].toString());/*
-        for(int i = 0; i < words[i].size(); i++) {
-            if(words[i].isEmpty()) {
-                result.add("ANS");
-                result.add(" ");
-            } else {
-                result.add("ANS");
-                result.add(words[i].toString());
-            }
-        }*/
+        result.add(words[9].toString());
+        result.add("ANS11");
+        result.add(words[10].toString());
+        result.add("ANS12");
+        result.add(words[11].toString());
+        result.add("ANS13");
+        result.add(words[12].toString());
+        result.add("ANS14");
+        result.add(words[13].toString());
+        result.add("ANS15");
+        result.add(words[14].toString());
+        result.add("ANS16");
+        result.add(words[15].toString());
+        result.add("ANS17");
+        result.add(words[16].toString());
+        result.add("ANS18");
+        result.add(words[17].toString());
+        result.add("ANS19");
+        result.add(words[18].toString());
+        result.add("ANS20");
+        result.add(words[19].toString());
+        result.add("ANS21");
+        result.add(words[20].toString());
 
         return result;
 
@@ -132,10 +145,7 @@ public class Level3Controller extends Round1Controller implements Initializable,
             words[j].add(label.getText());
             label.setStyle("-fx-font: bold 40pt KaiTi; -fx-text-fill: rgb(0,0,255)");
             area.getChildren().add(label);
-            //answers.get(j).getChildren().add((label));
-            //answers.get(j).setVisible(true);
             answer.clear();
-
         }
     }
 
@@ -229,7 +239,7 @@ public class Level3Controller extends Round1Controller implements Initializable,
             words[i] = new LinkedList<>();
         }
 
-        for(int i = 0; i < Main.R1L1_DATA.QUESTIONS.size(); i++) {
+        for(int i = 0; i < Main.R1L3_DATA.QUESTIONS.size(); i++) {
             HBox hbox = new HBox();
             VBox vbox = new VBox();
             vbox.setAlignment(Pos.CENTER);

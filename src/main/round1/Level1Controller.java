@@ -109,10 +109,24 @@ public class Level1Controller extends Round1Controller implements Initializable,
         result.add(words[8].toString());
         result.add("ANS10");
         result.add(words[9].toString());
-        /*for(int i = 0; i < words[i].size(); i++) {
-            result.add("ANS");
-            result.add(words[i].toString());
-        }*/
+        result.add("ANS11");
+        result.add(words[10].toString());
+        result.add("ANS12");
+        result.add(words[11].toString());
+        result.add("ANS13");
+        result.add(words[12].toString());
+        result.add("ANS14");
+        result.add(words[13].toString());
+        result.add("ANS15");
+        result.add(words[14].toString());
+        result.add("ANS16");
+        result.add(words[15].toString());
+        result.add("ANS17");
+        result.add(words[16].toString());
+        result.add("ANS18");
+        result.add(words[17].toString());
+        result.add("ANS19");
+        result.add(words[18].toString());
 
         return result;
 

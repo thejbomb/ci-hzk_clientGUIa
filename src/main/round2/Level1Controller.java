@@ -6,9 +6,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -68,35 +71,17 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @FXML
     private Label lb_timer;
     @FXML
-    private Label lb_question1;
-    @FXML
-    private Label lb_question2;
-    @FXML
-    private Label lb_question3;
-    @FXML
-    private Label lb_question4;
-    @FXML
-    private Label lb_question5;
+    private VBox question;
     @FXML
     private AnchorPane ap_drawingPane;
     @FXML
     private Button bt_submit;
     @FXML
     private Button bt_clear;
-    @FXML
-    private FlowPane fp_answers1;
-    @FXML
-    private FlowPane fp_answers2;
-    @FXML
-    private FlowPane fp_answers3;
-    @FXML
-    private FlowPane fp_answers4;
-    @FXML
-    private FlowPane fp_answers5;
 
     private LinkedList<Label> questions;
     private LinkedList<FlowPane> answers;
-    private LinkedList<LinkedList<Polyline>>[] lines = new LinkedList[5];
+    private LinkedList<LinkedList<Polyline>>[] lines = new LinkedList[Main.R2L1_DATA.QUESTIONS.size()];
 
     private int currentQuestion = 0;
 
@@ -210,6 +195,22 @@ public class Level1Controller extends Round2Controller implements Initializable,
         System.out.println(result);
         result.add(lines[4].toString());
         System.out.println(result);
+        result.add("ANS6");
+        System.out.println(result);
+        result.add(lines[5].toString());
+        result.add("ANS7");
+        System.out.println(result);
+        result.add(lines[6].toString());
+        result.add("ANS8");
+        System.out.println(result);
+        result.add(lines[7].toString());
+        result.add("ANS9");
+        System.out.println(result);
+        result.add(lines[8].toString());
+        result.add("ANS10");
+        System.out.println(result);
+        result.add(lines[9].toString());
+        System.out.println(result);
         return result;
 
     }
@@ -290,17 +291,24 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         questions = new LinkedList<>();
-        questions.add(lb_question1);
-        questions.add(lb_question2);
-        questions.add(lb_question3);
-        questions.add(lb_question4);
-        questions.add(lb_question5);
         answers = new LinkedList<>();
-        answers.add(fp_answers1);
-        answers.add(fp_answers2);
-        answers.add(fp_answers3);
-        answers.add(fp_answers4);
-        answers.add(fp_answers5);
+
+        Insets s = new Insets(15, 10, 15, 0);
+
+        for(int i = 0; i < Main.R2L1_DATA.QUESTIONS.size(); i++) {
+            HBox hbox = new HBox();
+            VBox vbox = new VBox();
+            vbox.setAlignment(Pos.CENTER);
+            Label l = new Label();
+            questions.add(l);
+            l.setStyle("-fx-font: bold 40pt KaiTi; -fx-text-fill: rgb(0,0,160)");
+            l.setPadding(s);
+            FlowPane flow = new FlowPane();
+            answers.add(flow);
+            vbox.getChildren().add(l);
+            hbox.getChildren().addAll(vbox, flow);
+            question.getChildren().add(hbox);
+        }
 
         for (FlowPane fp : answers) {
             fp.setVisible(false);
