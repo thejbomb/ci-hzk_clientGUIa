@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -181,6 +182,11 @@ public class Level1Controller extends Round3Controller implements Initializable,
         answer.add(string);
         label.setText(string + "/");
         label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+        label.setOnMousePressed(e -> fp_answer1.getChildren().removeAll(label));
+        /*label.setOnKeyPressed(e -> {
+            if(e.getCode() == KeyCode.DELETE)
+                fp_answer1.getChildren().removeAll(label);
+        });*/
         fp_answer1.getChildren().add(label);
     }
 

@@ -124,8 +124,8 @@ public class Level2Controller extends Round4Controller implements Initializable,
     @FXML
     private void handleMouseClick(MouseEvent e) {
         if (e.getSource() == bt_buzzer) {
-            ap_buzzer.setVisible(false);
-            fp_choices.setVisible(true);
+            //ap_buzzer.setVisible(false);
+            //fp_choices.setVisible(true);
             writeToServer(Constants.C2S_R4L2_BUZZ);
             int time = 5; // time to answer the question (seconds)
             timer = new Timer(lb_timer, time, this, 1);
@@ -145,7 +145,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
 
     private void displayInstruction(int questionNumber) throws Exception {
         if (questionNumber < 0 || questionNumber >= Main.R4L2_DATA.getQuestions().size())
-            throw new Exception("R4L1: No such question exist");
+            throw new Exception("R4L2: No such question exist");
         String instruction = "";
         if (Main.R4L2_DATA.getQuestionType(questionNumber) == 0) {
             instruction += Main.R4L2_DATA.QUESTION_INSTRUCTION1_ZH + "\n" + Main.R4L2_DATA.QUESTION_INSTRUCTION1_EN;
@@ -158,7 +158,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
 
     private void displayQuestion(int questionNumber) throws Exception {
         if (questionNumber < 0 || questionNumber >= Main.R4L2_DATA.getQuestions().size())
-            throw new Exception("R4L1: No such question exist");
+            throw new Exception("R4L2: No such question exist");
         if(Main.R4L2_DATA.getQuestionType(questionNumber) == 0 || Main.R4L2_DATA.getQuestionType(questionNumber) == 1) {
             String question = (questionNumber + 1) + ". " + Main.R4L2_DATA.getQuestions(questionNumber);
             Label label = new Label(question);
@@ -203,6 +203,8 @@ public class Level2Controller extends Round4Controller implements Initializable,
                     fp_choices.getChildren().get(j).setDisable(true);
                     lb_timer.setVisible(false);
                 }
+                if (timer.isRunning())
+                    timer.stop();
                 fp_choices.getChildren().get(finalI).getStyleClass().set(0, "button-questionsUserChoice");
             });
         }
@@ -258,6 +260,9 @@ public class Level2Controller extends Round4Controller implements Initializable,
                 }
 
                 break;
+            case Constants.S2C_R4L2_SCR:
+                lb_score.setText(data.getFirst());
+                break;
             case Constants.S2C_R4L2_SEED:
                 Main.R4L2_DATA.init(Long.parseLong(data.getFirst()));
                 break;
@@ -265,6 +270,14 @@ public class Level2Controller extends Round4Controller implements Initializable,
                 bt_buzzer.setDisable(true);
                 fp_choices.setDisable(false);
                 fp_choices.setVisible(false);
+                break;
+            case Constants.S2C_R4LX_CRCT:
+                if (timer.isRunning())
+                    timer.stop();
+                break;
+            case Constants.S2C_R4LX_WRNG:
+                if (timer.isRunning())
+                    timer.stop();
                 break;
         }
     }
@@ -281,6 +294,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
     public void takeNotice() {
         for (int i = 0; i < fp_choices.getChildren().size(); i++)
             fp_choices.getChildren().get(i).setDisable(true);
+        writeToServer(Constants.C2S_R4LX_TMUP);
     }
 
     @Override

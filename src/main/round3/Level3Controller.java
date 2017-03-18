@@ -210,15 +210,7 @@ public class Level3Controller extends Round3Controller implements Initializable,
 
                     }
                 });
-                ans.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                    @Override
-                    public void handle(KeyEvent KeyEvent) {
-                        if(KeyEvent.getCode().equals(KeyCode.DELETE)) {
-                            fp_answer2.getChildren().removeAll(ans);
-                            answer.remove(ans);
-                        }
-                    }
-                });
+                ans.setOnMouseClicked(e -> fp_answer2.getChildren().removeAll(ans));
                 ans.setOnMouseReleased(new EventHandler<MouseEvent>() {
                     @Override public void handle(MouseEvent mouseEvent) {
                         dropShadow.setInput(null);

@@ -192,6 +192,7 @@ public class Level2Controller extends Round3Controller implements Initializable,
         answer.add(string);
         label.setText(string + "/");
         label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+        label.setOnMousePressed(e -> fp_answer1.getChildren().removeAll(label));
         fp_answer1.getChildren().add(label);
     }
 

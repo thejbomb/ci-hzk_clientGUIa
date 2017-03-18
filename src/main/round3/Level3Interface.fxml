@@ -157,16 +157,24 @@
                <children>
                   <HBox prefHeight="250.0" prefWidth="200.0">
                      <children>
-                        <Region prefHeight="573.0" prefWidth="180.0" />
-                        <FlowPane fx:id="fp_answer1" prefHeight="250.0" prefWidth="1701.0" />
+                        <Region prefHeight="573.0" prefWidth="200.0" />
+                        <ScrollPane prefHeight="200.0" prefWidth="1700.0">
+                           <content>
+                              <FlowPane fx:id="fp_answer1" prefHeight="250.0" prefWidth="1701.0" />
+                           </content>
+                        </ScrollPane>
                         <Region prefHeight="167.0" prefWidth="1800.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="250.0" prefWidth="200.0">
                      <children>
-                        <Region prefHeight="573.0" prefWidth="180.0" />
-                        <FlowPane fx:id="fp_answer2" prefHeight="250.0" prefWidth="1600.0" />
-                        <Region prefHeight="795.0" prefWidth="1900.0" />
+                        <Region prefHeight="250.0" prefWidth="200.0" />
+                        <ScrollPane prefHeight="200.0" prefWidth="1700.0">
+                           <content>
+                              <FlowPane fx:id="fp_answer2" prefHeight="250.0" prefWidth="1700.0" />
+                           </content>
+                        </ScrollPane>
+                        <Region prefHeight="250.0" prefWidth="1800.0" />
                      </children>
                   </HBox>
                </children>
@@ -215,15 +223,15 @@
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label fx:id="lb_timer" alignment="CENTER" styleClass="label-questionsTimer" text="TIMER" />
-                        <Region prefHeight="300.0" prefWidth="600.0" HBox.hgrow="ALWAYS" />
-                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                        <Region prefHeight="84.0" prefWidth="378.0" HBox.hgrow="ALWAYS" />
+                        <FlowPane prefHeight="84.0" prefWidth="949.0">
                            <children>
-                              <Label styleClass="label-instruction" text="Choose a radical and a character, then press the button">
+                              <Label styleClass="label-instruction" text="Choose a radical and a character, then press the button to submit.">
                                  <font>
                                     <Font size="19.0" />
                                  </font>
                               </Label>
-                              <Label styleClass="label-instruction" text=" to submit each answer. Answers will appear below.">
+                              <Label styleClass="label-instruction" text="Click on the answers to form a sentence, click on those characters to delete">
                                  <font>
                                     <Font size="19.0" />
                                  </font>

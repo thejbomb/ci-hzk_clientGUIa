@@ -153,13 +153,21 @@
             <RowConstraints minHeight="150.0" percentHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
-                  <Region prefHeight="573.0" prefWidth="180.0" />
-                  <FlowPane fx:id="fp_answer1" prefHeight="389.0" prefWidth="1700.0" />
-                  <Region prefHeight="795.0" prefWidth="1900.0" />
+                  <HBox prefHeight="250.0" prefWidth="200.0">
+                     <children>
+                        <Region prefHeight="573.0" prefWidth="200.0" />
+                        <ScrollPane prefHeight="200.0" prefWidth="1700.0">
+                           <content>
+                              <FlowPane fx:id="fp_answer11" prefHeight="250.0" prefWidth="1601.0" />
+                           </content>
+                        </ScrollPane>
+                        <Region prefHeight="167.0" prefWidth="1800.0" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
             <GridPane>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />

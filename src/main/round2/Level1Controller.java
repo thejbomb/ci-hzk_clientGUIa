@@ -301,7 +301,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
             vbox.setAlignment(Pos.CENTER);
             Label l = new Label();
             questions.add(l);
-            l.setStyle("-fx-font: bold 40pt KaiTi; -fx-text-fill: rgb(0,0,160)");
+            l.setStyle("-fx-font: bold 35pt KaiTi; -fx-text-fill: rgb(0,0,160)");
             l.setPadding(s);
             FlowPane flow = new FlowPane();
             answers.add(flow);

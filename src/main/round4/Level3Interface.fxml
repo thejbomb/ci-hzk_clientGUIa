@@ -161,22 +161,22 @@
             <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+             <AnchorPane maxWidth="1700.0" minWidth="1700.0" prefWidth="1700.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                  <children>
                      <Label fx:id="lb_instruction" alignment="CENTER" styleClass="label-questionsInstruction-zh" text="INSTRUCTION" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                  </children>
              </AnchorPane>
-            <AnchorPane fx:id="ap_question" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <FlowPane fx:id="fp_choices" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <AnchorPane fx:id="ap_buzzer" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <AnchorPane fx:id="ap_question" maxWidth="1700.0" minWidth="1700.0" prefHeight="200.0" prefWidth="1700.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <FlowPane fx:id="fp_choices" maxWidth="1700.0" minWidth="1700.0" prefWidth="1700.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <AnchorPane fx:id="ap_buzzer" maxWidth="1700.0" minWidth="1700.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Button fx:id="bt_buzzer" defaultButton="true" mnemonicParsing="false" onAction="#handleKeyboard" onMouseClicked="#handleMouseClick" opacity="0.0" text="BUZZ!" />
                </children>
             </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <AnchorPane maxWidth="1700.0" minWidth="1700.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="lb_timer" alignment="CENTER" styleClass="label-questionsTimer" text="TIMER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" layoutX="1562.0" layoutY="-10.0">
+                  <FlowPane alignment="CENTER_LEFT" hgap="10.0" layoutX="1562.0" layoutY="-10.0">
                      <children>
                         <Label fx:id="lb_scoreLabel" styleClass="label-questionsScoreLabel" text="Current score:" />
                         <Label fx:id="lb_score" styleClass="label-questionsScoreNumber" text="CURRENT_SCORE" />
