@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+<AnchorPane fx:id="ap_root" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round1.Round1Controller">
+    <children>
+        <fx:include fx:id="ap_level1Interface" source="Level1Interface.fxml" />
+        <fx:include fx:id="ap_level2Interface" source="Level2Interface.fxml" />
+        <fx:include fx:id="ap_level3Interface" source="Level3Interface.fxml" />
+        <GridPane fx:id="gp_round1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                    <children>
+                        <Label fx:id="lb_userName" text="USER_NAME" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="lb_userLevel" alignment="CENTER_RIGHT" text="USER_LEVEL" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <Label fx:id="lb_point1" text="Round 1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <Label fx:id="lb_point2" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <Label fx:id="lb_point3" text="Round 3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <children>
+                        <Label fx:id="lb_point4" text="Round 4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <children>
+                        <Label fx:id="lb_point5" text="Round 5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <children>
+                        <Label fx:id="lb_userPoint1" text="ROUND_1_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                    <children>
+                        <Label fx:id="lb_userPoint2" text="ROUND_2_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                    <children>
+                        <Label fx:id="lb_userPoint3" text="ROUND_3_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                    <children>
+                        <Label fx:id="lb_userPoint4" text="ROUND_4_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                    <children>
+                        <Label fx:id="lb_userPoint5" text="ROUND_5_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </GridPane>
+        <GridPane fx:id="gp_titlePane" mouseTransparent="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <AnchorPane>
+                    <children>
+                        <Label fx:id="lb_cnRoundTitle" alignment="CENTER" text="淘汰赛&#10;第一关" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                            <font>
+                                <Font name="KaiTi" size="49.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.rowIndex="1">
+                    <children>
+                        <Label fx:id="lb_enRoundTitle" alignment="CENTER" text="Round 1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <font>
+                                <Font name="Bell MT" size="30.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.rowIndex="2">
+                    <children>
+                        <Label fx:id="lb_cnRoundDescription" alignment="CENTER" text="ROUND_1_DESCRIPTION_PLACEHOLDER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </GridPane>
+    </children>
+    <stylesheets>
+        <URL value="@Round1Style.css" />
+    </stylesheets>
+</AnchorPane>

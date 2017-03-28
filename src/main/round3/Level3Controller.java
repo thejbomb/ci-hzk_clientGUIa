@@ -75,6 +75,8 @@ public class Level3Controller extends Round3Controller implements Initializable,
     private FlowPane fp_answer1;
     @FXML
     private FlowPane fp_answer2;
+    @FXML
+    private Button finish;
 
     private LinkedList<String> answer;
     private LinkedList<Button> roots;
@@ -103,7 +105,12 @@ public class Level3Controller extends Round3Controller implements Initializable,
     private LinkedList<String> packageAnswers() {
 
         LinkedList<String> result = new LinkedList<>();
-        result = answer;
+        String s = "";
+        for(int i = 0; i < fp_answer2.getChildren().size(); i++) {
+            s = s +((Label)fp_answer2.getChildren().get(i)).getText();
+        }
+
+        result.add(s);
         return result;
     }
 
@@ -176,6 +183,13 @@ public class Level3Controller extends Round3Controller implements Initializable,
         Label l = new Label(button.getText());
         l.setStyle("-fx-font: bold 45pt KaiTi; -fx-text-fill: rgb(150,0,250)");
         chosen.getChildren().add(l);
+    }
+
+    @FXML
+    public void finishSent() {
+        Label l = new Label("。");
+        l.setStyle("-fx-font: bold 28pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+        fp_answer2.getChildren().add(l);
     }
 
     @FXML

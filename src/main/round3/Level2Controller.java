@@ -93,19 +93,13 @@ public class Level2Controller extends Round3Controller implements Initializable,
 
     private LinkedList<String> packageAnswers() {
 
-        /*LinkedList<String> result = new LinkedList<>();
-        result.add("ANS");
-        result.add(answer);
+        LinkedList<String> result = new LinkedList<>();
+        String s = "";
+        for(int i = 0; i < fp_answer1.getChildren().size(); i++) {
+            s = s +((Label)fp_answer1.getChildren().get(i)).getText();
+        }
 
-        return result;
-        LinkedList<String> result = new LinkedList<>();
-        for (int i = 0; i < answer.length && answer[i] != null; i++) {
-            //result.add("ANS");
-            result.add(answer[i]);
-            //result.add(lines.get(i).toString());
-        }*/
-        LinkedList<String> result = new LinkedList<>();
-        result = answer;
+        result.add(s);
         return result;
 
     }

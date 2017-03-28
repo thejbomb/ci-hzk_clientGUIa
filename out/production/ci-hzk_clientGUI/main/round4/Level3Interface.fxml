@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="ap_root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round4.Level3Controller">
+    <children>
+        <GridPane fx:id="gp_levelTitle" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <Label fx:id="lb_titleRoundNumber_zh" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第二关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <Label fx:id="lb_titleRoundNumber_en" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <Label fx:id="lb_titleRoundLevel_zh" alignment="CENTER" styleClass="label-roundLevel-zh" text="初级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <children>
+                        <Label fx:id="lb_titleRoundLevel_en" alignment="CENTER" styleClass="label-roundLevel-en" text="Beginner Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <children>
+                        <Label fx:id="lb_titleRoundDescription" alignment="TOP_CENTER" styleClass="label-roundDescription" text="ROUND_DESCRIPTION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </GridPane>
+        <GridPane fx:id="gp_instruction" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="20.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <Label fx:id="lb_instructionHeader" alignment="CENTER" styleClass="label-instructionHeader" text="比赛要求" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <Label fx:id="lb_instructionBody_zh" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" styleClass="label-instructionBody-zh" text="INSTRUCTION_BODY_ZH" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <Label fx:id="lb_instructionBody_en" alignment="TOP_CENTER" styleClass="label-instructionBody-en" text="INSTRUCTION_BODY_EN" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <children>
+                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <Label fx:id="lb_instructionTime_zh" alignment="TOP_CENTER" styleClass="label-instructionTime-zh" text="TIME_LIMIT_ZH" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                    <children>
+                                        <Label fx:id="lb_instructionTime_en" alignment="TOP_CENTER" styleClass="label-instructionTime-en" text="TIME_LIMIT_EN" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </GridPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </GridPane>
+        <GridPane fx:id="gp_example" layoutX="10.0" layoutY="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <Label fx:id="lb_exampleHeader" alignment="CENTER" styleClass="label-exampleHeader" text="Example" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <Label fx:id="lb_exampleBody" alignment="CENTER" styleClass="label-exampleBody" text="EXAMPLE_BODY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <Label fx:id="lb_exampleWarning" alignment="TOP_CENTER" styleClass="label-exampleWarning" text="Examples cannot be used toward answers." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </GridPane>
+      <GridPane fx:id="gp_questions" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+             <AnchorPane maxWidth="1700.0" minWidth="1700.0" prefWidth="1700.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                 <children>
+                     <Label fx:id="lb_instruction" alignment="CENTER" styleClass="label-questionsInstruction-zh" text="INSTRUCTION" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                 </children>
+             </AnchorPane>
+            <AnchorPane fx:id="ap_question" maxWidth="1700.0" minWidth="1700.0" prefHeight="200.0" prefWidth="1700.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <FlowPane fx:id="fp_choices" maxWidth="1700.0" minWidth="1700.0" prefWidth="1700.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <AnchorPane fx:id="ap_buzzer" maxWidth="1700.0" minWidth="1700.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Button fx:id="bt_buzzer" defaultButton="true" mnemonicParsing="false" onAction="#handleKeyboard" onMouseClicked="#handleMouseClick" opacity="0.0" text="BUZZ!" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxWidth="1700.0" minWidth="1700.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="lb_timer" alignment="CENTER" styleClass="label-questionsTimer" text="TIMER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <FlowPane alignment="CENTER_LEFT" hgap="10.0" layoutX="1562.0" layoutY="-10.0">
+                     <children>
+                        <Label fx:id="lb_scoreLabel" styleClass="label-questionsScoreLabel" text="Current score:" />
+                        <Label fx:id="lb_score" styleClass="label-questionsScoreNumber" text="CURRENT_SCORE" />
+                     </children>
+                  </FlowPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+    </children>
+    <stylesheets>
+        <URL value="@Level3Style.css" />
+    </stylesheets>
+</AnchorPane>

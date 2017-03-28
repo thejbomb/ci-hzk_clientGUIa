@@ -127,7 +127,7 @@ public class Level3Controller extends Round4Controller implements Initializable,
             ap_buzzer.setVisible(false);
             fp_choices.setVisible(true);
             writeToServer(Constants.C2S_R4L3_BUZZ);
-            int time = 5; // time to answer the question (seconds)
+            int time = 10; // time to answer the question (seconds)
             timer = new Timer(lb_timer, time, this, 1);
             lb_timer.setVisible(true);
         }
@@ -138,7 +138,7 @@ public class Level3Controller extends Round4Controller implements Initializable,
         System.out.println("Action Event detected");
         fp_choices.setDisable(false);
         writeToServer(Constants.C2S_R4L1_BUZZ);
-        int time = 5; // time to answer the question (seconds)
+        int time = 10; // time to answer the question (seconds)
         timer = new Timer(lb_timer, time, this, 1);
         lb_timer.setVisible(true);
     }
@@ -242,7 +242,7 @@ public class Level3Controller extends Round4Controller implements Initializable,
 
                 break;
             case Constants.DIS_R4L3_QST:
-                lb_timer.setText("5");
+                lb_timer.setText("10");
                 if (timer != null)
                     timer.stop();
                 gp_levelTitle.setVisible(false);

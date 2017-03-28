@@ -18,7 +18,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import main.Main;
-import main.round5.Round5Controller;
 import tool.Constants;
 import tool.Timer;
 import tool.TimerInterface;
@@ -133,7 +132,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
     private void handleMouseClick(MouseEvent e) {
         if (e.getSource() == bt_buzzer) {
             writeToServer(Constants.C2S_R4L1_BUZZ);
-            int time = 5; // time to answer the question (seconds)
+            int time = 10; // time to answer the question (seconds)
             timer = new Timer(lb_timer, time, this, 1);
             lb_timer.setVisible(true);
         }
@@ -144,7 +143,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
         System.out.println("Action Event detected");
         fp_choices.setDisable(false);
         writeToServer(Constants.C2S_R4L1_BUZZ);
-        int time = 5; // time to answer the question (seconds)
+        int time = 10; // time to answer the question (seconds)
         timer = new Timer(lb_timer, time, this, 1);
         lb_timer.setVisible(true);
 
@@ -247,7 +246,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
                 gp_questions.setVisible(false);
                 break;
             case Constants.DIS_R4L1_QST:
-                lb_timer.setText("5");
+                lb_timer.setText("10");
                 if (timer != null && timer.isRunning())
                     timer.stop();
                 gp_levelTitle.setVisible(false);

@@ -166,7 +166,7 @@ public class Main extends Application {
 
     private static String ReadClassFromJson(String t_filename)
     {
-        System.out.println("Reading json file");
+        //System.out.println("Reading json file");
         File file = new File(t_filename);
         String targetString = "";
         try
