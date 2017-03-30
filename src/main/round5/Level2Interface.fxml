@@ -161,27 +161,22 @@
                 <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label alignment="CENTER" prefHeight="170.0" prefWidth="322.0" styleClass="label-instruction" text="Click on the character that you think is wrong. Then type in the correct character in the box next to it below." wrapText="true" />
+                  <Label fx:id="lb_timer" alignment="CENTER" styleClass="label-questionsTimer" text="TIMER" />
+                  <Label alignment="CENTER" prefWidth="300.0" styleClass="label-instruction" text="To delete an answer, press '9' on the text field that you don't want." wrapText="true" />
+               </children>
+            </HBox>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <center>
-                  <AnchorPane BorderPane.alignment="CENTER">
-                     <children>
-                        <Label fx:id="lb_timer" alignment="CENTER" styleClass="label-questionsTimer" text="TIMER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+                  <AnchorPane prefHeight="272.0" prefWidth="533.0" BorderPane.alignment="CENTER" />
                </center>
                <left>
-                  <AnchorPane BorderPane.alignment="CENTER">
-                     <children>
-                        <Label alignment="CENTER" prefWidth="300.0" styleClass="label-instruction" text="Click on the character that you think is wrong. Then type in the correct character in the box next to it below the paragraph." wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+                  <AnchorPane BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <AnchorPane BorderPane.alignment="CENTER">
-                     <children>
-                        <Label alignment="CENTER" prefWidth="300.0" styleClass="label-instruction" text="To delete an answer, press 'Delete' on the answer area that you don't want." wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+                  <AnchorPane BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">

@@ -4,6 +4,7 @@ import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -172,6 +173,7 @@ public class Level1Controller extends Round3Controller implements Initializable,
     public void rootClicked(Button button) {
         Label l = new Label(button.getText());
         l.setStyle("-fx-font: bold 45pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+        l.setCursor(Cursor.HAND);
         l.setOnMouseClicked(e -> chosen.getChildren().removeAll(l));
         chosen.getChildren().add(l);
     }

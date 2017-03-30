@@ -88,6 +88,6 @@
 }
 
 .label-instruction {
-     -fx-font: bold 17pt "Bell MT";
+     -fx-font: bold 15pt "Bell MT";
      -fx-text-fill: rgb(0,162,232);
  }

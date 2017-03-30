@@ -162,29 +162,13 @@
                 <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <center>
-                      <AnchorPane BorderPane.alignment="CENTER">
-                          <children>
-                              <Label fx:id="lb_timer" alignment="CENTER" styleClass="label-questionsTimer" text="TIMER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                          </children>
-                      </AnchorPane>
-               </center>
-               <left>
-                  <AnchorPane prefHeight="272.0" prefWidth="333.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="272.0" prefWidth="324.0" styleClass="label-instruction" text="Click on the character that you think is wrong. Then type in the correct character in the box below." wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-24.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </left>
-               <right>
-                  <AnchorPane prefHeight="272.0" prefWidth="355.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label alignment="CENTER" layoutX="-2.0" prefHeight="272.0" prefWidth="342.0" styleClass="label-instruction" text="To delete an answer, press 'Delete' on the answer area that you don't want." wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </right>
-            </BorderPane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label alignment="CENTER" prefHeight="170.0" prefWidth="322.0" styleClass="label-instruction" text="Click on the character that you think is wrong. Then type in the correct character in the box next to it below." wrapText="true" />
+                  <Label fx:id="lb_timer" alignment="CENTER" styleClass="label-questionsTimer" text="TIMER" />
+                  <Label alignment="CENTER" prefWidth="300.0" styleClass="label-instruction" text="To delete an answer, press '9' on the text field that you don't want." wrapText="true" />
+               </children>
+            </HBox>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <content>
                   <FlowPane fx:id="fp_text" prefHeight="300.0" prefWidth="1100.0" />

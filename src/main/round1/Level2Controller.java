@@ -246,7 +246,7 @@ public class Level2Controller extends Round1Controller implements Initializable,
             TextField text = new TextField();
             text.setOnAction(e -> createSubmitted());
             textFields.add(text);
-            text.setPrefWidth(120);
+            text.setPrefWidth(200);
             FlowPane flow = new FlowPane();
             answers.add(flow);
             flow.setPrefWidth(800);

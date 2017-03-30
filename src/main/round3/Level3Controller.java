@@ -106,6 +106,11 @@ public class Level3Controller extends Round3Controller implements Initializable,
 
         LinkedList<String> result = new LinkedList<>();
         String s = "";
+
+        for(int i = 0; i < fp_answer1.getChildren().size(); i++) {
+            s = s +((Label)fp_answer1.getChildren().get(i)).getText();
+        }
+
         for(int i = 0; i < fp_answer2.getChildren().size(); i++) {
             s = s +((Label)fp_answer2.getChildren().get(i)).getText();
         }
@@ -182,6 +187,8 @@ public class Level3Controller extends Round3Controller implements Initializable,
     public void rootClicked(Button button) {
         Label l = new Label(button.getText());
         l.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+        l.setCursor(Cursor.HAND);
+        l.setOnMouseClicked(e -> chosen.getChildren().removeAll(l));
         chosen.getChildren().add(l);
     }
 
