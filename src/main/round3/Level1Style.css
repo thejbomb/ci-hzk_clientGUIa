@@ -68,12 +68,12 @@
 }
 
 .label-questionsTimer {
-    -fx-font: bold 60pt "KaiTi";
+    -fx-font: bold 30pt "KaiTi";
     -fx-text-fill: rgb(255,0,0);
 }
 
 .label-questionsQuestion {
-    -fx-font: bold 40pt "KaiTi";
+    -fx-font: bold 30pt "KaiTi";
     -fx-text-fill: rgb(0,0,160);
 }
 
@@ -81,12 +81,17 @@
     -fx-font: bold 40pt "KaiTi";
     -fx-text-fill: rgb(0,0,0);
 }
+
 .button-character {
-    -fx-font: bold 30 pt;
+    -fx-font: bold 25 pt;
 }
 
 .button-submit {
-    -fx-font: bold 40 pt;
+    -fx-font: bold 25 pt;
+}
+
+.button-finishedSent {
+    -fx-font: bold 18 pt;
 }
 
 .label-selected {
@@ -95,6 +100,6 @@
 }
 
 .label-instruction {
-     -fx-font: bold 18pt "Bell MT";
+     -fx-font: bold 15pt "Bell MT";
      -fx-text-fill: rgb(150,0,250);
  }

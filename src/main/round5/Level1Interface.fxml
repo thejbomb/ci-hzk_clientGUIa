@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
@@ -156,6 +157,7 @@
                 <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
                 <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
                 <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="3.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints percentHeight="30.0" vgrow="NEVER" />
                 <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
             </rowConstraints>
@@ -183,14 +185,16 @@
                   </AnchorPane>
                </right>
             </BorderPane>
-                <FlowPane fx:id="fp_text" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <children>
-                    </children>
-                </FlowPane>
-                <FlowPane fx:id="fp_answers" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                    <children>
-                    </children>
-                </FlowPane>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <content>
+                  <FlowPane fx:id="fp_text" prefHeight="300.0" prefWidth="1100.0" />
+               </content>
+            </ScrollPane>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <content>
+                  <FlowPane fx:id="fp_answers" prefHeight="200.0" prefWidth="1100.0" />
+               </content>
+            </ScrollPane>
             </children>
         </GridPane>
     </children>

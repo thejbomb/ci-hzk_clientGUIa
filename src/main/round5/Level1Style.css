@@ -73,7 +73,7 @@
 }
 
 .label-questionsText {
-    -fx-font: bold 15pt "KaiTi";
+    -fx-font: bold 25pt "KaiTi";
     -fx-text-fill: rgb(0,0,160);
 }
 
