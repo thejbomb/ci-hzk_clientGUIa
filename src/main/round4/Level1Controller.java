@@ -50,6 +50,8 @@ public class Level1Controller extends Round4Controller implements Initializable,
     private Label lb_instructionHeader;
     @FXML
     private Label lb_instructionBody_zh;
+
+    
     @FXML
     private Label lb_instructionBody_en;
     @FXML
