@@ -130,7 +130,7 @@ public class Level1Controller extends Round5Controller implements Initializable,
         answer.setAlignment(Pos.CENTER);
         answer.getStyleClass().add(0, "text-field-questionsAnswer");
         answer.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.DELETE) {
+            if (e.getCode() == KeyCode.DIGIT9) {
                 fp_answers.getChildren().removeAll(label2, answer);
                 fp_text.getChildren().get(index).getStyleClass().set(0, "label-questionsText");
                 for (int i = 0; i < answerIndices.size(); i++) {

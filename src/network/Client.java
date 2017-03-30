@@ -4,7 +4,7 @@ public class Client {
     final private ServerHandler SERVER;
 
     public Client(){
-        SERVER = new ServerHandler("172.20.171.177",9999);
+        SERVER = new ServerHandler("192.168.0.9",9999);
     }
 
     public void start(ServerHandlerInterface notifyObject){
