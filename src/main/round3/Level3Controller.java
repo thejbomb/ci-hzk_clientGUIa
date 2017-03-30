@@ -181,14 +181,14 @@ public class Level3Controller extends Round3Controller implements Initializable,
     @FXML
     public void rootClicked(Button button) {
         Label l = new Label(button.getText());
-        l.setStyle("-fx-font: bold 45pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+        l.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
         chosen.getChildren().add(l);
     }
 
     @FXML
     public void finishSent() {
         Label l = new Label("。");
-        l.setStyle("-fx-font: bold 28pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+        l.setStyle("-fx-font: bold 21pt KaiTi; -fx-text-fill: rgb(150,0,250)");
         fp_answer2.getChildren().add(l);
     }
 
@@ -202,7 +202,7 @@ public class Level3Controller extends Round3Controller implements Initializable,
         string = string.replaceAll("[,]","");
         chosen.getChildren().clear();
         label.setText(string + "/");
-        label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+        label.setStyle("-fx-font: bold 21pt KaiTi; -fx-text-fill: rgb(150,0,250)");
         final DropShadow dropShadow = new DropShadow();
         final Glow glow = new Glow();
         label.setCursor(Cursor.HAND);
@@ -216,7 +216,7 @@ public class Level3Controller extends Round3Controller implements Initializable,
                 ans.setText(s);
                 label.setEffect(dropShadow);
                 answer.add(ans.getText());
-                ans.setStyle("-fx-font: bold 28pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+                ans.setStyle("-fx-font: bold 21pt KaiTi; -fx-text-fill: rgb(150,0,250)");
                 ans.setOnMousePressed(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
